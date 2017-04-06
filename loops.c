@@ -23,6 +23,8 @@ void loop1_static_n(int n);
 void loop2_static_n(int n);
 void loop1_dynamic(int n);
 void loop2_dynamic(int n);
+void loop1_guided(int n);
+void loop2_guided(int n);
 
 void valid1(void);
 void valid2(void);
@@ -36,16 +38,16 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0; i<7; i++){
     chunksize[i] = (int)pow(2, i);
-    printf("ckz = %d %d\n", chunksize[i], i);
+    //printf("ckz = %d %d\n", chunksize[i], i);
   }
   init1();
 
   #pragma omp parallel default(none) shared(chunksize,a, b, c, start1, start2, end1, end2, l1_t_def, l2_t_def) // private(start1, start2, end1, end2, l1_t_def, l2_t_def)
   {
-    printf("threads in parallel = %d \n", omp_get_thread_num());
+    //printf("threads in parallel = %d \n", omp_get_thread_num());
     #pragma omp single
     {
-      printf("thread in 1st single = %d", omp_get_thread_num());
+      //printf("thread in 1st single = %d", omp_get_thread_num());
       start1 = omp_get_wtime();
 
 
@@ -164,6 +166,35 @@ printf("before open 2nd single thread = %d \n", omp_get_thread_num());
 }
 
 
+// GUIDED
+  for (int chunk = 0; chunk < 7; chunk++)
+  {
+    #pragma omp single
+    {
+    init1();
+      start1 = omp_get_wtime();
+    }
+  #pragma omp barrier
+  {
+    //printf("chunk = %d thread = %d \n", chunk, omp_get_thread_num());
+    for (int r=0; r<reps; r++){
+
+      //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
+      loop1_guided(chunksize[chunk]);
+    }
+
+  }
+  #pragma omp single
+  {
+  end1  = omp_get_wtime();
+
+  valid1();
+
+  printf("Total time for %d reps of loop 1 with GUIDED_%d = %f\n",reps, chunksize[chunk], (float)(end1-start1));
+  printf("Time dif for loop1 for GUIDED_%d = %f\n", chunk, (float)(l1_t_def - (end1 - start1)));
+}
+}
+
 
 // section for loop2
 #pragma omp single
@@ -185,7 +216,8 @@ l2_t_def = end2 - start2;
 
 
 //STATIC
-init2();
+  init2();
+
 
 start2 = omp_get_wtime();
 }
@@ -284,6 +316,36 @@ printf("Time dif for loop2 for AUTO = %f\n", (float)(l2_t_def - (end2 - start2))
 }
 }
 
+
+// GUIDED
+  for (int chunk = 0; chunk < 7; chunk++)
+  {
+    #pragma omp single
+    {
+    init2();
+      start2 = omp_get_wtime();
+    }
+  #pragma omp barrier
+  {
+    //printf("chunk = %d thread = %d \n", chunk, omp_get_thread_num());
+    for (int r=0; r<reps; r++){
+
+      //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
+      loop2_guided(chunksize[chunk]);
+    }
+
+  }
+  #pragma omp single
+  {
+  end2  = omp_get_wtime();
+
+  valid2();
+
+  printf("Total time for %d reps of loop 2 with GUIDED_%d = %f\n",reps, chunksize[chunk], (float)(end2 - start2));
+  printf("Time dif for loop2 for GUIDED_%d = %f\n", chunk, (float)(l2_t_def - (end2 - start2)));
+}
+}
+
 //brackets for parallel & main, don't put anything after this
 }
 }
@@ -302,7 +364,6 @@ void init1(void){
 
 void init2(void){
   int i,j, expr;
-
   for (i=0; i<N; i++){
     expr =  i%( 3*(i/30) + 1);
     if ( expr == 0) {
@@ -373,7 +434,7 @@ void loop2_static(void) {
   double rN2;
 
   rN2 = 1.0 / (double) (N*N);
-#pragma omp fir schedule(static) //private(i, j, k)
+#pragma omp for schedule(static) //private(i, j, k)
   for (i=0; i<N; i++){
     for (j=0; j < jmax[i]; j++){
       for (k=0; k<j; k++){
@@ -482,6 +543,38 @@ void loop2_dynamic(int n) {
   }
 }
 
+//GUIDED
+void loop1_guided(int n) {
+  /* the static parallelisation of the first loop.
+  it uses STATIC as the parallel for kind. */
+  int i,j;
+//printf("thread = %d \n", omp_get_thread_num());
+//printf("n = %d in loop1 \n", n);
+#pragma omp for schedule(guided, n) //private(i,j)
+  for (i=0; i<N; i++){
+    //printf("thread = %d i = %d \n", omp_get_thread_num(), i);
+    for (j=N-1; j>i; j--){
+      a[i][j] += cos(b[i][j]);
+    }
+  }
+}
+
+void loop2_guided(int n) {
+  /* loop2 using STATIC */
+  int i,j,k;
+  double rN2;
+
+  rN2 = 1.0 / (double) (N*N);
+#pragma omp for schedule(guided, n) //private(i, j, k)
+  for (i=0; i<N; i++){
+    for (j=0; j < jmax[i]; j++){
+      for (k=0; k<j; k++){
+	       c[i] += (k+1) * log (b[i][j]) * rN2;
+      }
+    }
+  }
+}
+
 
 //valid part
 void valid1(void) {
@@ -494,7 +587,7 @@ void valid1(void) {
       suma += a[i][j];
     }
   }
-  printf("Loop 1 check: Sum of a is %lf\n", suma);
+  //printf("Loop 1 check: Sum of a is %lf\n", suma);
 
 }
 
@@ -507,5 +600,5 @@ void valid2(void) {
   for (i=0; i<N; i++){
     sumc += c[i];
   }
-  printf("Loop 2 check: Sum of c is %f\n", sumc);
+  //printf("Loop 2 check: Sum of c is %f\n", sumc);
 }
