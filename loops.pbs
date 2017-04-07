@@ -15,7 +15,7 @@
 # David Henty, EPCC, 25/11/2014
 #
 
-#PBS -A y14
+#PBS -A y14-CDT-Soton
 #PBS -j oe
 #PBS -l walltime=00:01:00
 #PBS -l select=1

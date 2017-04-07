@@ -6,10 +6,11 @@
 #define reps 100
 #include <omp.h>
 
+
 double a[N][N], b[N][N], c[N];
 int jmax[N];
 int chunksize[7];
-
+int ckk;
 
 void init1(void);
 void init2(void);
@@ -36,13 +37,17 @@ int main(int argc, char *argv[]) {
   double l1_t_def, l2_t_def;
   int r;
 
+
+  ckk = 4;
+
+
   for (int i = 0; i<7; i++){
     chunksize[i] = (int)pow(2, i);
     //printf("ckz = %d %d\n", chunksize[i], i);
   }
   init1();
 
-  #pragma omp parallel default(none) shared(chunksize,a, b, c, start1, start2, end1, end2, l1_t_def, l2_t_def) // private(start1, start2, end1, end2, l1_t_def, l2_t_def)
+  #pragma omp parallel default(none) shared(ckk, chunksize,a, b, c, start1, start2, end1, end2, l1_t_def, l2_t_def) // private(start1, start2, end1, end2, l1_t_def, l2_t_def)
   {
     //printf("threads in parallel = %d \n", omp_get_thread_num());
     #pragma omp single
@@ -65,9 +70,9 @@ int main(int argc, char *argv[]) {
     // STATIC
     init1();
       start1 = omp_get_wtime();
-    printf("before close single thread = %d \n", omp_get_thread_num());
+    //printf("before close single thread = %d \n", omp_get_thread_num());
     } //close first single
-    printf("after close single thread = %d \n", omp_get_thread_num());
+    //printf("after close single thread = %d \n", omp_get_thread_num());
 
     #pragma omp barrier
     {
@@ -75,12 +80,12 @@ int main(int argc, char *argv[]) {
       loop1_static();
     }
     }
-printf("before open 2nd single thread = %d \n", omp_get_thread_num());
+//printf("before open 2nd single thread = %d \n", omp_get_thread_num());
   #pragma omp single
   {
-    printf("after open 2nd single thread = %d \n", omp_get_thread_num());
+    //printf("after open 2nd single thread = %d \n", omp_get_thread_num());
     end1  = omp_get_wtime();
-    printf("%f %f \n", start1, end1);
+    //printf("%f %f \n", start1, end1);
     valid1();
 
   printf("Total time for %d reps of loop 1 with STATIC  in thread %d = %f\n",reps, omp_get_thread_num(), (float)(end1-start1));
@@ -105,8 +110,85 @@ printf("before open 2nd single thread = %d \n", omp_get_thread_num());
     printf("Total time for %d reps of loop 1 with AUTO = %f\n",reps, (float)(end1-start1));
     printf("Time dif for loop1 for AUTO = %f\n", (float)(l1_t_def - (end1 - start1)));
 
+
+// STATIC N
+
+    init1();
+      start1 = omp_get_wtime();
+    }
+  #pragma omp barrier
+  {
+    //printf("chunk = %d thread = %d \n", chunk, omp_get_thread_num());
+    for (int r=0; r<reps; r++){
+
+      //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
+      loop1_static_n(ckk);
+    }
+
+  }
+  #pragma omp single
+  {
+  end1  = omp_get_wtime();
+
+  valid1();
+
+  printf("Total time for %d reps of loop 1 with STATIC_%d = %f\n",reps, ckk, (float)(end1-start1));
+  printf("Time dif for loop1 for STATIC_%d = %f\n", ckk, (float)(l1_t_def - (end1 - start1)));
+
+
+// DYNAMIC
+
+    init1();
+      start1 = omp_get_wtime();
+    }
+  #pragma omp barrier
+  {
+    //printf("chunk = %d thread = %d \n", chunk, omp_get_thread_num());
+    for (int r=0; r<reps; r++){
+
+      //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
+      loop1_dynamic(ckk);
+    }
+
+  }
+  #pragma omp single
+  {
+  end1  = omp_get_wtime();
+
+  valid1();
+
+  printf("Total time for %d reps of loop 1 with DYNAMIC_%d = %f\n",reps, ckk, (float)(end1-start1));
+  printf("Time dif for loop1 for DYNAMIC_%d = %f\n", ckk, (float)(l1_t_def - (end1 - start1)));
+
+
+
+// GUIDED
+
+init1();
+  start1 = omp_get_wtime();
+}
+#pragma omp barrier
+{
+//printf("chunk = %d thread = %d \n", chunk, omp_get_thread_num());
+for (int r=0; r<reps; r++){
+
+  //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
+  loop1_guided(ckk);
 }
 
+}
+#pragma omp single
+{
+end1  = omp_get_wtime();
+
+valid1();
+
+printf("Total time for %d reps of loop 1 with GUIDED_%d = %f\n",reps, ckk, (float)(end1-start1));
+printf("Time dif for loop1 for GUIDED_%d = %f\n", ckk, (float)(l1_t_def - (end1 - start1)));
+
+
+
+/*
 // STATIC N
   for (int chunk = 0; chunk < 7; chunk++)
   {
@@ -150,7 +232,7 @@ printf("before open 2nd single thread = %d \n", omp_get_thread_num());
         for (int r=0; r<reps; r++){
 
           //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
-          loop1_dynamic(chunksize[chunk]);
+          loop1_dynamic(ckk);
         }
 
       }
@@ -160,7 +242,7 @@ printf("before open 2nd single thread = %d \n", omp_get_thread_num());
 
       valid1();
 
-      printf("Total time for %d reps of loop 1 with DYNAMIC_%d = %f\n",reps, chunksize[chunk], (float)(end1-start1));
+      printf("Total time for %d reps of loop 1 with DYNAMIC_%d = %f\n",reps, ckk, (float)(end1-start1));
       printf("Time dif for loop1 for DYNAMIC_%d = %f\n", chunk, (float)(l1_t_def - (end1 - start1)));
     }
 }
@@ -194,11 +276,10 @@ printf("before open 2nd single thread = %d \n", omp_get_thread_num());
   printf("Time dif for loop1 for GUIDED_%d = %f\n", chunk, (float)(l1_t_def - (end1 - start1)));
 }
 }
-
+*/
 
 // section for loop2
-#pragma omp single
-{
+
 init2();
 
 start2 = omp_get_wtime();
@@ -255,8 +336,82 @@ valid2();
 
 printf("Total time for %d reps of loop 2 AUTO = %f\n",reps, (float)(end2-start2));
 printf("Time dif for loop2 for AUTO = %f\n", (float)(l2_t_def - (end2 - start2)));
+
+
+// STATIC N
+
+    init2();
+      start2 = omp_get_wtime();
+    }
+  #pragma omp barrier
+  {
+    //printf("chunk = %d thread = %d \n", chunk, omp_get_thread_num());
+    for (int r=0; r<reps; r++){
+
+      //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
+      loop2_static_n(ckk);
+    }
+
+  }
+  #pragma omp single
+  {
+  end2  = omp_get_wtime();
+
+  valid2();
+
+  printf("Total time for %d reps of loop 2 with STATIC_%d = %f\n",reps, ckk, (float)(end2 - start2));
+  printf("Time dif for loop2 for STATIC_%d = %f\n", ckk, (float)(l2_t_def - (end2 - start2)));
+
+
+// DYNAMIC
+
+init2();
+  start2 = omp_get_wtime();
+}
+#pragma omp barrier
+{
+//printf("chunk = %d thread = %d \n", chunk, omp_get_thread_num());
+for (int r=0; r<reps; r++){
+
+  //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
+  loop2_dynamic(ckk);
 }
 
+}
+#pragma omp single
+{
+end2  = omp_get_wtime();
+
+valid2();
+
+printf("Total time for %d reps of loop 2 with DYNAMIC_%d = %f\n",reps, ckk, (float)(end2 - start2));
+printf("Time dif for loop2 for DYNAMIC_%d = %f\n", ckk, (float)(l2_t_def - (end2 - start2)));
+
+
+// GUIDED
+init2();
+  start2 = omp_get_wtime();
+}
+#pragma omp barrier
+{
+//printf("chunk = %d thread = %d \n", chunk, omp_get_thread_num());
+for (int r=0; r<reps; r++){
+
+  //printf("chunk = %d thread = %d \n", chunksize[chunk], omp_get_thread_num());
+  loop2_guided(ckk);
+}
+
+}
+#pragma omp single
+{
+end2  = omp_get_wtime();
+
+valid2();
+
+printf("Total time for %d reps of loop 2 with GUIDED_%d = %f\n",reps, ckk, (float)(end2 - start2));
+printf("Time dif for loop2 for GUIDED_%d = %f\n", ckk, (float)(l2_t_def - (end2 - start2)));
+}
+/*
     // STATIC N
       for (int chunk = 0; chunk < 7; chunk++)
       {
@@ -345,7 +500,7 @@ printf("Time dif for loop2 for AUTO = %f\n", (float)(l2_t_def - (end2 - start2))
   printf("Time dif for loop2 for GUIDED_%d = %f\n", chunk, (float)(l2_t_def - (end2 - start2)));
 }
 }
-
+*/
 //brackets for parallel & main, don't put anything after this
 }
 }
@@ -565,6 +720,7 @@ void loop2_guided(int n) {
   double rN2;
 
   rN2 = 1.0 / (double) (N*N);
+
 #pragma omp for schedule(guided, n) //private(i, j, k)
   for (i=0; i<N; i++){
     for (j=0; j < jmax[i]; j++){
