@@ -2,7 +2,7 @@ import numpy
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
 rcParams['font.family'] = 'serif'
-rcParams['figure.figsize'] = (15, 7.5)
+rcParams['figure.figsize'] = (15, 10)
 rcParams['font.size'] = 15
 
 l1 = [[0.200321,0.200321,0.200321,0.200321,0.200321,0.200321,0.200321],
@@ -20,9 +20,14 @@ l2 = [[0.617023,0.617023,0.617023,0.617023,0.617023,0.617023,0.617023],
         [0.110584,0.110625,0.108558,0.110520,0.155836,0.291869,0.369729],
         [0.339318,0.339361,0.333666,0.3392613,0.333779,0.333601,0.340930]]
 
-
-
 lx = [1, 2, 4, 8, 16, 32, 64]
+
+
+
+l3 = numpy.array([0.045269, 0.034604, 0.026104, 0.014761, 0.007732, 0.004024])
+l4 = numpy.array([0.615633, 0.301664, 0.202422, 0.108431, 0.054432, 0.038987])
+
+lx_2 = [1, 2, 3, 6, 12, 24]
 
 data_graph_points = [["b", "bo"],
                      ["r", "ro"],
@@ -33,8 +38,24 @@ data_graph_points = [["b", "bo"],
 
 names = ["init", "static", "auto", "static_n", "dynamic_n", "guided_n"]
 
+def plot_graph():
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(lx_2, l3[0]/l3, "b")
+    ax.plot(lx_2, l3[0]/l3, "bo", label="loop1 static")
+    ax.plot(lx_2, l4[0]/l4, "g")
+    ax.plot(lx_2, l4[0]/l4, "go", label="loop2 dynamic(4)")
 
-def plot_draph(l, t):
+    ax.set_xlabel("number of threads")
+    ax.set_ylabel("speed up T1/T")
+    ax.set_title("Speed up for different number of threads")
+    ax.grid(which="both", axis="both")
+    plt.legend(loc=4)
+    plt.savefig("speed_up.jpeg")
+    plt.close()
+
+
+def plot_draph(l, t, loc):
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
@@ -48,7 +69,7 @@ def plot_draph(l, t):
     ax.set_ylabel("time (s)")
     ax.set_title("time vs chunksize for {}".format(t))
     ax.grid(which="both", axis="both")
-    plt.legend()
+    plt.legend(loc=loc)
     plt.savefig("{}.jpeg".format(t))
     plt.close()
 
