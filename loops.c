@@ -9,7 +9,6 @@
 
 double a[N][N], b[N][N], c[N];
 int jmax[N];
-int chunksize[7];
 int ckk;
 
 void init1(void);
@@ -40,14 +39,9 @@ int main(int argc, char *argv[]) {
 
   ckk = 4;
 
-
-  for (int i = 0; i<7; i++){
-    chunksize[i] = (int)pow(2, i);
-    //printf("ckz = %d %d\n", chunksize[i], i);
-  }
   init1();
 
-  #pragma omp parallel default(none) shared(ckk, chunksize,a, b, c, start1, start2, end1, end2, l1_t_def, l2_t_def) // private(start1, start2, end1, end2, l1_t_def, l2_t_def)
+  #pragma omp parallel default(none) shared(ckk, a, b, c, start1, start2, end1, end2, l1_t_def, l2_t_def) // private(start1, start2, end1, end2, l1_t_def, l2_t_def)
   {
     //printf("threads in parallel = %d \n", omp_get_thread_num());
     #pragma omp single
