@@ -4,22 +4,23 @@
 
 #define N 729
 #define reps 100
-
+#define MAX_THREAD 24
 
 double a[N][N], b[N][N], c[N];
 int jmax[N];
-int ckk = 4;  // chunk size for schedule. 4 is best for loop2 as found before
 int num_threads;  //number of threads
-int num_iter_thread[24];  // number of iterations for each thread. 24 cause that is the maximum in this exercise
+int num_iter_thread[MAX_THREAD];  // number of iterations for each thread. 24 cause that is the maximum in this exercise
 int num_chunks;  // chunk size for each thread
-int iter_thread[24][N][3];  // individual iter count for each thread & bool values
-omp_lock_t locks[24][N];  // omp lock variable
+int iter_thread[MAX_THREAD][N][3];  // individual iter count for each thread & bool values (0 for start, 1 for end & 2 to see if it was used or not)
+omp_lock_t locks[MAX_THREAD][N];  // omp lock variable
 
 
 void init1(void);
 void init2(void);
 void loop1(int start_p, int end_p);
 void loop2(int start_p, int end_p);
+void loop1_main(void);
+void loop2_main(void);
 void valid1(void);
 void valid2(void);
 
@@ -81,7 +82,7 @@ int main(int argc, char *argv[]) {
 
           iter_thread[i][j][0] = start_location;  // start location for thread i after j steps
           iter_thread[i][j][1] = start_location + chunk - 1; // end position. -1 so it will actually go there
-          iter_thread[i][j][2] = 1;
+          iter_thread[i][j][2] = 0;
           start_location += chunk;  // updates the overall start location. it will extend over the threads
           origin_iter -= chunk; // original will go to 0 for each thread and stop
           printf("chunk=%d, i=%d, j=%d origin_iter=%d\n", chunk, i, j, origin_iter);
@@ -98,6 +99,7 @@ int main(int argc, char *argv[]) {
 
     for (int r=0; r<reps; r++){
       loop1_main();
+      printf("finished loop r = %d", r);
     }
 
     end1  = omp_get_wtime();
@@ -106,7 +108,7 @@ int main(int argc, char *argv[]) {
 
 
     // second loop
-    init2();
+    /*init2();
     start2 = omp_get_wtime();
 
     for (r=0; r<reps; r++)
@@ -117,6 +119,7 @@ int main(int argc, char *argv[]) {
     end2  = omp_get_wtime();
     valid2();
     printf("Total time for %d reps of loop 2 = %f\n",reps, (float)(end2-start2));
+*/
 
 // final bracket for main
 }
@@ -177,6 +180,184 @@ void loop2(int start_p, int end_p)
       for (k=0; k<j; k++){
 	       c[i] += (k+1) * log (b[i][j]) * rN2;
       }
+    }
+  }
+}
+
+// the affinity loop functions
+
+void loop1_main(void)
+{
+  int i, j;
+  int not_done;
+  int thread_sum = 0;
+
+
+  #pragma omp parallel private(i,j,not_done) shared(thread_sum)
+  {
+    int thread_num = omp_get_thread_num();
+    int max_num_thread = omp_get_num_threads();
+    for (i=0; i<num_chunks; i++)
+    {
+      iter_thread[thread_num][i][2] = 0;
+    }
+    for (i = 0; i < num_chunks; i++)
+    {
+      // start with defaut 0
+      not_done = 0;  // not_done=0, then not_done is false, then that one is done (in the future)
+      // set the loc for executing this specific thread
+      omp_set_lock(&locks[thread_num][i]);
+
+      // check if the thread has done chunk or not
+      if(iter_thread[thread_num][i][2] == 0)
+      {
+        // mark it as executed
+        iter_thread[thread_num][i][2] = 1;
+        not_done = 1; // it will be done now
+      }
+      // unset the lock
+      omp_unset_lock(&locks[thread_num][i]);
+
+      if(not_done == 1) // if the thing was not done & set to be done
+      {
+        // Call loop1
+        loop1(iter_thread[thread_num][i][0], iter_thread[thread_num][i][1]);
+      }
+      printf("thr = %d, i =%d, \n", thread_num, i);
+/*
+      for (j=0; j<num_threads; j++)
+      {
+        // Do the same things for the other threads' chunks
+        exec = false;
+        omp_set_lock(&locks[j][i]);
+        if(arr_main[j][i][2] == 1)
+        {
+          arr_main[j][i][2] = 0;
+          exec = true;
+        }
+        omp_unset_lock(&locks[j][i]);
+        if(exec == true)
+        {
+          loop1(arr_main[j][i][0], arr_main[j][i][1]);
+        }
+      }
+    }
+  }
+
+  for (i=0; i<nthreads;i++)
+  {
+    iter_orig = arr_thr_num[i];
+    for (j=0; iter_orig>0; j++)
+    {
+      // Take care of remaining chunks
+      local_chunk = iter_orig/nthreads + 1;
+      arr_main[i][j][0] = start_loc;
+      arr_main[i][j][1] = start_loc + local_chunk - 1;
+      arr_main[i][j][2] = 1;
+      start_loc += local_chunk;
+      iter_orig -= local_chunk;
+    }
+    if(i == 0)
+    {
+      nchunks = j;
+
+*/
+    }
+    printf("finished thread = %d\n", omp_get_thread_num());
+
+    thread_sum += 1;
+
+    while (thread_sum < max_num_thread)
+    {
+      
+    }
+
+    printf("thrd sum = %d\n", thread_sum);
+    // set everything back to 0
+    for (i=0; i<num_chunks; i++)
+    {
+      iter_thread[thread_num][i][2] = 0;
+    }
+  }
+}
+
+void loop2_main(void)
+{
+  int i, j;
+  int not_done;
+
+  #pragma omp parallel private(i,j,not_done)
+  {
+    int thread_num = omp_get_thread_num();
+
+    for (i = 0; i < num_chunks; i++)
+    {
+      // start with defaut 0
+      not_done = 0;  // not_done=0, then not_done is false, then that one is done (in the future)
+      // set the loc for executing this specific thread
+      //omp_set_lock(&locks[thread_num][i]);
+
+      // check if the thread has done chunk or not
+      if(iter_thread[thread_num][i][2] == 0)
+      {
+        // mark it as executed
+        //printf("in 2 thr = %d \n", thread_num);
+        iter_thread[thread_num][i][2] = 1;
+        not_done = 1; // it will be done now
+      }
+      // unset the lock
+      //omp_unset_lock(&locks[thread_num][i]);
+
+      if(not_done == 1) // if the thing was not done & set to be done
+      {
+        // Call loop1
+        loop2(iter_thread[thread_num][i][0], iter_thread[thread_num][i][1]);
+      }
+      printf("thr = %d, i =%d, \n", thread_num, i);
+      //printf("thr = %d, i =%d, \n", thread_num, i);
+/*
+      for (j=0; j<num_threads; j++)
+      {
+        // Do the same things for the other threads' chunks
+        exec = false;
+        omp_set_lock(&locks[j][i]);
+        if(arr_main[j][i][2] == 1)
+        {
+          arr_main[j][i][2] = 0;
+          exec = true;
+        }
+        omp_unset_lock(&locks[j][i]);
+        if(exec == true)
+        {
+          loop1(arr_main[j][i][0], arr_main[j][i][1]);
+        }
+      }
+    }
+  }
+
+  for (i=0; i<nthreads;i++)
+  {
+    iter_orig = arr_thr_num[i];
+    for (j=0; iter_orig>0; j++)
+    {
+      // Take care of remaining chunks
+      local_chunk = iter_orig/nthreads + 1;
+      arr_main[i][j][0] = start_loc;
+      arr_main[i][j][1] = start_loc + local_chunk - 1;
+      arr_main[i][j][2] = 1;
+      start_loc += local_chunk;
+      iter_orig -= local_chunk;
+    }
+    if(i == 0)
+    {
+      nchunks = j;
+
+*/
+    }
+    printf("finished thread 2 = %d\n", omp_get_thread_num());
+    for (i=0; i<num_chunks; i++)
+    {
+      iter_thread[thread_num][i][2] = 0;
     }
   }
 }
