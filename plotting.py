@@ -29,6 +29,10 @@ l4 = numpy.array([0.615633, 0.301664, 0.202422, 0.108431, 0.054432, 0.038987])
 
 lx_2 = [1, 2, 3, 6, 12, 24]
 
+l5 = numpy.array([0.191396,0.109869,0.082297,0.057153,0.042846,0.066724])
+l6 = numpy.array([0.518554,0.383360,0.329376,0.190079,0.062579,0.032091])
+
+
 data_graph_points = [["b", "bo"],
                      ["r", "ro"],
                      ["g", "go"],
@@ -52,6 +56,54 @@ def plot_graph():
     ax.grid(which="both", axis="both")
     plt.legend(loc=4)
     plt.savefig("speed_up.jpeg")
+    plt.close()
+
+def plot_graph2():
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(lx_2, l5[0]/l5, "b")
+    ax.plot(lx_2, l5[0]/l5, "bo", label="loop1")
+    ax.plot(lx_2, l6[0]/l6, "g")
+    ax.plot(lx_2, l6[0]/l6, "go", label="loop2")
+
+    ax.set_xlabel("number of threads")
+    ax.set_ylabel("speed up T1/T")
+    ax.set_title("Speed up for different number of threads using affinity")
+    ax.grid(which="both", axis="both")
+    plt.legend(loc=4)
+    plt.savefig("speed_up_af.jpeg")
+    plt.close()
+
+def plot_graph3():
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(lx_2, l3[0]/l3, "b")
+    ax.plot(lx_2, l3[0]/l3, "bo", label="loop1")
+    ax.plot(lx_2, l5[0]/l5, "g")
+    ax.plot(lx_2, l5[0]/l5, "go", label="loop1 with affinity")
+
+    ax.set_xlabel("number of threads")
+    ax.set_ylabel("speed up T1/T")
+    ax.set_title("Speed up for different number of threads for loop1")
+    ax.grid(which="both", axis="both")
+    plt.legend(loc=4)
+    plt.savefig("speed_up_l1.jpeg")
+    plt.close()
+
+def plot_graph4():
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(lx_2, l4[0]/l4, "b")
+    ax.plot(lx_2, l4[0]/l4, "bo", label="loop2")
+    ax.plot(lx_2, l6[0]/l6, "g")
+    ax.plot(lx_2, l6[0]/l6, "go", label="loop2 with affinity")
+
+    ax.set_xlabel("number of threads")
+    ax.set_ylabel("speed up T1/T")
+    ax.set_title("Speed up for different number of threads for loop2")
+    ax.grid(which="both", axis="both")
+    plt.legend(loc=4)
+    plt.savefig("speed_up_l2.jpeg")
     plt.close()
 
 
