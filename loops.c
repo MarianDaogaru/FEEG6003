@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
       printf("Total time for %d reps of loop 1 = %f\n",reps, (float)(end1-start1));
       l1_t_def = end1 - start1;
 
-    // STATIC
+    // STATIC - BEST FOR LOOP1
     init1();
       start1 = omp_get_wtime();
     }
@@ -247,7 +247,7 @@ printf("Time dif for loop2 for AUTO = %f\n", (float)(l2_t_def - (end2 - start2))
   printf("Time dif for loop2 for STATIC_%d = %f\n", ckk, (float)(l2_t_def - (end2 - start2)));
 
 
-// DYNAMIC
+// DYNAMIC - best for LOOP2
 
 init2();
   start2 = omp_get_wtime();

@@ -32,6 +32,8 @@ lx_2 = [1, 2, 3, 6, 12, 24]
 l5 = numpy.array([0.191396,0.109869,0.082297,0.057153,0.042846,0.066724])
 l6 = numpy.array([0.518554,0.383360,0.329376,0.190079,0.062579,0.032091])
 
+l8 = [19.195229, 6.705055]
+l9 = [52.099636, 3.262320]
 
 data_graph_points = [["b", "bo"],
                      ["r", "ro"],
@@ -93,17 +95,17 @@ def plot_graph3():
 def plot_graph4():
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.plot(lx_2, l4[0]/l4, "b")
-    ax.plot(lx_2, l4[0]/l4, "bo", label="loop2")
-    ax.plot(lx_2, l6[0]/l6, "g")
-    ax.plot(lx_2, l6[0]/l6, "go", label="loop2 with affinity")
+    ax.plot(lx_2, l4, "b")
+    ax.plot(lx_2, l4, "bo", label="loop2")
+    ax.plot(lx_2, l6, "g")
+    ax.plot(lx_2, l6, "go", label="loop2 with affinity")
 
     ax.set_xlabel("number of threads")
     ax.set_ylabel("speed up T1/T")
-    ax.set_title("Speed up for different number of threads for loop2")
+    ax.set_title("Execution times for different number of threads for loop2")
     ax.grid(which="both", axis="both")
-    plt.legend(loc=4)
-    plt.savefig("speed_up_l2.jpeg")
+    plt.legend(loc=3)
+    plt.savefig("speed_up_l22.jpeg")
     plt.close()
 
 
