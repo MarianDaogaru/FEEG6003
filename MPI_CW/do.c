@@ -4,37 +4,45 @@
 #include <string.h>
 #include <mpi.h>
 
+#include "pgmio.h"
+double average(double *times, int r, int iter);
+
+
+/*
 void pgmread(char *filename, void *vx, int nx, int ny);
 void pgmwrite(char *filename, void *vx, int nx, int ny);
 //void communicate(void *oldbuf, int prev, int next, int MP, int NP);
 void datread(char *filename, void *vx, int nx, int ny);
-
-#define M 192
-#define N 128
+*/
+#define M 256
+#define N 192
 #define P 4
 
 #define MP M/P
 #define NP N
+
+#define ITER 1000
 
 float masterbuf[M][N];
 float buf[MP][NP];
 float edge[MP+2][NP+2];
 float old[MP+2][NP+2];
 float new[MP+2][NP+2];
+double times[P][ITER];
 
 int main(void)
 {
 
-  int iter = 1000;
   int i,j,k;
   int tag, size, rank, next, prev;
+  int start_time, stop_time;
   MPI_Comm comm;
   MPI_Status status;
   MPI_Request *requests;
   MPI_Status *statuses;
 
   char *filename;
-  filename = "edge192x128.pgm";
+  filename = "edge256x192.pgm";
 
   comm = MPI_COMM_WORLD;
   tag = 1;
@@ -104,8 +112,9 @@ int main(void)
 
 
 
-  for (int k=0; k<iter; k++)
+  for (int k=0; k<ITER; k++)
   {
+    times[rank][k] = MPI_Wtime();
     printf("in for loop %d\n", rank);
     MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, next, 1, &old[0][1],  NP, MPI_FLOAT, prev, 1, MPI_COMM_WORLD, &status);
     printf("past first sendrecv %d\n", rank);
@@ -137,6 +146,8 @@ int main(void)
         buf[i][j] = old[i+1][j+1];
       }
     }
+
+      times[rank][k] -= MPI_Wtime();
   }
   printf("finished %d n=%d, p=%d\n", rank, next, prev);
 
@@ -144,11 +155,31 @@ int main(void)
   printf("finished AFTER gather %d n=%d, p=%d\n", rank, next, prev);
   if (rank == 0)
     {
-      filename = "edge192x128_1.pgm";
+      filename = "edge256x192_1.pgm";
       printf("Writing\n");
       pgmwrite(filename, masterbuf, M, N);
       printf("Finished writing\n");
     }
 
   MPI_Finalize();
+
+  for (int i=0; i<size; i++)
+  {
+    printf("Tread %d %f r=%d\n", i, average(times[i], i, ITER), rank);
+  }
+
+}
+
+double average(double *times, int r, int iter)
+{
+  double sum = 0;
+  //double *timeZ = (double *)times;
+
+  for (int i = 0; i<iter; i++)
+  {
+    //printf("%f\n", times[i]);
+    sum -= times[i];
+  }
+
+  return sum / (double)iter;
 }

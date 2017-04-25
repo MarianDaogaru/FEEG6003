@@ -28,6 +28,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "pgmio.h"
+
 #define MAXLINE 128
 
 /*
@@ -76,7 +78,7 @@
 
    fclose(fp);
  }
- 
+
 void pgmsize(char *filename, int *nx, int *ny)
 {
   FILE *fp;
