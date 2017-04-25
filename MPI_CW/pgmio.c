@@ -35,9 +35,50 @@
  *
  *  Note that this assumes a single line comment and no other white space.
  */
+ void datread(char *filename, void *vx, int nx, int ny)
+ {
+   FILE *fp;
 
+   int nxt, nyt, i, j, t;
+
+   float *x = (float *) vx;
+
+   if (NULL == (fp = fopen(filename,"r")))
+   {
+     fprintf(stderr, "datread: cannot open <%s>\n", filename);
+     exit(-1);
+   }
+
+   fscanf(fp,"%d %d",&nxt,&nyt);
+
+   if (nx != nxt || ny != nyt)
+   {
+     fprintf(stderr,
+             "datread: size mismatch, (nx,ny) = (%d,%d) expected (%d,%d)\n",
+             nxt, nyt, nx, ny);
+     exit(-1);
+   }
+
+   /*
+    *  Must cope with the fact that the storage order of the data file
+    *  is not the same as the storage of a C array, hence the pointer
+    *  arithmetic to access x[i][j].
+    */
+
+   for (j=0; j<ny; j++)
+   {
+     for (i=0; i<nx; i++)
+     {
+       fscanf(fp,"%d", &t);
+       x[(ny-j-1)+ny*i] = t;
+     }
+   }
+
+   fclose(fp);
+ }
+ 
 void pgmsize(char *filename, int *nx, int *ny)
-{ 
+{
   FILE *fp;
 
   char *cret;
@@ -56,7 +97,7 @@ void pgmsize(char *filename, int *nx, int *ny)
   cret = fgets(dummy, n, fp);
 
   iret = fscanf(fp,"%d %d", nx, ny);
-      
+
   fclose(fp);
 }
 
@@ -70,7 +111,7 @@ void pgmsize(char *filename, int *nx, int *ny)
  */
 
 void pgmread(char *filename, void *vx, int nx, int ny)
-{ 
+{
   FILE *fp;
 
   int nxt, nyt, i, j, t;

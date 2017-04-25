@@ -6,7 +6,8 @@
 
 void pgmread(char *filename, void *vx, int nx, int ny);
 void pgmwrite(char *filename, void *vx, int nx, int ny);
-
+//void communicate(void *oldbuf, int prev, int next, int MP, int NP);
+void datread(char *filename, void *vx, int nx, int ny);
 
 #define M 192
 #define N 128
@@ -24,12 +25,13 @@ float new[MP+2][NP+2];
 int main(void)
 {
 
-  int iter = 50;
+  int iter = 1000;
   int i,j,k;
   int tag, size, rank, next, prev;
   MPI_Comm comm;
   MPI_Status status;
-  MPI_Request request;
+  MPI_Request *requests;
+  MPI_Status *statuses;
 
   char *filename;
   filename = "edge192x128.pgm";
@@ -64,20 +66,22 @@ int main(void)
       prev = MPI_PROC_NULL;
     }
 
-  if (rank == 0)
-  {
-    printf("Reading\n");
-    pgmread(filename, masterbuf, M, N);
-    printf("Finished reading\n");
-  }
+    if (rank == 0)
+    {
+      printf("Reading\n");
+      pgmread(filename, masterbuf, M, N);
+      printf("Finished reading\n");
 
-  MPI_Scatter(masterbuf, MP * NP, MPI_FLOAT, buf, MP * NP, MPI_FLOAT, 0, comm);
+    }
+
+  MPI_Scatter(masterbuf, MP * NP, MPI_FLOAT, &buf, MP * NP, MPI_FLOAT, 0, comm);
+
 
   for (int i=0; i<MP+2; i++)
   {
     for (int j=0; j<NP+2; j++)
     {
-      edge[i][j] = 255.0;
+      edge[i][j] = 255;
     }
   }
   for (i=1; i<MP+1; i++)
@@ -103,10 +107,13 @@ int main(void)
   for (int k=0; k<iter; k++)
   {
     printf("in for loop %d\n", rank);
-    MPI_Sendrecv(&old[(rank+1)*MP][1], NP, MPI_FLOAT, next, 1, &old[rank*MP][1],  NP, MPI_FLOAT, prev, 1, MPI_COMM_WORLD, &status);
+    MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, next, 1, &old[0][1],  NP, MPI_FLOAT, prev, 1, MPI_COMM_WORLD, &status);
     printf("past first sendrecv %d\n", rank);
-    MPI_Sendrecv(&old[1+rank*MP][1], NP, MPI_FLOAT, prev, 2, &old[(rank+1)*MP+1][1], NP, MPI_FLOAT, next, 2, MPI_COMM_WORLD, &status);
+    MPI_Sendrecv(&old[1][1], NP, MPI_FLOAT, prev, 2, &old[MP+1][1], NP, MPI_FLOAT, next, 2, MPI_COMM_WORLD, &status);
     printf("past second sendrecv %d\n", rank);
+
+    //communicate(&old, prev,next, MP, NP);
+
     for (int i=1; i<MP+1; i++)
     {
       for (int j=1; j<NP+1; j++)
@@ -131,12 +138,15 @@ int main(void)
       }
     }
   }
+  printf("finished %d n=%d, p=%d\n", rank, next, prev);
+
   MPI_Gather(buf, MP * NP, MPI_FLOAT, masterbuf, MP * NP, MPI_FLOAT, 0, comm);
+  printf("finished AFTER gather %d n=%d, p=%d\n", rank, next, prev);
   if (rank == 0)
     {
       filename = "edge192x128_1.pgm";
       printf("Writing\n");
-      pgmwrite(filename, buf, M, N);
+      pgmwrite(filename, masterbuf, M, N);
       printf("Finished writing\n");
     }
 
