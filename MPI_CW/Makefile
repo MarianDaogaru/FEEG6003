@@ -11,7 +11,7 @@ LIB=	-lm
 #
 # Object files
 #
-OBJ=	do.o \
+OBJ=	do_2d.o \
 	pgmio.o
 
 #
