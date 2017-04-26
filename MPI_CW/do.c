@@ -5,7 +5,8 @@
 #include <mpi.h>
 
 #include "pgmio.h"
-double average(double *times, int iter);
+double mySum(void *myArray, int size);
+double myAverage(void *myArray, int size);
 float maxValue(float myArray[], int size);
 
 /*
@@ -20,8 +21,8 @@ float maxValue(float myArray[], int size);
 
 #define MAXITER 10000
 #define DELTA_FREQ 10
-#define MAX_DELTA 0.01
-#define AVG_FREQ 10
+#define MAX_DELTA 0.05
+#define AVG_FREQ 200
 
 float masterbuf[M][N];
 float buf[MP][NP];
@@ -37,9 +38,9 @@ int main(void)
 {
 
   int i,j;
-  int iter;
+  int iter=0;
   int tag, size, rank, next, prev;
-  int status_quo = 0;
+  float local_sum, global_sum[P], local_avg, global_avg;
   MPI_Comm comm;
   MPI_Status status;
   MPI_Request *requests;
@@ -50,7 +51,7 @@ int main(void)
 
   comm = MPI_COMM_WORLD;
   tag = 1;
-
+  fflush(stdout);
   MPI_Init(NULL,NULL);
   MPI_Comm_rank(comm, &rank);
   MPI_Comm_size(comm, &size);
@@ -112,13 +113,14 @@ int main(void)
       old[i][j] = edge[i][j];
     }
   }
-    //printf("finished rank %d \n", rank);
+
+  printf("finished rank %d, before while, iter = %d, max_detal = %f \n", rank, iter, max_delta);
 
 
 
   while (iter < MAXITER && MAX_DELTA < max_delta)
   {
-    times[rank][iter] = MPI_Wtime();
+    times[rank][iter] = -MPI_Wtime();
     //printf("in for loop %d\n", rank);
     MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, next, 1, &old[0][1],  NP, MPI_FLOAT, prev, 1, MPI_COMM_WORLD, &status);
     //printf("past first sendrecv %d\n", rank);
@@ -156,7 +158,23 @@ int main(void)
     // AVG AICI
     if (iter % AVG_FREQ == 0)
     {
-
+      printf("in avg, iter = %d", iter);
+      local_avg = myAverage(buf, MP * NP);
+      local_sum = mySum(buf, MP * NP);
+      printf("local_sum = %f, local_avg = %f, rank=%d, iter=%d\n", local_sum, local_avg, rank, iter);
+      MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, comm);
+      printf("dupa reduce rank = %d \n", rank);
+      if (rank == 0)
+      {
+          printf("in if\n");
+        for (int i = 0; i<P; i++)
+        {
+          printf("gs = %f\n", global_sum[i]);
+        }
+        global_avg = mySum(global_sum, P) / ((double) M * N);
+        printf("dupa avb \n");
+        printf("At iter = %d, avg = %f, sum = %f, rank = %d\n", iter, global_avg, mySum(global_sum, P), rank);
+      }
     }
 
 
@@ -176,7 +194,7 @@ int main(void)
       }
     }
 
-      times[rank][iter] -= MPI_Wtime();
+      times[rank][iter] += MPI_Wtime();
       iter++;
   }
   printf("finished %d n=%d, p=%d\n", rank, next, prev);
@@ -188,6 +206,7 @@ int main(void)
   printf("finished AFTER gather %d n=%d, p=%d\n", rank, next, prev);
   if (rank == 0)
     {
+      printf("global avg = %f\n", global_avg);
       filename = "edge256x192_1.pgm";
       printf("Writing\n");
       pgmwrite(filename, masterbuf, M, N);
@@ -198,7 +217,7 @@ int main(void)
 
   for (int i=0; i<size; i++)
   {
-    if (i == rank) printf("Tread %d %f r=%d\n", i, average(times[i], iter), rank);
+    if (i == rank) printf("Tread %d %f r=%d\n", i, myAverage(times[i], iter), rank);
   }
 }
 
@@ -206,15 +225,21 @@ int main(void)
 // ---------------------------
 // Additional functions
 // ---------------------------
-double average(double *times, int iter)
+
+double mySum(void *myArray, int size)
 {
   double sum = 0;
-  for (int i = 0; i<iter; i++)
+  float *x = (float *)myArray;
+  for (int i = 0; i<size; i++)
   {
-    sum -= times[i];
+    sum += x[i];
   }
+  return sum;
+}
 
-  return sum / (double)iter;
+double myAverage(void *myArray, int size)
+{
+  return mySum(myArray, size)/ (double)size;
 }
 
 float maxValue(float myArray[], int size)
