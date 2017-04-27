@@ -13,15 +13,16 @@ void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank
 double mySum(void *myArray, int size);
 double myAverage(void *myArray, int size);
 float maxValue(float myArray[], int size);
+double avg_time(double *myArray, int size);
 
 /*
 //void communicate(void *oldbuf, int prev, int next, int MP, int NP);
 */
 #define M 256
 #define N 192
-#define P 4
+#define P 24
 
-#define MAXITER 1000
+#define MAXITER 10000
 #define DELTA_FREQ 10
 #define MAX_DELTA 0.05
 #define AVG_FREQ 200
@@ -40,16 +41,16 @@ int main(void)
   int iter=0;
   int size, rank, left, right, up, down, MP_fact;
   float local_sum, global_sum, local_avg, global_avg;
+  double start_time, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time;
   MPI_Comm comm;
   MPI_Status status;
-  MPI_Request *requests;
-  MPI_Status *statuses;
 
-  char *filename;
+  char *filename, *filename_end;
   filename = "edge256x192.pgm";
-  printf("Reading\n");
+  filename_end = "edge256x192_end.pgm";
+  //printf("Reading\n");
   pgmread(filename, masterbuf, M, N);
-  printf("Finished reading\n");
+  //printf("Finished reading\n");
 
 
   comm = MPI_COMM_WORLD;
@@ -57,20 +58,22 @@ int main(void)
   MPI_Init(NULL,NULL);
   MPI_Comm_rank(comm, &rank);
   MPI_Comm_size(comm, &size);
-
-  printf("before choose\n");
+  start_time = -MPI_Wtime();
+  //printf("before choose\n");
+  make_MP_time = -MPI_Wtime();
   choose_MN(MN, size);
   MP = MN[0];
   NP = MN[1];
-  printf("choose after\n");
-  printf("MP = %d, NP=%d\n", MP, NP);
+  make_MP_time += MPI_Wtime();
+  //printf("choose after\n");
+  //printf("MP = %d, NP=%d\n", MP, NP);
   float buf[MP][NP];
   float edge[MP+2][NP+2];
   float old[MP+2][NP+2];
   float new[MP+2][NP+2];
   float delta[MP*NP];
 
-
+  choose_neighbours = -MPI_Wtime();
   MP_fact = M / MP;
   right = rank + 1;
   left = rank - 1;
@@ -92,10 +95,11 @@ int main(void)
     {
       up = MPI_PROC_NULL;
     }
-
-  printf("!!!rank=%d, left=%d, right=%d, up=%d, down=%d, MP_fact=%d\n", rank, left, right, up, down, MP_fact);
+  choose_neighbours += MPI_Wtime();
+  //printf("!!!rank=%d, left=%d, right=%d, up=%d, down=%d, MP_fact=%d\n", rank, left, right, up, down, MP_fact);
 
   //MPI_Scatter(masterbuf, MP * NP, MPI_FLOAT, &buf, MP * NP, MPI_FLOAT, 0, comm);
+  make_buff = -MPI_Wtime();
   my_Scatter(buf, M, N, masterbuf, rank, MP, NP);
 
   for (int i=0; i<MP+2; i++)
@@ -122,23 +126,21 @@ int main(void)
       old[i][j] = edge[i][j];
     }
   }
-
-  printf("finished rank %d, before while, iter = %d, max_detal = %f \n", rank, iter, max_delta);
-
-
+  //printf("finished rank %d, before while, iter = %d, max_detal = %f \n", rank, iter, max_delta);
+  make_buff += MPI_Wtime();
 
   while (iter < MAXITER && MAX_DELTA < max_delta)
   {
     times[rank][iter] = -MPI_Wtime();
-    /*
-    printf("in for loop %d\n", rank);
-    MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, right, 1, &old[0][1],  NP, MPI_FLOAT, left, 1, MPI_COMM_WORLD, &status);
+
+    //printf("in for loop %d, rank=%d\n", iter, rank);
+    /*MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, right, 1, &old[0][1],  NP, MPI_FLOAT, left, 1, MPI_COMM_WORLD, &status);
     printf("past first sendrecv %d\n", rank);
     MPI_Sendrecv(&old[1][1], NP, MPI_FLOAT, left, 2, &old[MP+1][1], NP, MPI_FLOAT, right, 2, MPI_COMM_WORLD, &status);
     printf("past second sendrecv %d\n", rank);
     */
     communicate_lr(old, left, right, MP, NP);
-    printf("before comms UD, rank=%d\n", rank);
+    //printf("before comms UD, rank=%d\n", rank);
     communicate_ud(old, up, down, MP, NP);
 
     for (int i=1; i<MP+1; i++)
@@ -159,33 +161,35 @@ int main(void)
           delta[i*NP + j] = fabs(old[i+1][j+1] - new[i+1][j+1]);
         }
       }
-      MPI_Allreduce(delta, max_delta_thread, P, MPI_FLOAT, MPI_MAX, comm);
+      MPI_Allreduce(delta, max_delta_thread, size, MPI_FLOAT, MPI_MAX, comm);
 
-      for (int i=0; i<P; i++) printf("mD = %f, i=%d\n", max_delta_thread[i], i);
+      //for (int i=0; i<size; i++) printf("mD = %f, i=%d\n", max_delta_thread[i], i);
       //printf("maxValue = %f \n", maxValue(max_delta_thread, P));
-      max_delta = maxValue(max_delta_thread, P);
-      printf("max_delta = %f\n", max_delta);
+
+      max_delta = maxValue(max_delta_thread, size);
+      if (rank==0) printf("max_delta=%f iter=%d rank=%d\n", max_delta, iter, rank);
     }
 
     // AVG AICI
     if (iter % AVG_FREQ == 0)
     {
-      printf("in avg, iter = %d\n", iter);
+      //printf("in avg, iter = %d\n", iter);
       local_avg = myAverage(buf, MP * NP);
       local_sum = mySum(buf, MP * NP);
-      printf("local_sum = %f, local_avg = %f, rank=%d, iter=%d\n", local_sum, local_avg, rank, iter);
+      //printf("local_sum = %f, local_avg = %f, rank=%d, iter=%d\n", local_sum, local_avg, rank, iter);
       MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, comm);
-      printf("dupa reduce rank = %d \n", rank);
+      //printf("dupa reduce rank = %d \n", rank);
       if (rank == 0)
       {
-          printf("in if\n");
-        for (int i = 0; i<P; i++)
+        //printf("in if\n");
+        /*for (int i = 0; i<size; i++)
         {
           printf("gs = %f, rank=%d\n", global_sum,i);
-        }
+        }*/
         global_avg = global_sum / (double)(M * N);
-        printf("dupa avb \n");
-        printf("At iter = %d, avg = %f, sum = %f, rank = %d\n", iter, global_avg, global_sum, rank); //mySum(global_sum, P)
+        //printf("dupa avb \n");
+        //printf("At iter = %d, avg = %f, sum = %f, rank = %d\n", iter, global_avg, global_sum, rank); //mySum(global_sum, P)
+        printf("local_avg=%f iter=%d\n", global_avg, iter);
       }
     }
 
@@ -195,7 +199,7 @@ int main(void)
       for (int j=1; j<NP+1; j++)
       {
       //printf("rank=%d, i=%d, j=%d, old=%f, new=%f\n",rank, i, j, old[i][j], new[i][j]);
-      if (fabs(new[i][j]) > 255) printf("!!!!! rank=%d, i=%d, j=%d, new=%f\n", rank, i, j, new[i][j]);
+      //if (fabs(new[i][j]) > 255) printf("!!!!! rank=%d, i=%d, j=%d, new=%f\n", rank, i, j, new[i][j]);
         old[i][j] = new[i][j];
       }
     }
@@ -211,33 +215,36 @@ int main(void)
       times[rank][iter] += MPI_Wtime();
       iter++;
   }
-  printf("finished %d n=%d, p=%d\n", rank, right, left);
-  if (MAX_DELTA > max_delta)
+  //printf("finished %d n=%d, p=%d\n", rank, right, left);
+  /*if (MAX_DELTA > max_delta)
   {
     printf("Finished earlier, iter=%d, max_delta=%f \n", iter, max_delta);
-  }
-  printf("SIZEEE = %d, buf[1][1]=%f\n", (int)(sizeof(masterbuf)/sizeof(float)),buf[24][24]);
-
+  }*/
+  //printf("SIZEEE = %d, buf[1][1]=%f\n", (int)(sizeof(masterbuf)/sizeof(float)),buf[24][24]);
+  reconstruct_time = -MPI_Wtime();
   my_Gather(masterbuf, MP, NP, buf, rank, size);
-  printf("afte my gather, rank=%d\n", rank);
+  //printf("afte my gather, rank=%d\n", rank);
+  reconstruct_time += MPI_Wtime();
+  barrier_time = -MPI_Wtime();
   MPI_Barrier(comm);
-  printf("afte barrier, rank=%d\n", rank);
+  barrier_time += MPI_Wtime();
+  //printf("afte barrier, rank=%d\n", rank);
   MPI_Finalize();
 
-  printf("finished AFTER gather %d n=%d, p=%d\n", rank, right, left);
+  //printf("finished AFTER gather %d n=%d, p=%d\n", rank, right, left);
+
   if (rank == 0)
     {
-      printf("global avg = %f\n", global_avg);
-      filename = "edge256x192_1.pgm";
-      printf("Writing\n");
-      pgmwrite(filename, masterbuf, M, N);
-      printf("Finished writing\n");
+      printf("global_avg=%f max_delta=%f iter=%d\n", global_avg, max_delta, iter);
+      //printf("Writing\n");
+      pgmwrite(filename_end, masterbuf, M, N);
+      //printf("Finished writing\n");
     }
-
 
   for (int i=0; i<size; i++)
   {
-    if (i == rank) printf("Tread %d %f r=%d\n", i, myAverage(times[i], iter), rank);
+    if (i == rank) printf("avg_time=%f rank=%d overall_time=%f  total_loop=%f make_MP_time=%f choose_neighbours=%f make_buff=%f reconstruct_time=%f barrier_time=%f\n",
+    avg_time(times[i], iter), rank, start_time+MPI_Wtime(), avg_time(times[i], iter) * iter, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time);
   }
 }
 
@@ -259,7 +266,7 @@ void choose_MN(void *myArray, int size)
     // is square of another number
     MN[0] = M / (int)sqrt(size);
     MN[1] = N / (int)sqrt(size);
-    printf("MP=%d, NP=%d\n", MN[0], MN[1]);
+    //printf("MP=%d, NP=%d\n", MN[0], MN[1]);
   }
   else
   {
@@ -267,14 +274,14 @@ void choose_MN(void *myArray, int size)
     while (done_choosing_MN == 0)
     {
       M_i = size / sqrt(size) + cont;
-      printf("in while Mi=%d, Ni=%d, cont=%d\n", M_i, N_i, cont);
+      //printf("in while Mi=%d, Ni=%d, cont=%d\n", M_i, N_i, cont);
       while(size % M_i != 0)
       {
         cont++;
         M_i = size / sqrt(size) + cont;
-        printf("Mi=%d, Ni=%d, cont=%d\n", M_i, N_i, cont);
+        //printf("Mi=%d, Ni=%d, cont=%d\n", M_i, N_i, cont);
       }
-      printf("after 2nd while\n");
+      //printf("after 2nd while\n");
       N_i = size / M_i;
       cont++; //if they divide, but not divide in the next if, this must be increased so you actually get the next number
 
@@ -298,14 +305,14 @@ void choose_MN(void *myArray, int size)
       { //if the numbers are not 0 and they both divide these axis, we will chose these ones, if not, we will swap the division,
         MN[0] = M / M_i;
         MN[1] = N / N_i;
-        printf("MP=%d, NP=%d 22 \n", MN[0], MN[1]);
+        //printf("MP=%d, NP=%d 22 \n", MN[0], MN[1]);
         done_choosing_MN = 1;
       }
       else if (fmod(M, N_i) == 0 && fmod(N, M_i) == 0)
       {
         MN[0] = M / N_i;
         MN[1] = N / M_i;
-        printf("MP=%d, NP=%d 23 \n", MN[0], MN[1]);
+        //printf("MP=%d, NP=%d 23 \n", MN[0], MN[1]);
         done_choosing_MN = 1;
       }
     }
@@ -342,20 +349,20 @@ void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int
   float localbuf[MP][NP];
   if (rank != 0)
   {
-    printf("my_gather, rank=%d, buf[2][2]=%f\n", rank, buf[24][24]);
+    //printf("my_gather, rank=%d, buf[2][2]=%f\n", rank, buf[24][24]);
     communicate_chunk(buf, rank, 0, MP, NP);
 
     //MPI_Send(&buf, MP*NP, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
-    printf("my_gather 2, rank=%d\n", rank);
+    //printf("my_gather 2, rank=%d\n", rank);
   }
   else
   {
     my_Gather_process(lmbuf, MP, NP, buf, rank);
     for (k=1; k<size; k++)
     {
-      printf("my_gather, rank=%d, i=%d, doining first process, MP=%d, NP=%d\n", rank, k, MP, NP);
+      //printf("my_gather, rank=%d, i=%d, doining first process, MP=%d, NP=%d\n", rank, k, MP, NP);
       communicate_chunk(localbuf, 0, k, MP, NP);
-      printf("after RECVS i=%d, localbuf[2[2]]=%f, MP=%d, NP=%d\n", k, localbuf[24][24], MP, NP);
+      //printf("after RECVS i=%d, localbuf[2[2]]=%f, MP=%d, NP=%d\n", k, localbuf[24][24], MP, NP);
       my_Gather_process(lmbuf, MP, NP, localbuf, k);
     }
     /*
@@ -377,14 +384,14 @@ void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank
   int x, y, chunks;
   // float *lmbuf = (float *)masterbuf;
   fflush(stdout);
-  printf("in gather_procs rank=%d, MP=%d, NP=%d, M=%d, N=%d\n", rank, MP, NP, M, N);
+  //printf("in gather_procs rank=%d, MP=%d, NP=%d, M=%d, N=%d\n", rank, MP, NP, M, N);
   chunks = M / MP;
 
-  printf("in gather_procs rank=%d, chunks=%d\n", rank, chunks);
+  //printf("in gather_procs rank=%d, chunks=%d\n", rank, chunks);
   x = rank % chunks;
   y = rank / chunks;
   fflush(stdout);
-  printf("after chunks \n");
+  //printf("after chunks \n");
   for (i=0; i<MP; i++)
   {
     for (j=0; j<NP; j++)
@@ -422,4 +429,16 @@ float maxValue(float myArray[], int size)
     if (max < myArray[i]) max = myArray[i];
   }
   return max;
+}
+
+double avg_time(double *myArray, int size)
+{
+  double sum = 0;
+  double *x = (double *)myArray;
+  for (int i=0; i<size; i++)
+  {
+    sum += x[i];
+  }
+  sum = sum / (double)size;
+  return sum;
 }
