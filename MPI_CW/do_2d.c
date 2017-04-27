@@ -8,6 +8,8 @@
 #include "comms.h"
 void choose_MN(void *myArray, int size);
 void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP, int NP);
+void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int size);
+void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank);
 double mySum(void *myArray, int size);
 double myAverage(void *myArray, int size);
 float maxValue(float myArray[], int size);
@@ -19,7 +21,7 @@ float maxValue(float myArray[], int size);
 #define N 192
 #define P 6
 
-#define MAXITER 10000
+#define MAXITER 100
 #define DELTA_FREQ 10
 #define MAX_DELTA 0.05
 #define AVG_FREQ 200
@@ -145,7 +147,9 @@ int main(void)
     MPI_Sendrecv(&old[1][1], NP, MPI_FLOAT, left, 2, &old[MP+1][1], NP, MPI_FLOAT, right, 2, MPI_COMM_WORLD, &status);
     printf("past second sendrecv %d\n", rank);
     */
-    communicate(&old, left, right, MP, NP);
+    communicate_lr(&old, left, right, MP, NP);
+    printf("before comms UD, rank=%d\n", rank);
+    communicate_ud(&old, up, down, MP, NP);
 
     for (int i=1; i<MP+1; i++)
     {
@@ -220,7 +224,14 @@ int main(void)
   {
     printf("Finished earlier, iter=%d, max_delta=%f \n", iter, max_delta);
   }
-  MPI_Gather(buf, MP * NP, MPI_FLOAT, masterbuf, MP * NP, MPI_FLOAT, 0, comm);
+  printf("SIZEEE = %d", (int)(sizeof(masterbuf)/sizeof(float)));
+
+  my_Gather(masterbuf, MP, NP, buf, rank, size);
+  printf("afte my gather, rank=%d\n", rank);
+  MPI_Barrier(comm);
+  printf("afte barrier, rank=%d\n", rank);
+  MPI_Finalize();
+
   printf("finished AFTER gather %d n=%d, p=%d\n", rank, right, left);
   if (rank == 0)
     {
@@ -230,7 +241,6 @@ int main(void)
       pgmwrite(filename, masterbuf, M, N);
       printf("Finished writing\n");
     }
-  MPI_Finalize();
 
 
   for (int i=0; i<size; i++)
@@ -329,6 +339,70 @@ void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP
     }
   }
 }
+
+
+void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int size)
+{ //I'm making my own Gather, with blackjack & hookers
+  int i, j, k;
+  int x, y, chunks;
+  float *lmbuf = (float *)masterbuf;
+  chunks = M / MP;
+  float localbuf[MP][NP];
+  if (rank == 1)
+  {
+    printf("my_gather, rank=%d\n", rank);
+    communicate_chunk(&buf, rank, 0, MP, NP);
+    //MPI_Send(&buf, MP*NP, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
+    printf("my_gather 2, rank=%d\n", rank);
+  }
+  else if (rank == 0)
+  {
+    my_Gather_process(lmbuf, MP, NP, buf, rank);
+    for (k=1; k<2; k++)
+    {
+      printf("my_gather, rank=%d, i=%d, doining first process, MP=%d, NP=%d\n", rank, k, MP, NP);
+      communicate_chunk(&localbuf, 0, k, MP, NP);
+      printf("after RECVS i=%d, localbuf[2[2]]=%f, MP=%d, NP=%d\n", k, localbuf[24][24], MP, NP);
+      my_Gather_process(lmbuf, MP, NP, localbuf, k);
+    }
+    /*
+    MPI_Datatype small_buf;
+    MPI_Status statu
+    MPI_Type_vector(MP*NP, NP, N, MPI_FLOAT, &small_buf);
+    MPI_Type_commit(&small_buf);
+    //my_Gather_process(&masterbuf, MP, NP, buf, rank);
+    chunks = M / MP;
+    x = i % chunks;
+    y = i / chunks;
+    MPI_Recv(&lmbuf[(x*MP)*N+y*NP], 1, small_buf, i, 0, MPI_COMM_WORLD, &status); */
+  }
+}
+
+void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank)
+{ //I'm making my own Gather, with blackjack & hookers
+  int i, j;
+  int x, y, chunks;
+  // float *lmbuf = (float *)masterbuf;
+  fflush(stdout);
+  printf("in gather_procs rank=%d, MP=%d, NP=%d, M=%d, N=%d\n", rank, MP, NP, M, N);
+  chunks = M / MP;
+
+  printf("in gather_procs rank=%d, chunks=%d\n", rank, chunks);
+  x = rank % chunks;
+  y = rank / chunks;
+  fflush(stdout);
+  printf("after chunks \n");
+  for (i=0; i<MP; i++)
+  {
+    for (j=0; j<NP; j++)
+    {
+      printf("rank=%d, i=%d, j=%d, x=%d, y=%d, lx=%d, x=%d, y=%d, lbuf=%d, size = %f\n",rank, i, j, x, y,(x*MP+i)*N+y*NP+j, (x*MP+i), (x*MP+i)*N, y*NP+j, buf[i][j]);
+      lmbuf[(x*MP+i)*N+y*NP+j] = buf[i][j];
+      fflush(stdout);
+    }
+  }
+}
+
 double mySum(void *myArray, int size)
 {
   double sum = 0;
