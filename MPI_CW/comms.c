@@ -81,17 +81,17 @@ void communicate_chunk(void *buf, int rank, int recv_rank, int MP, int NP)
 {
   MPI_Status status;
   MPI_Request request;
-
+  float *buff =(float *)buf;
   if (rank!=0)
   {
-    printf("in comms_chunk, SEND rank=%d\n", rank);
-    MPI_Send(&buf[0], MP*NP, MPI_FLOAT, recv_rank, 0, MPI_COMM_WORLD);
+    printf("in comms_chunk, SEND rank=%d, buff=%f\n", rank, buff[24*NP + 24]);
+    MPI_Send(&buff[0], MP*NP, MPI_FLOAT, recv_rank, 0, MPI_COMM_WORLD);
   }
   else
   {
     printf("in comms_chunk, RECV rank=%d\n", rank);
-    MPI_Recv(&buf[0], MP*NP, MPI_FLOAT, recv_rank, 0, MPI_COMM_WORLD, &status);
-    printf("in comms_chunk, WAIT rank=%d\n", rank);
+    MPI_Recv(&buff[0], MP*NP, MPI_FLOAT, recv_rank, 0, MPI_COMM_WORLD, &status);
+    printf("in comms_chunk, WAIT rank=%d, buff=%f\n", rank,buff[24*NP + 24]);
     //MPI_Wait(&request, &status);
     printf("dupa wait\n");
   }
