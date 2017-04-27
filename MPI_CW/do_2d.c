@@ -167,7 +167,7 @@ int main(void)
       //printf("maxValue = %f \n", maxValue(max_delta_thread, P));
 
       max_delta = maxValue(max_delta_thread, size);
-      if (rank==0) printf("max_delta=%f iter=%d rank=%d\n", max_delta, iter, rank);
+      if (rank==0) printf("max_delta=%f iter=%d rank=%d size=%d limit_delta=%f\n", max_delta, iter, rank, size, MAX_DELTA);
     }
 
     // AVG AICI
@@ -189,7 +189,7 @@ int main(void)
         global_avg = global_sum / (double)(M * N);
         //printf("dupa avb \n");
         //printf("At iter = %d, avg = %f, sum = %f, rank = %d\n", iter, global_avg, global_sum, rank); //mySum(global_sum, P)
-        printf("local_avg=%f iter=%d\n", global_avg, iter);
+        printf("local_avg=%f iter=%d size=%d\n", global_avg, iter, size);
       }
     }
 
