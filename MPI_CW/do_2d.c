@@ -5,7 +5,9 @@
 #include <mpi.h>
 
 #include "pgmio.h"
-void choose_MN(void *myArray);
+#include "comms.h"
+void choose_MN(void *myArray, int size);
+void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP, int NP);
 double mySum(void *myArray, int size);
 double myAverage(void *myArray, int size);
 float maxValue(float myArray[], int size);
@@ -15,7 +17,7 @@ float maxValue(float myArray[], int size);
 */
 #define M 256
 #define N 192
-#define P 24
+#define P 6
 
 #define MAXITER 10000
 #define DELTA_FREQ 10
@@ -34,7 +36,7 @@ int main(void)
   int MP, NP;
   int i,j;
   int iter=0;
-  int size, rank, next, prev;
+  int size, rank, left, right, up, down, MP_fact;
   float local_sum, global_sum[P], local_avg, global_avg;
   MPI_Comm comm;
   MPI_Status status;
@@ -43,11 +45,22 @@ int main(void)
 
   char *filename;
   filename = "edge256x192.pgm";
+  printf("Reading\n");
+  pgmread(filename, masterbuf, M, N);
+  printf("Finished reading\n");
 
-  fflush(stdout);
-  choose_MN(MN);
+
+  comm = MPI_COMM_WORLD;
+
+  MPI_Init(NULL,NULL);
+  MPI_Comm_rank(comm, &rank);
+  MPI_Comm_size(comm, &size);
+
+  printf("before choose\n");
+  choose_MN(MN, size);
   MP = MN[0];
   NP = MN[1];
+  printf("choose after\n");
   printf("MP = %d, NP=%d\n", MP, NP);
   float buf[MP][NP];
   float edge[MP+2][NP+2];
@@ -55,14 +68,6 @@ int main(void)
   float new[MP+2][NP+2];
   float delta[MP*NP];
 
-  comm = MPI_COMM_WORLD;
-  fflush(stdout);
-  MPI_Init(NULL,NULL);
-  MPI_Comm_rank(comm, &rank);
-  MPI_Comm_size(comm, &size);
-
-  next = rank + 1;
-  prev = rank - 1;
 
   if (size != P)
   {
@@ -70,30 +75,36 @@ int main(void)
     {
       printf("ERROR, size != P\n");
     }
-    MPI_Finalize();
-    exit(-1);
+    //MPI_Finalize();
+    //exit(-1);
   }
 
-  if (next >= size)
+  MP_fact = M / MP;
+  right = rank + 1;
+  left = rank - 1;
+  up = rank - MP_fact;
+  down = rank + MP_fact;
+  if (rank % MP_fact== 0)
+  {
+    left = MPI_PROC_NULL;
+  }
+  if ((rank + 1) % MP_fact == 0)
+  {
+    right = MPI_PROC_NULL;
+  }
+  if (down >= size)
     {
-      next = MPI_PROC_NULL;
+      down = MPI_PROC_NULL;
+    }
+  if (up < 0)
+    {
+      up = MPI_PROC_NULL;
     }
 
-  if (prev < 0)
-    {
-      prev = MPI_PROC_NULL;
-    }
+  printf("!!!rank=%d, left=%d, right=%d, up=%d, down=%d, MP_fact=%d\n", rank, left, right, up, down, MP_fact);
 
-    if (rank == 0)
-    {
-      printf("Reading\n");
-      pgmread(filename, masterbuf, M, N);
-      printf("Finished reading\n");
-
-    }
-
-  MPI_Scatter(masterbuf, MP * NP, MPI_FLOAT, &buf, MP * NP, MPI_FLOAT, 0, comm);
-
+  //MPI_Scatter(masterbuf, MP * NP, MPI_FLOAT, &buf, MP * NP, MPI_FLOAT, 0, comm);
+  my_Scatter(buf, M, N, masterbuf, rank, MP, NP);
 
   for (int i=0; i<MP+2; i++)
   {
@@ -107,6 +118,7 @@ int main(void)
     for (j=1; j<NP+1; j++)
     {
       edge[i][j] = buf[i-1][j-1];
+      //printf("rank=%d, i=%d, j=%d, buf=%f, buf2=%f\n",rank, i, j, ((float *)buf)[(i-1)*NP+j-1], buf[i-1][j-1]);
     }
   }
 
@@ -126,13 +138,14 @@ int main(void)
   while (iter < MAXITER && MAX_DELTA < max_delta)
   {
     times[rank][iter] = -MPI_Wtime();
-    //printf("in for loop %d\n", rank);
-    MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, next, 1, &old[0][1],  NP, MPI_FLOAT, prev, 1, MPI_COMM_WORLD, &status);
-    //printf("past first sendrecv %d\n", rank);
-    MPI_Sendrecv(&old[1][1], NP, MPI_FLOAT, prev, 2, &old[MP+1][1], NP, MPI_FLOAT, next, 2, MPI_COMM_WORLD, &status);
-    //printf("past second sendrecv %d\n", rank);
-
-    //communicate(&old, prev,next, MP, NP);
+    /*
+    printf("in for loop %d\n", rank);
+    MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, right, 1, &old[0][1],  NP, MPI_FLOAT, left, 1, MPI_COMM_WORLD, &status);
+    printf("past first sendrecv %d\n", rank);
+    MPI_Sendrecv(&old[1][1], NP, MPI_FLOAT, left, 2, &old[MP+1][1], NP, MPI_FLOAT, right, 2, MPI_COMM_WORLD, &status);
+    printf("past second sendrecv %d\n", rank);
+    */
+    communicate(&old, left, right, MP, NP);
 
     for (int i=1; i<MP+1; i++)
     {
@@ -202,13 +215,13 @@ int main(void)
       times[rank][iter] += MPI_Wtime();
       iter++;
   }
-  printf("finished %d n=%d, p=%d\n", rank, next, prev);
+  printf("finished %d n=%d, p=%d\n", rank, right, left);
   if (MAX_DELTA > max_delta)
   {
     printf("Finished earlier, iter=%d, max_delta=%f \n", iter, max_delta);
   }
   MPI_Gather(buf, MP * NP, MPI_FLOAT, masterbuf, MP * NP, MPI_FLOAT, 0, comm);
-  printf("finished AFTER gather %d n=%d, p=%d\n", rank, next, prev);
+  printf("finished AFTER gather %d n=%d, p=%d\n", rank, right, left);
   if (rank == 0)
     {
       printf("global avg = %f\n", global_avg);
@@ -232,18 +245,18 @@ int main(void)
 // ---------------------------
 
 
-void choose_MN(void *myArray)
+void choose_MN(void *myArray, int size)
 {
   int M_i, N_i;
   int MP, NP;
   int *MN = (int *)myArray;
   int done_choosing_MN = 0, cont = 1;
 
-  if (fmod(P, sqrt(P)) == 0)
+  if (fmod(size, sqrt(size)) == 0)
   {
     // is square of another number
-    MN[0] = M / (int)sqrt(P);
-    MN[1] = N / (int)sqrt(P);
+    MN[0] = M / (int)sqrt(size);
+    MN[1] = N / (int)sqrt(size);
     printf("MP=%d, NP=%d\n", MN[0], MN[1]);
   }
   else
@@ -251,16 +264,16 @@ void choose_MN(void *myArray)
     // start mapping the 2 closest intergers that multiply give P
     while (done_choosing_MN == 0)
     {
-      M_i = P / sqrt(P) + cont;
+      M_i = size / sqrt(size) + cont;
       printf("in while Mi=%d, Ni=%d, cont=%d\n", M_i, N_i, cont);
-      while(P % M_i != 0)
+      while(size % M_i != 0)
       {
         cont++;
-        M_i = P / sqrt(P) + cont;
+        M_i = size / sqrt(size) + cont;
         printf("Mi=%d, Ni=%d, cont=%d\n", M_i, N_i, cont);
       }
       printf("after 2nd while\n");
-      N_i = P / M_i;
+      N_i = size / M_i;
       cont++; //if they divide, but not divide in the next if, this must be increased so you actually get the next number
 
       if (N_i == 1)
@@ -297,7 +310,25 @@ void choose_MN(void *myArray)
   }
 }
 
+void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP, int NP)
+{
+  int i, j;
+  int x, y, chunks;
+  float *lbuf = (float *)buf;
 
+  chunks = M / MP;
+  x = rank % chunks;
+  y = rank / chunks;
+  //printf("x=%d, y=%d, rank=%d, chunk=%d, MP=%d, NP=%d\n", x, y, rank, chunks, MP, NP);
+  for (i=0; i<MP; i++)
+  {
+    for (j=0; j<NP; j++)
+    {
+      lbuf[i*NP+j] = masterbuf[x*MP+i][y*NP+j];
+      //printf("rank=%d, i=%d, j=%d, lx=%d, x=%d, y=%d, lbuf=%f, mas=%f\n",rank, i, j, i*NP+j, x*MP+i, y*NP+j, lbuf[i*NP+j], masterbuf[x*MP+i][y*NP+j]);
+    }
+  }
+}
 double mySum(void *myArray, int size)
 {
   double sum = 0;

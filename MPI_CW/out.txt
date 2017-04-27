@@ -1,0 +1,62 @@
+Reading
+Reading
+Reading
+Reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+before choose
+MP=128, NP=96
+choose after
+MP = 128, NP=96
+ERROR, size != P
+finished rank 0, before while, iter = 0, max_detal = 1.050000 
+before choose
+MP=128, NP=96
+choose after
+MP = 128, NP=96
+finished rank 2, before while, iter = 0, max_detal = 1.050000 
+in for loop 0
+before choose
+MP=128, NP=96
+choose after
+MP = 128, NP=96
+in for loop 2
+before choose
+MP=128, NP=96
+choose after
+MP = 128, NP=96
+past first sendrecv 0
+finished rank 3, before while, iter = 0, max_detal = 1.050000 
+in for loop 3
+finished rank 1, before while, iter = 0, max_detal = 1.050000 
+in for loop 1
+past first sendrecv 1
+past first sendrecv 2
+[uos-15266:25329] *** An error occurred in MPI_Sendrecv
+[uos-15266:25329] *** reported by process [147128321,3]
+[uos-15266:25329] *** on communicator MPI_COMM_WORLD
+[uos-15266:25329] *** MPI_ERR_RANK: invalid rank
+[uos-15266:25329] *** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+[uos-15266:25329] ***    and potentially your MPI job)
+[uos-15266:25329] *** Process received signal ***
+[uos-15266:25329] Signal: Abort trap: 6 (6)
+[uos-15266:25329] Signal code:  (0)
+[uos-15266:25329] [ 0] 0   libsystem_platform.dylib            0x00007fff860c2f1a _sigtramp + 26
+[uos-15266:25329] [ 1] 0   ???                                 0x000000000000ffff 0x0 + 65535
+[uos-15266:25329] [ 2] 0   libsystem_c.dylib                   0x00007fff843349ab abort + 129
+[uos-15266:25329] [ 3] 0   libsystem_malloc.dylib              0x00007fff8f53c1cb free + 428
+[uos-15266:25329] [ 4] past second sendrecv 1
+past second sendrecv 0
+0   libmpi.20.dylib                     0x0000000104c65c5d backend_fatal + 1085
+[uos-15266:25329] [ 5] 0   libmpi.20.dylib                     0x0000000104c6580b ompi_mpi_errors_are_fatal_comm_handler + 173
+[uos-15266:25329] [ 6] 0   libmpi.20.dylib                     0x0000000104c65612 ompi_errhandler_invoke + 279
+[uos-15266:25329] [ 7] 0   libmpi.20.dylib                     0x0000000104c96be7 MPI_Sendrecv + 946
+[uos-15266:25329] [ 8] 0   doo                                 0x0000000104bab0a8 main + 1800
+[uos-15266:25329] [ 9] 0   libdyld.dylib                       0x00007fff921985c9 start + 1
+[uos-15266:25329] [10] 0   ???                                 0x0000000000000001 0x0 + 1
+[uos-15266:25329] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 3 with PID 0 on node uos-15266 exited on signal 6 (Abort trap: 6).
+--------------------------------------------------------------------------
