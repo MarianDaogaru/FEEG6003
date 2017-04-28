@@ -45,13 +45,14 @@ int main(void)
   MPI_Comm comm;
   MPI_Status status;
 
-  char *filename, *filename_end;
-  filename = "edge256x192.pgm";
-  filename_end = "edge256x192_end.pgm";
+  char filename[16], filename_end[20];
+  sprintf(filename, "edge%dx%d.pgm", M, N);
+  sprintf(filename_end, "edge%dx%d_end.pgm", M, N);
+  //filename = "edge256x192.pgm";
+  //filename_end = "edge256x192_end.pgm";
   //printf("Reading\n");
   pgmread(filename, masterbuf, M, N);
   //printf("Finished reading\n");
-
 
   comm = MPI_COMM_WORLD;
 
@@ -97,6 +98,8 @@ int main(void)
     }
   choose_neighbours += MPI_Wtime();
   //printf("!!!rank=%d, left=%d, right=%d, up=%d, down=%d, MP_fact=%d\n", rank, left, right, up, down, MP_fact);
+
+  if (rank==0) printf("init size=%d MP=%d NP=%d M=%d N=%d max_delta=%f delta_freq=%d avg_freq=%d\n", size, MP, NP, M, N, MAX_DELTA, DELTA_FREQ, AVG_FREQ);
 
   //MPI_Scatter(masterbuf, MP * NP, MPI_FLOAT, &buf, MP * NP, MPI_FLOAT, 0, comm);
   make_buff = -MPI_Wtime();
@@ -229,12 +232,17 @@ int main(void)
   MPI_Barrier(comm);
   barrier_time += MPI_Wtime();
   //printf("afte barrier, rank=%d\n", rank);
+
+  local_sum = mySum(buf, MP * NP);
+  MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, comm);
+
   MPI_Finalize();
 
   //printf("finished AFTER gather %d n=%d, p=%d\n", rank, right, left);
 
   if (rank == 0)
     {
+      global_avg = global_sum / (double)(M * N);
       printf("global_avg=%f max_delta=%f iter=%d\n", global_avg, max_delta, iter);
       //printf("Writing\n");
       pgmwrite(filename_end, masterbuf, M, N);

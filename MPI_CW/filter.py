@@ -11,6 +11,25 @@ def get_pbs_files():
     return paths[[i for i, item in enumerate(paths) if "pbs" in item]]
 
 
+def rename_files():
+    paths = get_pbs_files()
+    main_path = os.getcwd()+"/"
+
+    for path in paths:
+        data = open_pbs_file(path)
+        data = [line for line in data if line[0] == "init"][0]
+        name = "{}x{}_{}x{}_{}_{}_{}_{}.pbs".format(data[4].split(val_space)[1],
+                                        data[5].split(val_space)[1],
+                                        data[2].split(val_space)[1],
+                                        data[3].split(val_space)[1],
+                                        data[1].split(val_space)[1],
+                                        data[6].split(val_space)[1],
+                                        data[7].split(val_space)[1],
+                                        data[8].split(val_space)[1])
+        os.rename(main_path+path, main_path+name)
+        print(name, data)
+
+
 def open_pbs_file(path, how="r"):
     with open(path, how) as data:
         dt = data.read()
@@ -60,6 +79,7 @@ def get_times(path):
     pass
 
 
+
 def get_final_res(path):
     data = open_pbs_file(path)
     data = numpy.array([a for a in data if a[0].split("=")[0]=="global_avg"])
@@ -67,6 +87,7 @@ def get_final_res(path):
     print(r"Program finished with a global average of {}, at maximum $\Delta$={}, after {} iterations".format(data[0,0].split(val_space)[1], data[0,1].split(val_space)[1], data[0,2].split(val_space)[1]))
 
 if __name__ == "__main__":
+    rename_files()
     path = get_pbs_files()[0]
 #    dt = open_pbs_file(path)
 #    avg = plot_avg(path)
