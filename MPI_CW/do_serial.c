@@ -16,160 +16,97 @@ void datread(char *filename, void *vx, int nx, int ny);
 */
 #define M 256
 #define N 192
-#define P 4
+#define P 6
 
-#define MP M/P
-#define NP N
-
-#define ITER 1000
+#define MAXITER 50000
+#define DELTA_FREQ 100
+#define MAX_DELTA 0.05
+#define AVG_FREQ 200
 
 float masterbuf[M][N];
-float buf[MP][NP];
-float edge[MP+2][NP+2];
-float old[MP+2][NP+2];
-float new[MP+2][NP+2];
-double times[ITER];
+float buf[M][N];
+float edge[M+2][N+2];
+float old[M+2][N+2];
+float new[M+2][N+2];
 
 int main(void)
 {
 
-  int i,j,k;
-  int tag, size, rank, next, prev;
-  int start_time, stop_time;
-  MPI_Comm comm;
-  MPI_Status status;
-  MPI_Request *requests;
-  MPI_Status *statuses;
+  int i,j,iter;
 
-  char *filename;
-  filename = "edge256x192.pgm";
+  char filename[16], filename_end[22];
+  sprintf(filename, "edge%dx%d.pgm", M, N);
+  sprintf(filename_end, "edge%dx%d_%.3f.pgm", M, N, MAX_DELTA);
 
-  comm = MPI_COMM_WORLD;
-  tag = 1;
+  printf("Reading\n");
+  pgmread(filename, masterbuf, M, N);
+  printf("Finished reading\n");
 
-  MPI_Init(NULL,NULL);
-  MPI_Comm_rank(comm, &rank);
-  MPI_Comm_size(comm, &size);
-
-  next = rank + 1;
-  prev = rank - 1;
-
-  if (size != P)
+  for (int i=0; i<M; i++)
   {
-    if (rank ==0)
-    {
-      printf("ERROR, size != P\n");
-    }
-    MPI_Finalize();
-    exit(-1);
-  }
-
-  if (next >= size)
-    {
-      next = MPI_PROC_NULL;
-    }
-
-  if (prev < 0)
-    {
-      prev = MPI_PROC_NULL;
-    }
-
-    if (rank == 0)
-    {
-      printf("Reading\n");
-      pgmread(filename, masterbuf, M, N);
-      printf("Finished reading\n");
-
-    }
-
-  MPI_Scatter(masterbuf, MP * NP, MPI_FLOAT, &buf, MP * NP, MPI_FLOAT, 0, comm);
-
-
-  for (int i=0; i<MP+2; i++)
-  {
-    for (int j=0; j<NP+2; j++)
+    for (int j=0; j<N; j++)
     {
       edge[i][j] = 255;
     }
   }
-  for (i=1; i<MP+1; i++)
+  for (i=1; i<M+1; i++)
   {
-    for (j=1; j<NP+1; j++)
+    for (j=1; j<N+1; j++)
     {
-      edge[i][j] = buf[i-1][j-1];
+      edge[i][j] = masterbuf[i-1][j-1];
     }
   }
 
-  for (int i=0; i<MP+2; i++)
+  for (int i=0; i<M+2; i++)
   {
-      printf("i=%d, rank=%d\n", i, rank);
-    for (int j = 0; j < NP+2; j++)
+    for (int j = 0; j < N+2; j++)
     {
       old[i][j] = edge[i][j];
     }
   }
-    printf("finished rank %d \n", rank);
 
 
 
-  for (int k=0; k<ITER; k++)
+  while (iter < MAXITER)
   {
-    times[k] = MPI_Wtime();
-    printf("in for loop %d\n", rank);
-    MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, next, 1, &old[0][1],  NP, MPI_FLOAT, prev, 1, MPI_COMM_WORLD, &status);
-    printf("past first sendrecv %d\n", rank);
-    MPI_Sendrecv(&old[1][1], NP, MPI_FLOAT, prev, 2, &old[MP+1][1], NP, MPI_FLOAT, next, 2, MPI_COMM_WORLD, &status);
-    printf("past second sendrecv %d\n", rank);
 
     //communicate(&old, prev,next, MP, NP);
 
-    for (int i=1; i<MP+1; i++)
+    for (int i=1; i<M+1; i++)
     {
-      for (int j=1; j<NP+1; j++)
+      for (int j=1; j<N+1; j++)
       {
         new[i][j] =  (old[i-1][j] + old[i+1][j] + old[i][j-1] + old[i][j+1] - edge[i][j]) * 0.25;
       }
     }
 
-    for (int i=1; i<MP+1; i++)
+    for (int i=1; i<M+1; i++)
     {
-      for (int j=1; j<NP+1; j++)
+      for (int j=1; j<N+1; j++)
       {
         old[i][j] = new[i][j];
       }
     }
-
-    for (int i=0; i<MP; i++)
+    for (int i=0; i<M; i++)
     {
-      for (int j=0; j<NP; j++)
+      for (int j=0; j<N; j++)
       {
         buf[i][j] = old[i+1][j+1];
       }
     }
-
-      times[k] -= MPI_Wtime();
   }
-  printf("finished %d n=%d, p=%d\n", rank, next, prev);
 
-  MPI_Gather(buf, MP * NP, MPI_FLOAT, masterbuf, MP * NP, MPI_FLOAT, 0, comm);
-  printf("finished AFTER gather %d n=%d, p=%d\n", rank, next, prev);
-  if (rank == 0)
-    {
-      filename = "edge256x192_1.pgm";
-      printf("Writing\n");
-      pgmwrite(filename, masterbuf, M, N);
-      printf("Finished writing\n");
-    }
-
-  MPI_Finalize();
-
-  if (rank == 0)
+  for (int i=0; i<M; i++)
   {
-    for (int i=0; i<size; i++)
+    for (int j=0; j<N; j++)
     {
-      printf("Tread %d %f r=%d\n", i, average(times, i, ITER), rank);
+      masterbuf[i][j] = buf[i][j];
     }
   }
+  printf("Writing\n");
+  pgmwrite(filename_end, masterbuf, M, N);
+  printf("Finished writing\n");
+
 }
 
 double average(double *times, int r, int iter)

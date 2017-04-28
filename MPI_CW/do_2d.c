@@ -20,7 +20,7 @@ double avg_time(double *myArray, int size);
 */
 #define M 256
 #define N 192
-#define P 24
+#define P 1
 
 #define MAXITER 50000
 #define DELTA_FREQ 100
@@ -154,6 +154,7 @@ int main(void)
       }
     }
 
+
     // AICI CALC DELTA
     if (iter % DELTA_FREQ == 0)
     {
@@ -170,9 +171,9 @@ int main(void)
       //printf("maxValue = %f \n", maxValue(max_delta_thread, P));
 
       max_delta = maxValue(max_delta_thread, size);
-      if (rank==0) printf("max_delta=%f iter=%d rank=%d size=%d limit_delta=%f\n", max_delta, iter, rank, size, MAX_DELTA);
+      if (rank==0) printf("max_delta=%.10f iter=%d rank=%d size=%d limit_delta=%f\n", max_delta, iter, rank, size, MAX_DELTA);
     }
-
+    
     // AVG AICI
     if (iter % AVG_FREQ == 0)
     {
@@ -192,7 +193,7 @@ int main(void)
         global_avg = global_sum / (double)(M * N);
         //printf("dupa avb \n");
         //printf("At iter = %d, avg = %f, sum = %f, rank = %d\n", iter, global_avg, global_sum, rank); //mySum(global_sum, P)
-        printf("local_avg=%f iter=%d size=%d limit_delta=%f\n", global_avg, iter, size, MAX_DELTA);
+        printf("local_avg=%.10f iter=%d size=%d limit_delta=%f\n", global_avg, iter, size, MAX_DELTA);
       }
     }
 
@@ -246,7 +247,7 @@ int main(void)
   if (rank == 0)
     {
       global_avg = global_sum / (double)(M * N);
-      printf("global_avg=%f max_delta=%f iter=%d\n", global_avg, max_delta, iter);
+      printf("global_avg=%.10f max_delta=%.10f iter=%d\n", global_avg, max_delta, iter);
       //printf("Writing\n");
       pgmwrite(filename_end, masterbuf, M, N);
       //printf("Finished writing\n");
