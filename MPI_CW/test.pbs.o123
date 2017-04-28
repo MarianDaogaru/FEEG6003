@@ -1,5 +1,5 @@
 max_delta=367.750000 iter=0 rank=0 size=24 limit_delta=0.050000
-local_avg=4.369934 iter=0 size=24
+local_avg=4.369934 iter=0 size=24 limit_delta=0.050000
 max_delta=5.237934 iter=10 rank=0 size=24 limit_delta=0.050000
 max_delta=3.903763 iter=20 rank=0 size=24 limit_delta=0.050000
 max_delta=2.877821 iter=30 rank=0 size=24 limit_delta=0.050000
@@ -20,7 +20,7 @@ max_delta=0.431423 iter=170 rank=0 size=24 limit_delta=0.050000
 max_delta=0.399426 iter=180 rank=0 size=24 limit_delta=0.050000
 max_delta=0.371193 iter=190 rank=0 size=24 limit_delta=0.050000
 max_delta=0.357071 iter=200 rank=0 size=24 limit_delta=0.050000
-local_avg=4.882750 iter=200 size=24
+local_avg=4.882750 iter=200 size=24 limit_delta=0.050000
 max_delta=0.345028 iter=210 rank=0 size=24 limit_delta=0.050000
 max_delta=0.333744 iter=220 rank=0 size=24 limit_delta=0.050000
 max_delta=0.323170 iter=230 rank=0 size=24 limit_delta=0.050000
@@ -41,7 +41,7 @@ max_delta=0.254814 iter=370 rank=0 size=24 limit_delta=0.050000
 max_delta=0.251144 iter=380 rank=0 size=24 limit_delta=0.050000
 max_delta=0.247547 iter=390 rank=0 size=24 limit_delta=0.050000
 max_delta=0.244007 iter=400 rank=0 size=24 limit_delta=0.050000
-local_avg=8.206809 iter=400 size=24
+local_avg=8.206809 iter=400 size=24 limit_delta=0.050000
 max_delta=0.240547 iter=410 rank=0 size=24 limit_delta=0.050000
 max_delta=0.237137 iter=420 rank=0 size=24 limit_delta=0.050000
 max_delta=0.233807 iter=430 rank=0 size=24 limit_delta=0.050000
@@ -62,7 +62,7 @@ max_delta=0.193802 iter=570 rank=0 size=24 limit_delta=0.050000
 max_delta=0.191376 iter=580 rank=0 size=24 limit_delta=0.050000
 max_delta=0.188995 iter=590 rank=0 size=24 limit_delta=0.050000
 max_delta=0.186680 iter=600 rank=0 size=24 limit_delta=0.050000
-local_avg=11.093431 iter=600 size=24
+local_avg=11.093431 iter=600 size=24 limit_delta=0.050000
 max_delta=0.184402 iter=610 rank=0 size=24 limit_delta=0.050000
 max_delta=0.182175 iter=620 rank=0 size=24 limit_delta=0.050000
 max_delta=0.180000 iter=630 rank=0 size=24 limit_delta=0.050000
@@ -83,7 +83,7 @@ max_delta=0.153702 iter=770 rank=0 size=24 limit_delta=0.050000
 max_delta=0.152077 iter=780 rank=0 size=24 limit_delta=0.050000
 max_delta=0.150490 iter=790 rank=0 size=24 limit_delta=0.050000
 max_delta=0.148933 iter=800 rank=0 size=24 limit_delta=0.050000
-local_avg=13.665585 iter=800 size=24
+local_avg=13.665585 iter=800 size=24 limit_delta=0.050000
 max_delta=0.147408 iter=810 rank=0 size=24 limit_delta=0.050000
 max_delta=0.145905 iter=820 rank=0 size=24 limit_delta=0.050000
 max_delta=0.144424 iter=830 rank=0 size=24 limit_delta=0.050000
@@ -104,7 +104,7 @@ max_delta=0.128185 iter=970 rank=0 size=24 limit_delta=0.050000
 max_delta=0.127455 iter=980 rank=0 size=24 limit_delta=0.050000
 max_delta=0.126745 iter=990 rank=0 size=24 limit_delta=0.050000
 max_delta=0.126064 iter=1000 rank=0 size=24 limit_delta=0.050000
-local_avg=16.003252 iter=1000 size=24
+local_avg=16.003252 iter=1000 size=24 limit_delta=0.050000
 max_delta=0.125385 iter=1010 rank=0 size=24 limit_delta=0.050000
 max_delta=0.124712 iter=1020 rank=0 size=24 limit_delta=0.050000
 max_delta=0.124043 iter=1030 rank=0 size=24 limit_delta=0.050000
@@ -125,7 +125,7 @@ max_delta=0.115135 iter=1170 rank=0 size=24 limit_delta=0.050000
 max_delta=0.114554 iter=1180 rank=0 size=24 limit_delta=0.050000
 max_delta=0.113974 iter=1190 rank=0 size=24 limit_delta=0.050000
 max_delta=0.113400 iter=1200 rank=0 size=24 limit_delta=0.050000
-local_avg=18.158045 iter=1200 size=24
+local_avg=18.158045 iter=1200 size=24 limit_delta=0.050000
 max_delta=0.112827 iter=1210 rank=0 size=24 limit_delta=0.050000
 max_delta=0.112261 iter=1220 rank=0 size=24 limit_delta=0.050000
 max_delta=0.111695 iter=1230 rank=0 size=24 limit_delta=0.050000
@@ -146,7 +146,7 @@ max_delta=0.104181 iter=1370 rank=0 size=24 limit_delta=0.050000
 max_delta=0.103676 iter=1380 rank=0 size=24 limit_delta=0.050000
 max_delta=0.103167 iter=1390 rank=0 size=24 limit_delta=0.050000
 max_delta=0.102667 iter=1400 rank=0 size=24 limit_delta=0.050000
-local_avg=20.165009 iter=1400 size=24
+local_avg=20.165009 iter=1400 size=24 limit_delta=0.050000
 max_delta=0.102169 iter=1410 rank=0 size=24 limit_delta=0.050000
 max_delta=0.101685 iter=1420 rank=0 size=24 limit_delta=0.050000
 max_delta=0.101208 iter=1430 rank=0 size=24 limit_delta=0.050000
@@ -167,7 +167,7 @@ max_delta=0.094868 iter=1570 rank=0 size=24 limit_delta=0.050000
 max_delta=0.094438 iter=1580 rank=0 size=24 limit_delta=0.050000
 max_delta=0.094011 iter=1590 rank=0 size=24 limit_delta=0.050000
 max_delta=0.093588 iter=1600 rank=0 size=24 limit_delta=0.050000
-local_avg=22.049070 iter=1600 size=24
+local_avg=22.049070 iter=1600 size=24 limit_delta=0.050000
 max_delta=0.093167 iter=1610 rank=0 size=24 limit_delta=0.050000
 max_delta=0.092751 iter=1620 rank=0 size=24 limit_delta=0.050000
 max_delta=0.092337 iter=1630 rank=0 size=24 limit_delta=0.050000
@@ -188,7 +188,7 @@ max_delta=0.086846 iter=1770 rank=0 size=24 limit_delta=0.050000
 max_delta=0.086474 iter=1780 rank=0 size=24 limit_delta=0.050000
 max_delta=0.086106 iter=1790 rank=0 size=24 limit_delta=0.050000
 max_delta=0.085739 iter=1800 rank=0 size=24 limit_delta=0.050000
-local_avg=23.828623 iter=1800 size=24
+local_avg=23.828623 iter=1800 size=24 limit_delta=0.050000
 max_delta=0.085375 iter=1810 rank=0 size=24 limit_delta=0.050000
 max_delta=0.085015 iter=1820 rank=0 size=24 limit_delta=0.050000
 max_delta=0.084657 iter=1830 rank=0 size=24 limit_delta=0.050000
@@ -209,7 +209,7 @@ max_delta=0.079904 iter=1970 rank=0 size=24 limit_delta=0.050000
 max_delta=0.079580 iter=1980 rank=0 size=24 limit_delta=0.050000
 max_delta=0.079264 iter=1990 rank=0 size=24 limit_delta=0.050000
 max_delta=0.078945 iter=2000 rank=0 size=24 limit_delta=0.050000
-local_avg=25.517708 iter=2000 size=24
+local_avg=25.517708 iter=2000 size=24 limit_delta=0.050000
 max_delta=0.078631 iter=2010 rank=0 size=24 limit_delta=0.050000
 max_delta=0.078320 iter=2020 rank=0 size=24 limit_delta=0.050000
 max_delta=0.078012 iter=2030 rank=0 size=24 limit_delta=0.050000
@@ -230,7 +230,7 @@ max_delta=0.073899 iter=2170 rank=0 size=24 limit_delta=0.050000
 max_delta=0.073621 iter=2180 rank=0 size=24 limit_delta=0.050000
 max_delta=0.073343 iter=2190 rank=0 size=24 limit_delta=0.050000
 max_delta=0.073068 iter=2200 rank=0 size=24 limit_delta=0.050000
-local_avg=27.127289 iter=2200 size=24
+local_avg=27.127289 iter=2200 size=24 limit_delta=0.050000
 max_delta=0.072796 iter=2210 rank=0 size=24 limit_delta=0.050000
 max_delta=0.072524 iter=2220 rank=0 size=24 limit_delta=0.050000
 max_delta=0.072257 iter=2230 rank=0 size=24 limit_delta=0.050000
@@ -251,7 +251,7 @@ max_delta=0.068682 iter=2370 rank=0 size=24 limit_delta=0.050000
 max_delta=0.068441 iter=2380 rank=0 size=24 limit_delta=0.050000
 max_delta=0.068201 iter=2390 rank=0 size=24 limit_delta=0.050000
 max_delta=0.067961 iter=2400 rank=0 size=24 limit_delta=0.050000
-local_avg=28.666147 iter=2400 size=24
+local_avg=28.666147 iter=2400 size=24 limit_delta=0.050000
 max_delta=0.067724 iter=2410 rank=0 size=24 limit_delta=0.050000
 max_delta=0.067487 iter=2420 rank=0 size=24 limit_delta=0.050000
 max_delta=0.067254 iter=2430 rank=0 size=24 limit_delta=0.050000
@@ -272,7 +272,7 @@ max_delta=0.064134 iter=2570 rank=0 size=24 limit_delta=0.050000
 max_delta=0.063923 iter=2580 rank=0 size=24 limit_delta=0.050000
 max_delta=0.063707 iter=2590 rank=0 size=24 limit_delta=0.050000
 max_delta=0.063498 iter=2600 rank=0 size=24 limit_delta=0.050000
-local_avg=30.141434 iter=2600 size=24
+local_avg=30.141434 iter=2600 size=24 limit_delta=0.050000
 max_delta=0.063292 iter=2610 rank=0 size=24 limit_delta=0.050000
 max_delta=0.063084 iter=2620 rank=0 size=24 limit_delta=0.050000
 max_delta=0.062880 iter=2630 rank=0 size=24 limit_delta=0.050000
@@ -293,7 +293,7 @@ max_delta=0.060139 iter=2770 rank=0 size=24 limit_delta=0.050000
 max_delta=0.059956 iter=2780 rank=0 size=24 limit_delta=0.050000
 max_delta=0.059767 iter=2790 rank=0 size=24 limit_delta=0.050000
 max_delta=0.059587 iter=2800 rank=0 size=24 limit_delta=0.050000
-local_avg=31.559061 iter=2800 size=24
+local_avg=31.559061 iter=2800 size=24 limit_delta=0.050000
 max_delta=0.059402 iter=2810 rank=0 size=24 limit_delta=0.050000
 max_delta=0.059219 iter=2820 rank=0 size=24 limit_delta=0.050000
 max_delta=0.059038 iter=2830 rank=0 size=24 limit_delta=0.050000
@@ -314,7 +314,7 @@ max_delta=0.056623 iter=2970 rank=0 size=24 limit_delta=0.050000
 max_delta=0.056459 iter=2980 rank=0 size=24 limit_delta=0.050000
 max_delta=0.056295 iter=2990 rank=0 size=24 limit_delta=0.050000
 max_delta=0.056131 iter=3000 rank=0 size=24 limit_delta=0.050000
-local_avg=32.924000 iter=3000 size=24
+local_avg=32.924000 iter=3000 size=24 limit_delta=0.050000
 max_delta=0.055967 iter=3010 rank=0 size=24 limit_delta=0.050000
 max_delta=0.055807 iter=3020 rank=0 size=24 limit_delta=0.050000
 max_delta=0.055645 iter=3030 rank=0 size=24 limit_delta=0.050000
@@ -335,7 +335,7 @@ max_delta=0.053547 iter=3170 rank=0 size=24 limit_delta=0.050000
 max_delta=0.053404 iter=3180 rank=0 size=24 limit_delta=0.050000
 max_delta=0.053265 iter=3190 rank=0 size=24 limit_delta=0.050000
 max_delta=0.053123 iter=3200 rank=0 size=24 limit_delta=0.050000
-local_avg=34.240475 iter=3200 size=24
+local_avg=34.240475 iter=3200 size=24 limit_delta=0.050000
 max_delta=0.052984 iter=3210 rank=0 size=24 limit_delta=0.050000
 max_delta=0.052845 iter=3220 rank=0 size=24 limit_delta=0.050000
 max_delta=0.052708 iter=3230 rank=0 size=24 limit_delta=0.050000
@@ -356,34 +356,34 @@ max_delta=0.050858 iter=3370 rank=0 size=24 limit_delta=0.050000
 max_delta=0.050735 iter=3380 rank=0 size=24 limit_delta=0.050000
 max_delta=0.050606 iter=3390 rank=0 size=24 limit_delta=0.050000
 max_delta=0.050480 iter=3400 rank=0 size=24 limit_delta=0.050000
-local_avg=35.512104 iter=3400 size=24
+local_avg=35.512104 iter=3400 size=24 limit_delta=0.050000
 max_delta=0.050354 iter=3410 rank=0 size=24 limit_delta=0.050000
 max_delta=0.050232 iter=3420 rank=0 size=24 limit_delta=0.050000
 max_delta=0.050108 iter=3430 rank=0 size=24 limit_delta=0.050000
 max_delta=0.049984 iter=3440 rank=0 size=24 limit_delta=0.050000
-avg_time=0.000603 rank=2 overall_time=2.093810  total_loop=2.074170 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000053 reconstruct_time=0.001214 barrier_time=0.008067
-avg_time=0.000602 rank=1 overall_time=2.092411  total_loop=2.071612 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000066 reconstruct_time=0.000971 barrier_time=0.008385
-avg_time=0.000603 rank=22 overall_time=2.097112  total_loop=2.075158 make_MP_time=0.000011 choose_neighbours=0.000001 make_buff=0.000079 reconstruct_time=0.007721 barrier_time=0.001132
-avg_time=0.000603 rank=12 overall_time=2.096387  total_loop=2.073617 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000057 reconstruct_time=0.004419 barrier_time=0.004496
-avg_time=0.000603 rank=3 overall_time=2.102659  total_loop=2.073796 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.001663 barrier_time=0.007962
-avg_time=0.000602 rank=21 overall_time=2.102321  total_loop=2.071357 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.008140 barrier_time=0.001236
-avg_time=0.000602 rank=23 overall_time=2.103075  total_loop=2.071413 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000173 reconstruct_time=0.009012 barrier_time=0.001002
+avg_time=0.000604 rank=4 overall_time=2.093919  total_loop=2.078357 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000057 reconstruct_time=0.001517 barrier_time=0.006849
+avg_time=0.000604 rank=13 overall_time=2.095128  total_loop=2.078966 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000057 reconstruct_time=0.004992 barrier_time=0.003751
+avg_time=0.000604 rank=17 overall_time=2.095177  total_loop=2.078313 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.006247 barrier_time=0.002374
+avg_time=0.000604 rank=20 overall_time=2.097846  total_loop=2.078235 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.007436 barrier_time=0.001403
+avg_time=0.000605 rank=22 overall_time=2.103530  total_loop=2.080192 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000051 reconstruct_time=0.008231 barrier_time=0.000692
+avg_time=0.000605 rank=15 overall_time=2.112735  total_loop=2.080507 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000059 reconstruct_time=0.005667 barrier_time=0.003116
+avg_time=0.000604 rank=18 overall_time=2.112397  total_loop=2.080038 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000053 reconstruct_time=0.006406 barrier_time=0.002071
+avg_time=0.000605 rank=1 overall_time=2.112326  total_loop=2.080465 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.000960 barrier_time=0.007847
+avg_time=0.000604 rank=2 overall_time=2.111386  total_loop=2.079324 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000055 reconstruct_time=0.001310 barrier_time=0.007549
+avg_time=0.000604 rank=14 overall_time=2.120442  total_loop=2.079729 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000057 reconstruct_time=0.005156 barrier_time=0.003402
 global_avg=35.512104 max_delta=0.049984 iter=3441
 Writing 256 x 192 picture into file: edge256x192_end.pgm
-avg_time=0.000603 rank=20 overall_time=2.109289  total_loop=2.074218 make_MP_time=0.000007 choose_neighbours=0.000001 make_buff=0.000070 reconstruct_time=0.007909 barrier_time=0.001480
-avg_time=0.000602 rank=8 overall_time=2.108366  total_loop=2.072871 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.002852 barrier_time=0.005598
-avg_time=0.000603 rank=6 overall_time=2.113466  total_loop=2.074170 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.002516 barrier_time=0.006800
-avg_time=0.000603 rank=4 overall_time=2.116520  total_loop=2.073750 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000081 reconstruct_time=0.001392 barrier_time=0.007230
-avg_time=0.000602 rank=7 overall_time=2.116857  total_loop=2.070860 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.003305 barrier_time=0.006651
-avg_time=0.000602 rank=5 overall_time=2.125051  total_loop=2.072834 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.002144 barrier_time=0.007142
-avg_time=0.000602 rank=14 overall_time=2.124915  total_loop=2.073001 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.004901 barrier_time=0.003693
-avg_time=0.000602 rank=18 overall_time=2.124099  total_loop=2.071661 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000052 reconstruct_time=0.006607 barrier_time=0.002448
-avg_time=0.000602 rank=9 overall_time=2.125958  total_loop=2.072418 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000051 reconstruct_time=0.003564 barrier_time=0.005300
-avg_time=0.000603 rank=10 overall_time=2.131888  total_loop=2.073968 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.003664 barrier_time=0.005274
-avg_time=0.000602 rank=13 overall_time=2.132163  total_loop=2.073093 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000086 reconstruct_time=0.005043 barrier_time=0.003874
-avg_time=0.000603 rank=19 overall_time=2.132742  total_loop=2.074047 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.006896 barrier_time=0.001828
-avg_time=0.000602 rank=17 overall_time=2.131308  total_loop=2.071747 make_MP_time=0.000005 choose_neighbours=0.000001 make_buff=0.000056 reconstruct_time=0.006885 barrier_time=0.002627
-avg_time=0.000603 rank=11 overall_time=2.137037  total_loop=2.073268 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.004070 barrier_time=0.005144
-avg_time=0.000602 rank=15 overall_time=2.135561  total_loop=2.071595 make_MP_time=0.000005 choose_neighbours=0.000000 make_buff=0.000069 reconstruct_time=0.005944 barrier_time=0.003848
-avg_time=0.000602 rank=16 overall_time=2.137658  total_loop=2.072735 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000078 reconstruct_time=0.005943 barrier_time=0.002732
-avg_time=0.000603 rank=0 overall_time=2.144915  total_loop=2.074862 make_MP_time=0.000004 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.008480 barrier_time=0.000202
+avg_time=0.000604 rank=7 overall_time=2.123907  total_loop=2.079821 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.003041 barrier_time=0.005967
+avg_time=0.000604 rank=16 overall_time=2.125680  total_loop=2.079414 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000053 reconstruct_time=0.005722 barrier_time=0.002630
+avg_time=0.000604 rank=23 overall_time=2.131741  total_loop=2.079339 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000052 reconstruct_time=0.008701 barrier_time=0.000380
+avg_time=0.000604 rank=6 overall_time=2.132055  total_loop=2.078776 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.002619 barrier_time=0.006250
+avg_time=0.000604 rank=10 overall_time=2.132818  total_loop=2.078893 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.004271 barrier_time=0.004775
+avg_time=0.000604 rank=11 overall_time=2.135061  total_loop=2.078288 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.004661 barrier_time=0.004453
+avg_time=0.000604 rank=8 overall_time=2.137652  total_loop=2.079061 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000055 reconstruct_time=0.003111 barrier_time=0.005357
+avg_time=0.000604 rank=19 overall_time=2.137548  total_loop=2.077896 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000049 reconstruct_time=0.007165 barrier_time=0.001765
+avg_time=0.000605 rank=12 overall_time=2.145188  total_loop=2.080533 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000056 reconstruct_time=0.004498 barrier_time=0.004042
+avg_time=0.000605 rank=3 overall_time=2.149371  total_loop=2.080128 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.001749 barrier_time=0.007238
+avg_time=0.000604 rank=21 overall_time=2.148954  total_loop=2.078442 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000052 reconstruct_time=0.008000 barrier_time=0.001069
+avg_time=0.000605 rank=5 overall_time=2.149748  total_loop=2.080335 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000120 reconstruct_time=0.001902 barrier_time=0.006576
+avg_time=0.000604 rank=9 overall_time=2.151542  total_loop=2.078176 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000052 reconstruct_time=0.003804 barrier_time=0.005100
+avg_time=0.000605 rank=0 overall_time=2.169091  total_loop=2.080929 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.008164 barrier_time=0.000085

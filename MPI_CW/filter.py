@@ -26,10 +26,10 @@ def plot_delta(path):
     iterations = numpy.array([eval(val.split(val_space)[1]) for val in data[:,1]])
 
     plt.plot(iterations, max_delta, "b")
-    plt.plot(iterations, max_delta, "bo", label="max delta")
+    plt.plot(iterations, max_delta, "bo", label=r"max $\Delta$")
     plt.xlabel("iterations")
-    plt.ylabel("Maximum Delta")
-    plt.title("Maximum delta using {} processes for limit .".format(data[0,3].split(val_space)[1], data[0,4].split(val_space)[1]))
+    plt.ylabel("Maximum $\Delta$")
+    plt.title(r"Maximum $\Delta$ using {} processes for $\Delta$ limit {}.".format(data[0,3].split(val_space)[1], data[0,4].split(val_space)[1]))
     plt.grid(which="both", axis="both")
     plt.ylim(ymax=2)
     plt.axhline(y=eval(data[0,4].split(val_space)[1]), xmin=0, xmax=1000, color="k")
@@ -38,8 +38,38 @@ def plot_delta(path):
     return max_delta
 
 
+def plot_avg(path):
+    data = open_pbs_file(path)
+    data = numpy.array([a for a in data if a[0].split("=")[0]=="local_avg"])
+
+    local_avg = numpy.array([eval(val.split(val_space)[1]) for val in data[:,0]])
+    iterations = numpy.array([eval(val.split(val_space)[1]) for val in data[:,1]])
+
+    plt.plot(iterations, local_avg, "b")
+    plt.plot(iterations, local_avg, "bo", label="local average")
+    plt.xlabel("iterations")
+    plt.ylabel("Local Average")
+    plt.title(r"Average average at using {} processes for $\Delta$ limit {}.".format(data[0,2].split(val_space)[1], data[0,3].split(val_space)[1]))
+    plt.grid(which="both", axis="both")
+    plt.legend(loc=2)
+    plt.savefig("local_avg_{}_{}.jpeg".format(data[0,2].split(val_space)[1], data[0,3].split(val_space)[1]))
+    return local_avg
+
+
+def get_times(path):
+    pass
+
+
+def get_final_res(path):
+    data = open_pbs_file(path)
+    data = numpy.array([a for a in data if a[0].split("=")[0]=="global_avg"])
+
+    print(r"Program finished with a global average of {}, at maximum $\Delta$={}, after {} iterations".format(data[0,0].split(val_space)[1], data[0,1].split(val_space)[1], data[0,2].split(val_space)[1]))
 
 if __name__ == "__main__":
-    dt = open_pbs_file(get_pbs_files()[0])
-    data = plot_delta(get_pbs_files()[0])
+    path = get_pbs_files()[0]
+#    dt = open_pbs_file(path)
+#    avg = plot_avg(path)
+#    delta = plot_delta(path)
 
+    get_final_res(path)

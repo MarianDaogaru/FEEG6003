@@ -189,7 +189,7 @@ int main(void)
         global_avg = global_sum / (double)(M * N);
         //printf("dupa avb \n");
         //printf("At iter = %d, avg = %f, sum = %f, rank = %d\n", iter, global_avg, global_sum, rank); //mySum(global_sum, P)
-        printf("local_avg=%f iter=%d size=%d\n", global_avg, iter, size);
+        printf("local_avg=%f iter=%d size=%d limit_delta=%f\n", global_avg, iter, size, MAX_DELTA);
       }
     }
 
