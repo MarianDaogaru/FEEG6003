@@ -1,0 +1,106 @@
+--------------------------------------------------------------------------------
+*** md2g12   Job: 4474118.sdb   started: 28/04/17 18:34:24   host: mom4 ***
+*** md2g12   Job: 4474118.sdb   started: 28/04/17 18:34:24   host: mom4 ***
+*** md2g12   Job: 4474118.sdb   started: 28/04/17 18:34:24   host: mom4 ***
+*** md2g12   Job: 4474118.sdb   started: 28/04/17 18:34:24   host: mom4 ***
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Running OpenMP program do_2d on 1 threads
+Started at Fri Apr 28 18:34:25 BST 2017
+--------------------------------------------------------------------------------
+init size=6 MP=128 NP=64 M=256 N=192 max_delta=0.050000 delta_freq=100 avg_freq=75
+max_delta=367.7500000000 iter=0 rank=0 size=6 limit_delta=0.050000
+local_avg=4.3699340820 iter=0 size=6 limit_delta=0.050000
+local_avg=2.5608985424 iter=75 size=6 limit_delta=0.050000
+max_delta=0.4016666412 iter=100 rank=0 size=6 limit_delta=0.050000
+local_avg=3.9692046642 iter=150 size=6 limit_delta=0.050000
+max_delta=0.2649765015 iter=200 rank=0 size=6 limit_delta=0.050000
+local_avg=5.3269848824 iter=225 size=6 limit_delta=0.050000
+max_delta=0.1897773743 iter=300 rank=0 size=6 limit_delta=0.050000
+local_avg=6.6085886955 iter=300 size=6 limit_delta=0.050000
+local_avg=7.8182158470 iter=375 size=6 limit_delta=0.050000
+max_delta=0.1442489624 iter=400 rank=0 size=6 limit_delta=0.050000
+local_avg=8.9638834000 iter=450 size=6 limit_delta=0.050000
+max_delta=0.1176910400 iter=500 rank=0 size=6 limit_delta=0.050000
+local_avg=10.0533714294 iter=525 size=6 limit_delta=0.050000
+max_delta=0.1022186279 iter=600 rank=0 size=6 limit_delta=0.050000
+local_avg=11.0934305191 iter=600 size=6 limit_delta=0.050000
+local_avg=12.0897397995 iter=675 size=6 limit_delta=0.050000
+max_delta=0.0929260254 iter=700 rank=0 size=6 limit_delta=0.050000
+local_avg=13.0470466614 iter=750 size=6 limit_delta=0.050000
+max_delta=0.0870819092 iter=800 rank=0 size=6 limit_delta=0.050000
+local_avg=13.9693460464 iter=825 size=6 limit_delta=0.050000
+max_delta=0.0831298828 iter=900 rank=0 size=6 limit_delta=0.050000
+local_avg=14.8600111008 iter=900 size=6 limit_delta=0.050000
+local_avg=15.7219085693 iter=975 size=6 limit_delta=0.050000
+max_delta=0.0801773071 iter=1000 rank=0 size=6 limit_delta=0.050000
+local_avg=16.5575046539 iter=1050 size=6 limit_delta=0.050000
+max_delta=0.0778121948 iter=1100 rank=0 size=6 limit_delta=0.050000
+local_avg=17.3689327240 iter=1125 size=6 limit_delta=0.050000
+max_delta=0.0757293701 iter=1200 rank=0 size=6 limit_delta=0.050000
+local_avg=18.1580448151 iter=1200 size=6 limit_delta=0.050000
+local_avg=18.9264678955 iter=1275 size=6 limit_delta=0.050000
+max_delta=0.0738296509 iter=1300 rank=0 size=6 limit_delta=0.050000
+local_avg=19.6756305695 iter=1350 size=6 limit_delta=0.050000
+max_delta=0.0720062256 iter=1400 rank=0 size=6 limit_delta=0.050000
+local_avg=20.4068088531 iter=1425 size=6 limit_delta=0.050000
+max_delta=0.0702590942 iter=1500 rank=0 size=6 limit_delta=0.050000
+local_avg=21.1211299896 iter=1500 size=6 limit_delta=0.050000
+local_avg=21.8196029663 iter=1575 size=6 limit_delta=0.050000
+max_delta=0.0685195923 iter=1600 rank=0 size=6 limit_delta=0.050000
+local_avg=22.5031433105 iter=1650 size=6 limit_delta=0.050000
+max_delta=0.0668182373 iter=1700 rank=0 size=6 limit_delta=0.050000
+local_avg=23.1725692749 iter=1725 size=6 limit_delta=0.050000
+max_delta=0.0651550293 iter=1800 rank=0 size=6 limit_delta=0.050000
+local_avg=23.8286228180 iter=1800 size=6 limit_delta=0.050000
+local_avg=24.4719867706 iter=1875 size=6 limit_delta=0.050000
+max_delta=0.0635375977 iter=1900 rank=0 size=6 limit_delta=0.050000
+local_avg=25.1032733917 iter=1950 size=6 limit_delta=0.050000
+max_delta=0.0619430542 iter=2000 rank=0 size=6 limit_delta=0.050000
+local_avg=25.7230529785 iter=2025 size=6 limit_delta=0.050000
+max_delta=0.0604019165 iter=2100 rank=0 size=6 limit_delta=0.050000
+local_avg=26.3318424225 iter=2100 size=6 limit_delta=0.050000
+local_avg=26.9301223755 iter=2175 size=6 limit_delta=0.050000
+max_delta=0.0589065552 iter=2200 rank=0 size=6 limit_delta=0.050000
+local_avg=27.5183315277 iter=2250 size=6 limit_delta=0.050000
+max_delta=0.0574493408 iter=2300 rank=0 size=6 limit_delta=0.050000
+local_avg=28.0968799591 iter=2325 size=6 limit_delta=0.050000
+max_delta=0.0560379028 iter=2400 rank=0 size=6 limit_delta=0.050000
+local_avg=28.6661472321 iter=2400 size=6 limit_delta=0.050000
+local_avg=29.2264862061 iter=2475 size=6 limit_delta=0.050000
+max_delta=0.0546875000 iter=2500 rank=0 size=6 limit_delta=0.050000
+local_avg=29.7782287598 iter=2550 size=6 limit_delta=0.050000
+max_delta=0.0533752441 iter=2600 rank=0 size=6 limit_delta=0.050000
+local_avg=30.3216800690 iter=2625 size=6 limit_delta=0.050000
+max_delta=0.0521240234 iter=2700 rank=0 size=6 limit_delta=0.050000
+local_avg=30.8571224213 iter=2700 size=6 limit_delta=0.050000
+local_avg=31.3848323822 iter=2775 size=6 limit_delta=0.050000
+max_delta=0.0509033203 iter=2800 rank=0 size=6 limit_delta=0.050000
+local_avg=31.9050579071 iter=2850 size=6 limit_delta=0.050000
+max_delta=0.0497512817 iter=2900 rank=0 size=6 limit_delta=0.050000
+avg_time=0.0000154194 rank=0 overall_time=0.0456290245 total_loop=0.0447316170 make_MP_time=0.0000030994 choose_neighbours=0.0000011921 make_buff=0.0000619888 reconstruct_time=0.0006558895 barrier_time=0.0000009537
+avg_time=0.0000154281 rank=3 overall_time=0.0456240177 total_loop=0.0447568893 make_MP_time=0.0000019073 choose_neighbours=0.0000009537 make_buff=0.0000500679 reconstruct_time=0.0003969669 barrier_time=0.0002708435
+avg_time=0.0000154322 rank=1 overall_time=0.0456221104 total_loop=0.0447688103 make_MP_time=0.0000021458 choose_neighbours=0.0000000000 make_buff=0.0000500679 reconstruct_time=0.0001912117 barrier_time=0.0004777908
+avg_time=0.0000154351 rank=2 overall_time=0.0456249714 total_loop=0.0447771549 make_MP_time=0.0000019073 choose_neighbours=0.0000000000 make_buff=0.0000479221 reconstruct_time=0.0002930164 barrier_time=0.0003747940
+avg_time=0.0000154310 rank=5 overall_time=0.0456261635 total_loop=0.0447652340 make_MP_time=0.0000021458 choose_neighbours=0.0000000000 make_buff=0.0000538826 reconstruct_time=0.0005989075 barrier_time=0.0000689030
+avg_time=0.0000154376 rank=4 overall_time=0.0456249714 total_loop=0.0447845459 make_MP_time=0.0000019073 choose_neighbours=0.0000000000 make_buff=0.0000479221 reconstruct_time=0.0005040169 barrier_time=0.0001637936
+global_avg=32.2546577454 max_delta=0.0497512817 iter=2901
+Writing 256 x 192 picture into file: edge256x192_0.050.pgm
+Application 26544687 resources: utime ~0s, stime ~0s, Rss ~6344, inblocks ~11605, outblocks ~19155
+
+real	0m2.627s
+user	0m0.436s
+sys	0m0.148s
+--------------------------------------------------------------------------------
+Finished at Fri Apr 28 18:34:27 BST 2017
+--------------------------------------------------------------------------------
+
+Resources requested: ncpus=24,place=free,walltime=00:01:00
+Resources allocated: cpupercent=0,cput=00:00:01,mem=0kb,ncpus=24,vmem=0kb,walltime=00:00:03
+
+*** md2g12   Job: 4474118.sdb   ended: 28/04/17 18:34:28   queue: S4461822 ***
+*** md2g12   Job: 4474118.sdb   ended: 28/04/17 18:34:28   queue: S4461822 ***
+*** md2g12   Job: 4474118.sdb   ended: 28/04/17 18:34:28   queue: S4461822 ***
+*** md2g12   Job: 4474118.sdb   ended: 28/04/17 18:34:28   queue: S4461822 ***
+--------------------------------------------------------------------------------

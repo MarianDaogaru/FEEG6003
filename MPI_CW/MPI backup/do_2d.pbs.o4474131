@@ -1,0 +1,82 @@
+--------------------------------------------------------------------------------
+*** md2g12   Job: 4474131.sdb   started: 28/04/17 18:40:28   host: mom3 ***
+*** md2g12   Job: 4474131.sdb   started: 28/04/17 18:40:28   host: mom3 ***
+*** md2g12   Job: 4474131.sdb   started: 28/04/17 18:40:28   host: mom3 ***
+*** md2g12   Job: 4474131.sdb   started: 28/04/17 18:40:28   host: mom3 ***
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Running OpenMP program do_2d on 1 threads
+Started at Fri Apr 28 18:40:29 BST 2017
+--------------------------------------------------------------------------------
+init size=6 MP=128 NP=64 M=256 N=192 max_delta=0.050000 delta_freq=100 avg_freq=200
+max_delta=367.7500000000 iter=0 rank=0 size=6 limit_delta=0.050000
+local_avg=4.3699340820 iter=0 size=6 limit_delta=0.050000
+max_delta=0.4016666412 iter=100 rank=0 size=6 limit_delta=0.050000
+max_delta=0.2649765015 iter=200 rank=0 size=6 limit_delta=0.050000
+local_avg=4.8827500343 iter=200 size=6 limit_delta=0.050000
+max_delta=0.1897773743 iter=300 rank=0 size=6 limit_delta=0.050000
+max_delta=0.1442489624 iter=400 rank=0 size=6 limit_delta=0.050000
+local_avg=8.2068090439 iter=400 size=6 limit_delta=0.050000
+max_delta=0.1176910400 iter=500 rank=0 size=6 limit_delta=0.050000
+max_delta=0.1022186279 iter=600 rank=0 size=6 limit_delta=0.050000
+local_avg=11.0934305191 iter=600 size=6 limit_delta=0.050000
+max_delta=0.0929260254 iter=700 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0870819092 iter=800 rank=0 size=6 limit_delta=0.050000
+local_avg=13.6655845642 iter=800 size=6 limit_delta=0.050000
+max_delta=0.0831298828 iter=900 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0801773071 iter=1000 rank=0 size=6 limit_delta=0.050000
+local_avg=16.0032520294 iter=1000 size=6 limit_delta=0.050000
+max_delta=0.0778121948 iter=1100 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0757293701 iter=1200 rank=0 size=6 limit_delta=0.050000
+local_avg=18.1580448151 iter=1200 size=6 limit_delta=0.050000
+max_delta=0.0738296509 iter=1300 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0720062256 iter=1400 rank=0 size=6 limit_delta=0.050000
+local_avg=20.1650085449 iter=1400 size=6 limit_delta=0.050000
+max_delta=0.0702590942 iter=1500 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0685195923 iter=1600 rank=0 size=6 limit_delta=0.050000
+local_avg=22.0490703583 iter=1600 size=6 limit_delta=0.050000
+max_delta=0.0668182373 iter=1700 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0651550293 iter=1800 rank=0 size=6 limit_delta=0.050000
+local_avg=23.8286228180 iter=1800 size=6 limit_delta=0.050000
+max_delta=0.0635375977 iter=1900 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0619430542 iter=2000 rank=0 size=6 limit_delta=0.050000
+local_avg=25.5177059174 iter=2000 size=6 limit_delta=0.050000
+max_delta=0.0604019165 iter=2100 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0589065552 iter=2200 rank=0 size=6 limit_delta=0.050000
+local_avg=27.1272888184 iter=2200 size=6 limit_delta=0.050000
+max_delta=0.0574493408 iter=2300 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0560379028 iter=2400 rank=0 size=6 limit_delta=0.050000
+local_avg=28.6661472321 iter=2400 size=6 limit_delta=0.050000
+max_delta=0.0546875000 iter=2500 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0533752441 iter=2600 rank=0 size=6 limit_delta=0.050000
+local_avg=30.1414337158 iter=2600 size=6 limit_delta=0.050000
+max_delta=0.0521240234 iter=2700 rank=0 size=6 limit_delta=0.050000
+max_delta=0.0509033203 iter=2800 rank=0 size=6 limit_delta=0.050000
+local_avg=31.5590610504 iter=2800 size=6 limit_delta=0.050000
+max_delta=0.0497512817 iter=2900 rank=0 size=6 limit_delta=0.050000
+avg_time=0.0000148492 rank=0 overall_time=0.0439560413 total_loop=0.0430774689 make_MP_time=0.0000021458 choose_neighbours=0.0000000000 make_buff=0.0000691414 reconstruct_time=0.0006518364 barrier_time=0.0000009537
+avg_time=0.0000148519 rank=5 overall_time=0.0439529419 total_loop=0.0430853367 make_MP_time=0.0000019073 choose_neighbours=0.0000000000 make_buff=0.0000569820 reconstruct_time=0.0005919933 barrier_time=0.0000729561
+avg_time=0.0000148565 rank=1 overall_time=0.0439541340 total_loop=0.0430986881 make_MP_time=0.0000021458 choose_neighbours=0.0000000000 make_buff=0.0000569820 reconstruct_time=0.0002009869 barrier_time=0.0004639626
+avg_time=0.0000148600 rank=2 overall_time=0.0439569950 total_loop=0.0431089401 make_MP_time=0.0000019073 choose_neighbours=0.0000000000 make_buff=0.0000550747 reconstruct_time=0.0003068447 barrier_time=0.0003581047
+avg_time=0.0000148599 rank=3 overall_time=0.0439569950 total_loop=0.0431087017 make_MP_time=0.0000028610 choose_neighbours=0.0000000000 make_buff=0.0000560284 reconstruct_time=0.0003998280 barrier_time=0.0002651215
+avg_time=0.0000148591 rank=4 overall_time=0.0439569950 total_loop=0.0431063175 make_MP_time=0.0000019073 choose_neighbours=0.0000000000 make_buff=0.0000548363 reconstruct_time=0.0004978180 barrier_time=0.0001671314
+global_avg=32.2546577454 max_delta=0.0497512817 iter=2901
+Writing 256 x 192 picture into file: edge256x192_0.050.pgm
+Application 26544712 resources: utime ~0s, stime ~0s, Rss ~6360, inblocks ~11605, outblocks ~19152
+
+real	0m2.596s
+user	0m0.472s
+sys	0m0.112s
+--------------------------------------------------------------------------------
+Finished at Fri Apr 28 18:40:32 BST 2017
+--------------------------------------------------------------------------------
+
+Resources requested: ncpus=24,place=free,walltime=00:01:00
+Resources allocated: cpupercent=0,cput=00:00:01,mem=0kb,ncpus=24,vmem=0kb,walltime=00:00:04
+
+*** md2g12   Job: 4474131.sdb   ended: 28/04/17 18:40:32   queue: S4461822 ***
+*** md2g12   Job: 4474131.sdb   ended: 28/04/17 18:40:32   queue: S4461822 ***
+*** md2g12   Job: 4474131.sdb   ended: 28/04/17 18:40:32   queue: S4461822 ***
+*** md2g12   Job: 4474131.sdb   ended: 28/04/17 18:40:32   queue: S4461822 ***
+--------------------------------------------------------------------------------

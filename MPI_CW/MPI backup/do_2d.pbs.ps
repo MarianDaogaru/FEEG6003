@@ -1,0 +1,26 @@
+
+#PBS -A y14-CDT-Soton
+#PBS -j oe
+#PBS -l walltime=00:01:00
+#PBS -l select=1
+
+#----------------------------------------------------------#
+# You should only have to change the following single line #
+#----------------------------------------------------------#
+
+
+cd $PBS_O_WORKDIR
+
+OMPPROG=`basename $PBS_JOBNAME .pbs`
+
+echo '--------------------------------------------------------------------------------'
+
+echo 'Running OpenMP program' $OMPPROG 'on' $OMP_NUM_THREADS 'threads'
+
+echo 'Started at' `date`
+echo '--------------------------------------------------------------------------------'
+
+(time aprun -n 6 ./$OMPPROG) 2>&1
+
+echo '--------------------------------------------------------------------------------'
+echo 'Finished at' `date`
