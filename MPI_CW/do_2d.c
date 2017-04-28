@@ -22,8 +22,8 @@ double avg_time(double *myArray, int size);
 #define N 192
 #define P 24
 
-#define MAXITER 10000
-#define DELTA_FREQ 10
+#define MAXITER 50000
+#define DELTA_FREQ 100
 #define MAX_DELTA 0.05
 #define AVG_FREQ 200
 
@@ -45,9 +45,9 @@ int main(void)
   MPI_Comm comm;
   MPI_Status status;
 
-  char filename[16], filename_end[20];
+  char filename[16], filename_end[22];
   sprintf(filename, "edge%dx%d.pgm", M, N);
-  sprintf(filename_end, "edge%dx%d_end.pgm", M, N);
+  sprintf(filename_end, "edge%dx%d_%.3f.pgm", M, N, MAX_DELTA);
   //filename = "edge256x192.pgm";
   //filename_end = "edge256x192_end.pgm";
   //printf("Reading\n");
@@ -236,7 +236,10 @@ int main(void)
   local_sum = mySum(buf, MP * NP);
   MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, comm);
 
-  MPI_Finalize();
+  printf("avg_time=%.10f rank=%d overall_time=%.10f total_loop=%.10f make_MP_time=%.10f choose_neighbours=%.10f make_buff=%.10f reconstruct_time=%.10f barrier_time=%.10f\n",
+  avg_time(times[rank], iter), rank, start_time+MPI_Wtime(), avg_time(times[rank], iter) * iter, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time);
+
+
 
   //printf("finished AFTER gather %d n=%d, p=%d\n", rank, right, left);
 
@@ -248,12 +251,15 @@ int main(void)
       pgmwrite(filename_end, masterbuf, M, N);
       //printf("Finished writing\n");
     }
-
+    /*
   for (int i=0; i<size; i++)
   {
-    if (i == rank) printf("avg_time=%f rank=%d overall_time=%f  total_loop=%f make_MP_time=%f choose_neighbours=%f make_buff=%f reconstruct_time=%f barrier_time=%f\n",
+    if (i == rank) printf("avg_time=%f rank=%d overall_time=%f total_loop=%f make_MP_time=%f choose_neighbours=%f make_buff=%f reconstruct_time=%f barrier_time=%f\n",
     avg_time(times[i], iter), rank, start_time+MPI_Wtime(), avg_time(times[i], iter) * iter, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time);
   }
+  */
+  MPI_Barrier(comm);
+  MPI_Finalize();
 }
 
 

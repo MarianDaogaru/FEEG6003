@@ -18,7 +18,7 @@ OBJ=	do_2d.o \
 #
 # Compile
 #
-doo:	$(OBJ)
+do_2d:	$(OBJ)
 	$(CC) -o $@ $(OBJ) $(LIB)
 
 .c.o:
@@ -28,4 +28,4 @@ doo:	$(OBJ)
 # Clean out object files and the executable.
 #
 clean:
-	rm *.o doo
+	rm *.o do_2d

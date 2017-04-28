@@ -362,29 +362,29 @@ max_delta=0.050354 iter=3410 rank=0 size=24 limit_delta=0.050000
 max_delta=0.050232 iter=3420 rank=0 size=24 limit_delta=0.050000
 max_delta=0.050108 iter=3430 rank=0 size=24 limit_delta=0.050000
 max_delta=0.049984 iter=3440 rank=0 size=24 limit_delta=0.050000
-avg_time=0.000614 rank=16 overall_time=2.131490 total_loop=2.113214 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.005575 barrier_time=0.002815
-avg_time=0.000614 rank=12 overall_time=2.132930 total_loop=2.112620 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000053 reconstruct_time=0.004667 barrier_time=0.004166
-avg_time=0.000614 rank=20 overall_time=2.134139 total_loop=2.113490 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.006945 barrier_time=0.001324
-avg_time=0.000614 rank=3 overall_time=2.134674 total_loop=2.112652 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000059 reconstruct_time=0.001766 barrier_time=0.007573
-avg_time=0.000614 rank=14 overall_time=2.135233 total_loop=2.111717 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.005060 barrier_time=0.004132
-avg_time=0.000614 rank=2 overall_time=2.139189 total_loop=2.113233 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000062 reconstruct_time=0.000733 barrier_time=0.008012
-avg_time=0.000614 rank=21 overall_time=2.139607 total_loop=2.112166 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000060 reconstruct_time=0.007363 barrier_time=0.001185
-avg_time=0.000614 rank=23 overall_time=2.140058 total_loop=2.112058 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000053 reconstruct_time=0.008539 barrier_time=0.000399
-avg_time=0.000614 rank=19 overall_time=2.141788 total_loop=2.113150 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000054 reconstruct_time=0.006723 barrier_time=0.001772
-avg_time=0.000614 rank=1 overall_time=2.145451 total_loop=2.112453 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.000844 barrier_time=0.008196
-avg_time=0.000614 rank=22 overall_time=2.147944 total_loop=2.111480 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000052 reconstruct_time=0.008270 barrier_time=0.001145
+avg_time=0.000594 rank=16 overall_time=2.062534 total_loop=2.043107 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000053 reconstruct_time=0.007352 barrier_time=0.002804
+avg_time=0.000594 rank=23 overall_time=2.072511 total_loop=2.042712 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000063 reconstruct_time=0.010510 barrier_time=0.000507
+avg_time=0.000594 rank=3 overall_time=2.072624 total_loop=2.042471 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000052 reconstruct_time=0.003675 barrier_time=0.007597
+avg_time=0.000593 rank=20 overall_time=2.069666 total_loop=2.040334 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.008686 barrier_time=0.001507
+avg_time=0.000594 rank=9 overall_time=2.079525 total_loop=2.042735 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000082 reconstruct_time=0.005252 barrier_time=0.005251
+avg_time=0.000593 rank=11 overall_time=2.078332 total_loop=2.040917 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.006233 barrier_time=0.004762
 global_avg=35.767540 max_delta=0.049984 iter=3441
-avg_time=0.000614 rank=4 overall_time=2.150530 total_loop=2.113570 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.001172 barrier_time=0.007235
-avg_time=0.000614 rank=8 overall_time=2.148939 total_loop=2.111812 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000053 reconstruct_time=0.002633 barrier_time=0.005519
 Writing 256 x 192 picture into file: edge256x192_end.pgm
-avg_time=0.000614 rank=11 overall_time=2.156566 total_loop=2.111776 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000052 reconstruct_time=0.003975 barrier_time=0.004492
-avg_time=0.000614 rank=6 overall_time=2.158794 total_loop=2.111969 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000054 reconstruct_time=0.002518 barrier_time=0.007176
-avg_time=0.000614 rank=7 overall_time=2.163290 total_loop=2.111369 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.003213 barrier_time=0.006248
-avg_time=0.000614 rank=13 overall_time=2.165053 total_loop=2.112834 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000054 reconstruct_time=0.005215 barrier_time=0.004208
-avg_time=0.000614 rank=17 overall_time=2.163221 total_loop=2.111378 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.006279 barrier_time=0.002304
-avg_time=0.000613 rank=18 overall_time=2.163096 total_loop=2.110759 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.007067 barrier_time=0.002121
-avg_time=0.000614 rank=10 overall_time=2.168251 total_loop=2.112509 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.003381 barrier_time=0.005189
-avg_time=0.000613 rank=9 overall_time=2.169227 total_loop=2.110984 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000049 reconstruct_time=0.003396 barrier_time=0.005172
-avg_time=0.000614 rank=15 overall_time=2.171991 total_loop=2.112548 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000052 reconstruct_time=0.005881 barrier_time=0.003081
-avg_time=0.000614 rank=5 overall_time=2.173686 total_loop=2.113075 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000063 reconstruct_time=0.001859 barrier_time=0.007161
-avg_time=0.000614 rank=0 overall_time=2.179362 total_loop=2.112019 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.008739 barrier_time=0.000240
+avg_time=0.000594 rank=17 overall_time=2.085414 total_loop=2.042238 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000054 reconstruct_time=0.008587 barrier_time=0.002558
+avg_time=0.000593 rank=21 overall_time=2.082407 total_loop=2.039701 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.009687 barrier_time=0.001169
+avg_time=0.000593 rank=6 overall_time=2.086350 total_loop=2.041530 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000056 reconstruct_time=0.004521 barrier_time=0.006561
+avg_time=0.000594 rank=10 overall_time=2.084923 total_loop=2.042839 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.005877 barrier_time=0.004855
+avg_time=0.000594 rank=19 overall_time=2.092353 total_loop=2.042320 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000059 reconstruct_time=0.009386 barrier_time=0.001808
+avg_time=0.000593 rank=2 overall_time=2.090983 total_loop=2.040506 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000054 reconstruct_time=0.003191 barrier_time=0.007858
+avg_time=0.000593 rank=18 overall_time=2.093208 total_loop=2.041190 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000053 reconstruct_time=0.008325 barrier_time=0.002186
+avg_time=0.000593 rank=15 overall_time=2.096668 total_loop=2.041463 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000059 reconstruct_time=0.007763 barrier_time=0.003408
+avg_time=0.000594 rank=1 overall_time=2.098124 total_loop=2.042644 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000053 reconstruct_time=0.002421 barrier_time=0.008408
+avg_time=0.000593 rank=13 overall_time=2.099690 total_loop=2.041464 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000054 reconstruct_time=0.006637 barrier_time=0.004115
+avg_time=0.000594 rank=5 overall_time=2.101338 total_loop=2.042235 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000058 reconstruct_time=0.004236 barrier_time=0.006912
+avg_time=0.000594 rank=12 overall_time=2.103408 total_loop=2.042975 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000052 reconstruct_time=0.006172 barrier_time=0.004371
+avg_time=0.000593 rank=4 overall_time=2.107537 total_loop=2.041633 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000053 reconstruct_time=0.003722 barrier_time=0.007281
+avg_time=0.000593 rank=14 overall_time=2.107836 total_loop=2.041677 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000059 reconstruct_time=0.007252 barrier_time=0.003637
+avg_time=0.000593 rank=7 overall_time=2.107666 total_loop=2.040852 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000051 reconstruct_time=0.005114 barrier_time=0.006849
+avg_time=0.000594 rank=22 overall_time=2.112332 total_loop=2.043232 make_MP_time=0.000003 choose_neighbours=0.000000 make_buff=0.000063 reconstruct_time=0.009635 barrier_time=0.000812
+avg_time=0.000593 rank=8 overall_time=2.112000 total_loop=2.041308 make_MP_time=0.000002 choose_neighbours=0.000001 make_buff=0.000053 reconstruct_time=0.004535 barrier_time=0.005621
+avg_time=0.000594 rank=0 overall_time=2.120181 total_loop=2.043677 make_MP_time=0.000002 choose_neighbours=0.000000 make_buff=0.000055 reconstruct_time=0.008954 barrier_time=0.000129

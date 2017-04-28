@@ -1,5 +1,6 @@
 import os
 import numpy
+import scipy
 from matplotlib import pyplot as plt
 
 #-----VARS
@@ -27,7 +28,7 @@ def rename_files():
                                         data[7].split(val_space)[1],
                                         data[8].split(val_space)[1])
         os.rename(main_path+path, main_path+name)
-        print(name, data)
+    return None
 
 
 def open_pbs_file(path, how="r"):
@@ -59,7 +60,7 @@ def plot_delta(path):
 
 def plot_avg(path):
     data = open_pbs_file(path)
-    data = numpy.array([a for a in data if a[0].split("=")[0]=="local_avg"])
+    data = numpy.array([a for a in data if a[0].split(val_space)[0]=="local_avg"])
 
     local_avg = numpy.array([eval(val.split(val_space)[1]) for val in data[:,0]])
     iterations = numpy.array([eval(val.split(val_space)[1]) for val in data[:,1]])
@@ -76,8 +77,40 @@ def plot_avg(path):
 
 
 def get_times(path):
-    pass
+    data = open_pbs_file(path)
+    data = numpy.array([line for line in data if line[0].split(val_space)[0]=="avg_time"])
 
+    times = numpy.zeros((data.shape[0], data.shape[1]-1))
+    for line in data:
+        pos = eval(line[1].split(val_space)[1])
+        times[pos, 0] = eval(line[0].split(val_space)[1])
+        for i in range(2, line.shape[0]):
+            times[pos, i-1] = eval(line[i].split(val_space)[1])
+    return times
+
+
+def plot_times_one_file(path):
+    times = get_times(path)
+    overall = times[:, 1]
+    loops = times[:, 2]
+    times = scipy.delete(times, 1, 1)
+    times = scipy.delete(times, 1, 1)
+    lgth = times.shape[1]
+    terr = times[times.argmax(axis=0), numpy.arange(0, lgth)] - \
+           times[times.argmin(axis=0), numpy.arange(0, lgth)]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.errorbar(numpy.arange(0, lgth), times.mean(axis=0), fmt="x", yerr=terr, label="timing", ms=10, mew=2)
+    ax.set_xlim(xmin=-1, xmax=lgth)
+    ax.set_xlabel("Different timings: avg loop, make MP, neighboors, buf, reconstruct, barrier")
+    ax.set_title("Max operating time {:1.6f}, average operating time {:1.6f}".format(max(overall), overall.mean()))
+    ax.set_ylabel("Times(s)")
+    ax.grid(which="both", axis="both")
+    plt.legend()
+#    plt.grid(which="both", axis="both")
+    plt.savefig("{}.jpeg".format(path[:-4]), format="jpeg")
+    plt.close()
 
 
 def get_final_res(path):
@@ -92,5 +125,5 @@ if __name__ == "__main__":
 #    dt = open_pbs_file(path)
 #    avg = plot_avg(path)
 #    delta = plot_delta(path)
-
+    plot_times_one_file(path)
     get_final_res(path)
