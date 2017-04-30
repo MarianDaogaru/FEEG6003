@@ -111,23 +111,23 @@ def plot_times_one_file(path):
     plt.savefig("{}.jpeg".format(path[:-4]), format="jpeg")
     plt.close()
 
-def plot_execution_times(var,def_val, which="256x192"):
+def plot_execution_times(var, which="256x192"):
     titles = ["number of processes", "maximum $\Delta$","$\Delta$ frequency", "average calculation frequency"]
-
+    endings = ['', '', '_', '.pbs']
+    def_val = ['','','200.pbs','_100_']
     if var == 2:
         pass
     else:
         ranking = [1, 2, 5, 10, 25, 50, 75, 100, 150, 200, -1]
     paths = get_pbs_files()
     paths = paths[[path for path, item in enumerate(paths) if which in item]]
-    paths = paths[[path for path, item in enumerate(paths) if def_val in item]]
-    print(paths)
+    paths = paths[[path for path, item in enumerate(paths) if def_val[var-2] in item]]
+
     t_d = get_times(paths[0])
 
     times = numpy.zeros((paths.shape[0], t_d.shape[0], t_d.shape[1]))
-
     for i in range(paths.shape[0]):
-        times[i] = get_times(paths[[pa for pa, item in enumerate(paths) if "_"+str(ranking[i])+".pbs" in item]][0])
+        times[i] = get_times(paths[[pa for pa, item in enumerate(paths) if "_"+str(ranking[i])+endings[var-2] in item]][0])
 
 
     lgth = paths.shape[0]
@@ -138,8 +138,8 @@ def plot_execution_times(var,def_val, which="256x192"):
         avg[i] = times[i, :, 1].mean()
 
 
-    print(len(ranking), terr, avg)
     terr = terr[:-1] / terr[-1]
+    avg_0 = avg[-1]
     avg = avg[:-1] / avg[-1]
 
     fig = plt.figure()
@@ -147,7 +147,7 @@ def plot_execution_times(var,def_val, which="256x192"):
     ax.errorbar(ranking[:-1], avg, fmt="x", yerr=terr, label="timing", ms=10, mew=2)
     ax.set_xlim(xmin=-2, xmax=202)
     ax.set_xlabel("Iterations")
-    ax.set_ylabel("Time(s)")
+    ax.set_ylabel("Time factor T/T0, T0={:.4f}s".format(avg_0))
     ax.grid(which="both", axis="both")
     plt.legend()
     plt.savefig("iter vs {}.jpeg".format(var), format="jpeg")
@@ -163,10 +163,12 @@ def get_final_res(path):
 
 if __name__ == "__main__":
     rename_files()
-    plot_execution_times(4, "200.pbs")
-#    path = get_pbs_files()[0]
+    plot_execution_times(5)
+    paths = get_pbs_files()
 #    dt = open_pbs_file(path)
 #    avg = plot_avg(path)
 #    delta = plot_delta(path)
 #    plot_times_one_file(path)
-#    get_final_res(path)
+    for path in paths:
+        print(path)
+        get_final_res(path)

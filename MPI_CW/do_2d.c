@@ -173,7 +173,7 @@ int main(void)
       max_delta = maxValue(max_delta_thread, size);
       if (rank==0) printf("max_delta=%.10f iter=%d rank=%d size=%d limit_delta=%f\n", max_delta, iter, rank, size, MAX_DELTA);
     }
-    
+
     // AVG AICI
     if (iter % AVG_FREQ == 0)
     {
@@ -216,8 +216,8 @@ int main(void)
       }
     }
 
-      times[rank][iter] += MPI_Wtime();
-      iter++;
+    times[rank][iter] += MPI_Wtime();
+    iter++;
   }
   //printf("finished %d n=%d, p=%d\n", rank, right, left);
   /*if (MAX_DELTA > max_delta)

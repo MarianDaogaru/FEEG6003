@@ -11,9 +11,8 @@ LIB=	-lm
 #
 # Object files
 #
-OBJ=	do_2d.o \
-	pgmio.o \
-	comms.o
+OBJ=	do_serial.o \
+	pgmio.o
 
 #
 # Compile
