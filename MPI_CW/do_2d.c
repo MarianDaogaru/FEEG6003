@@ -271,6 +271,12 @@ int main(void)
 
 void choose_MN(void *myArray, int size)
 {
+  /*
+    Function that calculates the the optimum MP & NP based on the number of
+    processes acting. The basic concept is to find the closest 2 integers
+    that multiplied equal to size. It then return an array to be allocated
+    to MP & NP.
+  */
   int M_i, N_i;
   int MP, NP;
   int *MN = (int *)myArray;
@@ -336,6 +342,10 @@ void choose_MN(void *myArray, int size)
 
 void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP, int NP)
 {
+  /*
+    Function to scatter the data between processes from the initial buffer based
+    on the current proces rank.
+  */
   int i, j;
   int x, y, chunks;
   float *lbuf = (float *)buf;
@@ -343,13 +353,12 @@ void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP
   chunks = M / MP;
   x = rank % chunks;
   y = rank / chunks;
-  //printf("x=%d, y=%d, rank=%d, chunk=%d, MP=%d, NP=%d\n", x, y, rank, chunks, MP, NP);
+
   for (i=0; i<MP; i++)
   {
     for (j=0; j<NP; j++)
     {
       lbuf[i*NP+j] = masterbuf[x*MP+i][y*NP+j];
-      //printf("rank=%d, i=%d, j=%d, lx=%d, x=%d, y=%d, lbuf=%f, mas=%f\n",rank, i, j, i*NP+j, x*MP+i, y*NP+j, lbuf[i*NP+j], masterbuf[x*MP+i][y*NP+j]);
     }
   }
 }
@@ -357,6 +366,7 @@ void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP
 
 void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int size)
 { //I'm making my own Gather, with blackjack & hookers
+
   int i, j, k;
   int x, y, chunks;
   float *lmbuf = (float *)masterbuf;
@@ -380,16 +390,6 @@ void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int
       //printf("after RECVS i=%d, localbuf[2[2]]=%f, MP=%d, NP=%d\n", k, localbuf[24][24], MP, NP);
       my_Gather_process(lmbuf, MP, NP, localbuf, k);
     }
-    /*
-    MPI_Datatype small_buf;
-    MPI_Status statu
-    MPI_Type_vector(MP*NP, NP, N, MPI_FLOAT, &small_buf);
-    MPI_Type_commit(&small_buf);
-    //my_Gather_process(&masterbuf, MP, NP, buf, rank);
-    chunks = M / MP;
-    x = i % chunks;
-    y = i / chunks;
-    MPI_Recv(&lmbuf[(x*MP)*N+y*NP], 1, small_buf, i, 0, MPI_COMM_WORLD, &status); */
   }
 }
 

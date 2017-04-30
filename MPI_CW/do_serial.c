@@ -57,11 +57,18 @@ int main(int argc, char** argv)
   }
 
   float max_delta = MAX_DELTA + 1;
+  fflush(stdout);
   float **masterbuf = make_2d_dyn(M, N);
+
+  fflush(stdout);
   float **edge = make_2d_dyn(M+2, N+2);
+  fflush(stdout);
   float **old = make_2d_dyn(M+2, N+2);
+  fflush(stdout);
   float **new = make_2d_dyn(M+2, N+2);
+  fflush(stdout);
   float **delta = make_2d_dyn(M, N);
+  fflush(stdout);
 
   clock_t start_time = clock();
   char filename[16], filename_end[22];
@@ -118,7 +125,7 @@ int main(int argc, char** argv)
       {
         for (int j=0; j<N; j++)
         {
-          *delta[i*N + j] = fabsf(old[i+1][j+1] - new[i+1][j+1]);
+          delta[i][j] = fabsf(old[i+1][j+1] - new[i+1][j+1]);
         }
       }
       max_delta = maxValue(*delta, M*N);
@@ -128,7 +135,7 @@ int main(int argc, char** argv)
     // Calculate the average here
     if (iter % AVG_FREQ == 0)
     {
-      local_avg = myAverage(new, M * N);
+      local_avg = myAverage(*new, (M+2) * (N+2));
       printf("local_avg=%.10f iter=%d size=%d limit_delta=%f\n", local_avg, iter, size, MAX_DELTA);
     }
 
@@ -158,7 +165,7 @@ int main(int argc, char** argv)
 
   clock_t end_time = clock();
 
-  printf("iter=%d overall_time=%f iter_time=%f total_loop=%f\n", iter, (double)(end_time-start_time)/(double)CLOCKS_PER_SEC, avg_time(times, iter), avg_time(times, iter) * iter);
+  printf("iter=%d overall_time=%f iter_time=%f total_loop=%f max_delta=%f\n", iter, (double)(end_time-start_time)/(double)CLOCKS_PER_SEC, avg_time(times, iter), avg_time(times, iter) * iter, max_delta);
 
   free(masterbuf);
   free(edge);
