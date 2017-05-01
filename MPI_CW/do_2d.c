@@ -8,20 +8,8 @@
 #include "comms.h"
 #include "do_2d.h"
 
-//#define M 256
-//#define N 192
-//#define P 1
-
 #define MAXITER 50000
-//#define DELTA_FREQ 100
-//#define MAX_DELTA 0.05
-//#define AVG_FREQ 200
-
-//float masterbuf[M][N];
-
 double times[MAXITER];
-//
-//float max_delta = MAX_DELTA + 1;
 
 int main(int argc, char** argv)
 {
@@ -64,54 +52,45 @@ int main(int argc, char** argv)
 
   //create the arrays which will be used for image processing
   float max_delta = MAX_DELTA + 1;
-  //float **masterbuf = make_2d_dyn(M, N);
   float masterbuf[M][N];
   fflush(stdout);
-  printf("dupa masterbuf\n");
 
-
+  //generate the name of the files to be read & written to
   char filename[16], filename_end[22];
   sprintf(filename, "edge%dx%d.pgm", M, N);
   sprintf(filename_end, "edge%dx%d_%.3f.pgm", M, N, MAX_DELTA);
+
+  //read the initial data
   printf("Reading\n");
   pgmread(filename, masterbuf, M, N);
   printf("Finished reading\n");
 
+
+  // MPI STARTS FROM HERE
   comm = MPI_COMM_WORLD;
 
   MPI_Init(NULL,NULL);
   MPI_Comm_rank(comm, &rank);
   MPI_Comm_size(comm, &size);
 
-  start_time = -MPI_Wtime();
+  start_time = -MPI_Wtime(); //timing the entire MPI section
 
+  // choosing the optimum split for the big array
   make_MP_time = -MPI_Wtime();
   choose_MN(MN, size, M, N);
   MP = MN[0];
   NP = MN[1];
   make_MP_time += MPI_Wtime();
 
-  printf("rank=%d, 1\n", rank);
+  // create the smaller arrays
   float max_delta_thread[size];
-    printf("rank=%d, 2\n", rank);
   float buf[MP][NP];
-    printf("rank=%d, 3\n", rank);
   float edge[MP+2][NP+2];
-    printf("rank=%d, 4\n", rank);
   float old[MP+2][NP+2];
-    printf("rank=%d, 5\n", rank);
-      printf("rank=%d, 1\n", rank);
   float new[MP+2][NP+2];
-    printf("rank=%d, 6\n", rank);
   float delta[MP*NP];
-    printf("rank=%d, 7\n", rank);
 
-  /*
-  float **edge = make_2d_dyn(M+2, N+2);
-  float **old = make_2d_dyn(M+2, N+2);
-  float **new = make_2d_dyn(M+2, N+2);
-  float **delta = make_2d_dyn(M, N);
-  */
+  // map the neighbours based on current rank, left righ up & down
   choose_neighbours = -MPI_Wtime();
   MP_fact = M / MP;
   right = rank + 1;
@@ -135,55 +114,45 @@ int main(int argc, char** argv)
       up = MPI_PROC_NULL;
     }
   choose_neighbours += MPI_Wtime();
-  //printf("!!!rank=%d, left=%d, right=%d, up=%d, down=%d, MP_fact=%d\n", rank, left, right, up, down, MP_fact);
 
+  // initial print detailing all the current variables. To be used in post processing
   if (rank==0) printf("init size=%d MP=%d NP=%d M=%d N=%d max_delta=%f delta_freq=%d avg_freq=%d\n", size, MP, NP, M, N, MAX_DELTA, DELTA_FREQ, AVG_FREQ);
 
-  //MPI_Scatter(masterbuf, MP * NP, MPI_FLOAT, &buf, MP * NP, MPI_FLOAT, 0, comm);
+  // Scatter data and assign proper values to corresponding arrays
   make_buff = -MPI_Wtime();
-  my_Scatter(buf, M, N, masterbuf, rank, MP, NP);
+  my_Scatter(buf, M, N, masterbuf, rank, MP, NP); // scatter the value to appropriate buf according to the rank
 
   for (int i=0; i<MP+2; i++)
   {
     for (int j=0; j<NP+2; j++)
     {
-      edge[i][j] = 255;
+      edge[i][j] = 255; // the edge matrix is given 255, including the halo
+      old[i][j] = 255; // same for the old matrix
     }
   }
   for (i=1; i<MP+1; i++)
   {
     for (j=1; j<NP+1; j++)
     {
-      edge[i][j] = buf[i-1][j-1];
-      //printf("rank=%d, i=%d, j=%d, buf=%f, buf2=%f\n",rank, i, j, ((float *)buf)[(i-1)*NP+j-1], buf[i-1][j-1]);
+      edge[i][j] = buf[i-1][j-1]; // edge matrix will record the just the intial edge picture
+      old[i][j] = buf[i-1][j-1]; // old initially looks like the edge, as it is the initial iteration
     }
   }
-
-  for (int i=0; i<MP+2; i++)
-  {
-      //printf("i=%d, rank=%d\n", i, rank);
-    for (int j = 0; j < NP+2; j++)
-    {
-      old[i][j] = edge[i][j];
-    }
-  }
-  //printf("finished rank %d, before while, iter = %d, max_detal = %f \n", rank, iter, max_delta);
   make_buff += MPI_Wtime();
 
+  // start the main loop
+  // loop finishes when either the maximum number of iterations has been achieved
+  // or the maximum change in a pixel past which it becomes redundent is computed.
+  // if no max_delta, we just go to max iterations.
   while (iter < MAXITER && MAX_DELTA < max_delta)
   {
-    times[iter] = -MPI_Wtime();
+    times[iter] = -MPI_Wtime(); // record the time for each loop
 
-    //printf("in for loop %d, rank=%d\n", iter, rank);
-    /*MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, right, 1, &old[0][1],  NP, MPI_FLOAT, left, 1, MPI_COMM_WORLD, &status);
-    printf("past first sendrecv %d\n", rank);
-    MPI_Sendrecv(&old[1][1], NP, MPI_FLOAT, left, 2, &old[MP+1][1], NP, MPI_FLOAT, right, 2, MPI_COMM_WORLD, &status);
-    printf("past second sendrecv %d\n", rank);
-    */
+    // send the halos to the corresponding neighbours
     communicate_lr(old, left, right, MP, NP);
-    //printf("before comms UD, rank=%d\n", rank);
     communicate_ud(old, up, down, MP, NP);
 
+    // compute the new pixel value here
     for (int i=1; i<MP+1; i++)
     {
       for (int j=1; j<NP+1; j++)
@@ -192,114 +161,81 @@ int main(int argc, char** argv)
       }
     }
 
-
-    // AICI CALC DELTA
+    // compute the value of the maximum delta change after a certain number of iterations
     if (iter % DELTA_FREQ == 0)
     {
       for (int i=0; i<MP; i++)
       {
         for (int j=0; j<NP; j++)
         {
-          delta[i*NP+j] = fabsf(old[i+1][j+1] - new[i+1][j+1]);
+          delta[i*NP+j] = fabsf(old[i+1][j+1] - new[i+1][j+1]); // for the current rank
         }
       }
+      // after all ranks calculated their change, from each array, the maximum will be send to another array that hold just the maximum value
       MPI_Allreduce(delta, max_delta_thread, size, MPI_FLOAT, MPI_MAX, comm);
-
-      //for (int i=0; i<size; i++) printf("mD = %f, i=%d\n", max_delta_thread[i], i);
-      //printf("maxValue = %f \n", maxValue(max_delta_thread, P));
-
-      max_delta = maxValue(max_delta_thread, size);
-      if (rank==0) printf("max_delta=%.10f iter=%d rank=%d size=%d limit_delta=%f\n", max_delta, iter, rank, size, MAX_DELTA);
+      max_delta = maxValue(max_delta_thread, size); //get the new maximum for the entire picture
+      if (rank==0) printf("max_delta=%.10f iter=%d rank=%d size=%d limit_delta=%f\n", max_delta, iter, rank, size, MAX_DELTA); // for post processing
     }
 
-    // AVG AICI
+    // Calculate the average pixel value
     if (iter % AVG_FREQ == 0)
     {
-      //printf("in avg, iter = %d\n", iter);
+      // get the local average and the local sum
       local_avg = myAverage(buf, MP * NP);
       local_sum = mySum(buf, MP * NP);
-      //printf("local_sum = %f, local_avg = %f, rank=%d, iter=%d\n", local_sum, local_avg, rank, iter);
-      MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, comm);
-      //printf("dupa reduce rank = %d \n", rank);
+      MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, comm); // send the local sum to a global sum stored in MASTER
       if (rank == 0)
       {
-        //printf("in if\n");
-        /*for (int i = 0; i<size; i++)
-        {
-          printf("gs = %f, rank=%d\n", global_sum,i);
-        }*/
+        // the MASTER now calculates the actual global average prints it for post processing.
         global_avg = global_sum / (double)(M * N);
-        //printf("dupa avb \n");
-        //printf("At iter = %d, avg = %f, sum = %f, rank = %d\n", iter, global_avg, global_sum, rank); //mySum(global_sum, P)
         printf("local_avg=%.10f iter=%d size=%d limit_delta=%f\n", global_avg, iter, size, MAX_DELTA);
       }
     }
 
-
+    // the new becomes the old for the next iteration & the cycle begins again
     for (int i=1; i<MP+1; i++)
     {
       for (int j=1; j<NP+1; j++)
       {
-      //printf("rank=%d, i=%d, j=%d, old=%f, new=%f\n",rank, i, j, old[i][j], new[i][j]);
-      //if (fabs(new[i][j]) > 255) printf("!!!!! rank=%d, i=%d, j=%d, new=%f\n", rank, i, j, new[i][j]);
         old[i][j] = new[i][j];
-      }
-    }
-
-    for (int i=0; i<MP; i++)
-    {
-      for (int j=0; j<NP; j++)
-      {
-        buf[i][j] = old[i+1][j+1];
+        buf[i-1][j-1] = old[i][j];
       }
     }
 
     times[iter] += MPI_Wtime();
     iter++;
   }
-  //printf("finished %d n=%d, p=%d\n", rank, right, left);
-  /*if (MAX_DELTA > max_delta)
-  {
-    printf("Finished earlier, iter=%d, max_delta=%f \n", iter, max_delta);
-  }*/
-  //printf("SIZEEE = %d, buf[1][1]=%f\n", (int)(sizeof(masterbuf)/sizeof(float)),buf[24][24]);
+
+  // star reconstructing the MASTERBUF mastrix & time everything
   reconstruct_time = -MPI_Wtime();
   my_Gather(masterbuf, MP, NP, buf, rank, size, M, N);
-  //printf("afte my gather, rank=%d\n", rank);
   reconstruct_time += MPI_Wtime();
   barrier_time = -MPI_Wtime();
-  MPI_Barrier(comm);
+  MPI_Barrier(comm); // wait for all processes to send their buf
   barrier_time += MPI_Wtime();
-  //printf("afte barrier, rank=%d\n", rank);
 
+  // calculate the current value of the global sum & average
   local_sum = mySum(buf, MP * NP);
   MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, comm);
 
+  // print all the times for each process for post processing
   printf("avg_time=%.10f rank=%d overall_time=%.10f total_loop=%.10f make_MP_time=%.10f choose_neighbours=%.10f make_buff=%.10f reconstruct_time=%.10f barrier_time=%.10f\n",
   avg_time(times, iter), rank, start_time+MPI_Wtime(), avg_time(times, iter) * iter, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time);
 
-
-
-  //printf("finished AFTER gather %d n=%d, p=%d\n", rank, right, left);
-
+  // if rank is MASTER, then print the global avg, max_delta achieved & the iteration at which the loop stopped
+  // also, write the final picture back to memory
   if (rank == 0)
-    {
-      global_avg = global_sum / (double)(M * N);
-      printf("global_avg=%.10f max_delta=%.10f iter=%d\n", global_avg, max_delta, iter);
-      //printf("Writing\n");
-      pgmwrite(filename_end, masterbuf, M, N);
-      //printf("Finished writing\n");
-    }
-    /*
-  for (int i=0; i<size; i++)
   {
-    if (i == rank) printf("avg_time=%f rank=%d overall_time=%f total_loop=%f make_MP_time=%f choose_neighbours=%f make_buff=%f reconstruct_time=%f barrier_time=%f\n",
-    avg_time(times[i], iter), rank, start_time+MPI_Wtime(), avg_time(times[i], iter) * iter, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time);
+    global_avg = global_sum / (double)(M * N);
+    printf("global_avg=%.10f max_delta=%.10f iter=%d\n", global_avg, max_delta, iter);
+    printf("Writing\n");
+    pgmwrite(filename_end, masterbuf, M, N);
+    printf("Finished writing\n");
   }
-  */
+
+  // finalise the MPI
   MPI_Barrier(comm);
   MPI_Finalize();
-  //free(masterbuf);
 }
 
 
