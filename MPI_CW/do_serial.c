@@ -13,25 +13,22 @@ float maxValue(float *myArray, int size);
 double avg_time(double *myArray, int size);
 float** make_2d_dyn(int rows, int cols);
 
-
-//#define M 256
-//#define N 192
-
 #define MAXITER 5000
-//#define DELTA_FREQ 100
-//#define MAX_DELTA 0.05
-//#define AVG_FREQ 200
-
 
 int main(int argc, char** argv)
 {
+  /*
+    The main part of the serial code. It executes the conversion of the pictures
+    with just edges defined to the mode detailed picture. It uses just a single
+    route (process) to achieve this goal.
+  */
   int i,j,iter=0;
   int rank=0, size=0;
   float local_sum, local_avg;
   char *ptr;
   double times[MAXITER];
 
-  // set defaults
+  // set defaults, in case inputs are not given.
   int M=256, N=192, DELTA_FREQ=100, AVG_FREQ=200;
   float MAX_DELTA=0.05;
 
@@ -56,20 +53,16 @@ int main(int argc, char** argv)
     }
   }
 
+  //create the arrays which will be used for image processing
   float max_delta = MAX_DELTA + 1;
-  fflush(stdout);
   float **masterbuf = make_2d_dyn(M, N);
-
-  fflush(stdout);
   float **edge = make_2d_dyn(M+2, N+2);
-  fflush(stdout);
   float **old = make_2d_dyn(M+2, N+2);
-  fflush(stdout);
   float **new = make_2d_dyn(M+2, N+2);
-  fflush(stdout);
   float **delta = make_2d_dyn(M, N);
   fflush(stdout);
 
+  //start measuring the time & create the files to be read & written to
   clock_t start_time = clock();
   char filename[16], filename_end[22];
   sprintf(filename, "edge%dx%d.pgm", M, N);
@@ -79,6 +72,11 @@ int main(int argc, char** argv)
   pgmread(filename, *masterbuf, M, N);
   printf("Finished reading\n");
 
+  //print statement used for post-processing
+  printf("init size=-1 MP=-1 NP=-1 M=%d N=%d max_delta=%f delta_freq=%d avg_freq=%d\n", M, N, MAX_DELTA, DELTA_FREQ, AVG_FREQ);
+
+  //fill the initial arrays with the edge values & the actual values from the
+  // picture
   for (int i=0; i<M+2; i++)
   {
     for (int j=0; j<N+2; j++)
@@ -102,13 +100,12 @@ int main(int argc, char** argv)
     }
   }
 
-
-
+  // start the main loop. Iterate over either the maximum number MAXITER
+  // or until the maximum change (max_delta) is smaller than the threashold
   while (iter < MAXITER && MAX_DELTA < max_delta)
   {
-    //printf("iter=%d\n",iter);
-    //communicate(&old, prev,next, MP, NP);
     times[iter] = clock();
+    // calculate the new values based on the old ones
     for (int i=1; i<M+1; i++)
     {
       for (int j=1; j<N+1; j++)
@@ -116,7 +113,6 @@ int main(int argc, char** argv)
         new[i][j] =  (old[i-1][j] + old[i+1][j] + old[i][j-1] + old[i][j+1] - edge[i][j]) * 0.25;
       }
     }
-
 
     // Calculate the maximum DELTA here
     if (iter % DELTA_FREQ == 0)
@@ -139,6 +135,7 @@ int main(int argc, char** argv)
       printf("local_avg=%.10f iter=%d size=%d limit_delta=%f\n", local_avg, iter, size, MAX_DELTA);
     }
 
+    // reassign the new values to the old so the iteration can restart
     for (int i=1; i<M+1; i++)
     {
       for (int j=1; j<N+1; j++)
@@ -151,6 +148,7 @@ int main(int argc, char** argv)
     times[iter-1] -= clock();
   }
 
+  //write the final values to the masterbuf
   for (int i=0; i<M; i++)
   {
     for (int j=0; j<N; j++)
@@ -159,22 +157,35 @@ int main(int argc, char** argv)
     }
   }
 
+  //write the latest values generated to the file
   printf("Writing\n");
   pgmwrite(filename_end, *masterbuf, M, N);
   printf("Finished writing\n");
 
   clock_t end_time = clock();
 
+  // print values of the time for performance
   printf("iter=%d overall_time=%f iter_time=%f total_loop=%f max_delta=%f\n", iter, (double)(end_time-start_time)/(double)CLOCKS_PER_SEC, avg_time(times, iter), avg_time(times, iter) * iter, max_delta);
 
+  // free the memory
   free(masterbuf);
   free(edge);
   free(old);
   free(new);
   free(delta);
 }
+
+
+// ---------------------------
+// Additional functions
+// ---------------------------
+
 float** make_2d_dyn(int rows, int cols)
 {
+  /*
+    Function that makes the dynamic allocation of memory for a 2D array of
+    M rows & N columns.
+  */
   float **myArray = (float **) malloc(rows * sizeof(float *));
 	myArray[0] = (float *) malloc(rows * cols * sizeof(float));
 	for (int i = 1; i<rows; i++)
@@ -184,6 +195,9 @@ float** make_2d_dyn(int rows, int cols)
 
 double mySum(void *myArray, int size)
 {
+  /*
+    Function that calculates the sum of an array of a given size.
+  */
   double sum = 0;
   float *x = (float *)myArray;
   for (int i = 0; i<size; i++)
@@ -195,11 +209,13 @@ double mySum(void *myArray, int size)
 
 double myAverage(void *myArray, int size)
 {
+  // Function that calculates the average of an array of a given size
   return mySum(myArray, size)/ (double)size;
 }
 
 float maxValue(float *myArray, int size)
 {
+  // Function that calculates the maximum value from an array.
   int i;
   float max = 0;
   for (i = 0; i<size; i++)
@@ -211,12 +227,17 @@ float maxValue(float *myArray, int size)
 
 double avg_time(double *myArray, int size)
 {
+  /*
+  Function that calculates the average time for an iteration. Different from
+  myAverage & mySum because a different type of array was given.
+  */
+
   double sum = 0;
   double *x = (double *)myArray;
   for (int i=0; i<size; i++)
   {
     sum += x[i];
   }
-  sum = sum / (double)(size * CLOCKS_PER_SEC);
+  sum = sum / (double)size;
   return sum;
 }

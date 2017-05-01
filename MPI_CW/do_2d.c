@@ -6,34 +6,24 @@
 
 #include "pgmio.h"
 #include "comms.h"
-void choose_MN(void *myArray, int size);
-void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP, int NP);
-void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int size);
-void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank);
-double mySum(void *myArray, int size);
-double myAverage(void *myArray, int size);
-float maxValue(float myArray[], int size);
-double avg_time(double *myArray, int size);
+#include "do_2d.h"
 
-/*
-//void communicate(void *oldbuf, int prev, int next, int MP, int NP);
-*/
-#define M 256
-#define N 192
-#define P 1
+//#define M 256
+//#define N 192
+//#define P 1
 
 #define MAXITER 50000
-#define DELTA_FREQ 100
-#define MAX_DELTA 0.05
-#define AVG_FREQ 200
+//#define DELTA_FREQ 100
+//#define MAX_DELTA 0.05
+//#define AVG_FREQ 200
 
-float masterbuf[M][N];
+//float masterbuf[M][N];
 
-double times[P][MAXITER];
-float max_delta_thread[P];
-float max_delta = MAX_DELTA + 1;
+double times[MAXITER];
+//
+//float max_delta = MAX_DELTA + 1;
 
-int main(void)
+int main(int argc, char** argv)
 {
   int MN[2];
   int MP, NP;
@@ -45,35 +35,71 @@ int main(void)
   MPI_Comm comm;
   MPI_Status status;
 
+  // set defaults, in case inputs are not given.
+  int M=256, N=192, DELTA_FREQ=100, AVG_FREQ=200;
+  float MAX_DELTA=0.05;
+
+  //read the inputs
+  for (int arg = 0; arg < argc; arg++)
+  {
+    if (strcmp(argv[arg], "M") == 0)
+    {
+      M = (int)strtol(argv[arg+1], &ptr, 10);
+    } else if (strcmp(argv[arg], "N") == 0)
+    {
+      N = (int)strtol(argv[arg+1], &ptr, 10);
+    } else if (strcmp(argv[arg], "Df") == 0)
+    {
+      DELTA_FREQ = (int)strtol(argv[arg+1], &ptr, 10);
+    } else if (strcmp(argv[arg], "Af") == 0)
+    {
+      AVG_FREQ = (int)strtol(argv[arg+1], &ptr, 10);
+    } else if (strcmp(argv[arg], "MD") == 0)
+    {
+      MAX_DELTA = (double)strtol(argv[arg+1], &ptr, 10);
+    }
+  }
+
+  //create the arrays which will be used for image processing
+  float max_delta = MAX_DELTA + 1;
+  float **masterbuf = make_2d_dyn(M, N);
+  fflush(stdout);
+
+
   char filename[16], filename_end[22];
   sprintf(filename, "edge%dx%d.pgm", M, N);
   sprintf(filename_end, "edge%dx%d_%.3f.pgm", M, N, MAX_DELTA);
-  //filename = "edge256x192.pgm";
-  //filename_end = "edge256x192_end.pgm";
-  //printf("Reading\n");
+  printf("Reading\n");
   pgmread(filename, masterbuf, M, N);
-  //printf("Finished reading\n");
+  printf("Finished reading\n");
 
   comm = MPI_COMM_WORLD;
 
   MPI_Init(NULL,NULL);
   MPI_Comm_rank(comm, &rank);
   MPI_Comm_size(comm, &size);
+
   start_time = -MPI_Wtime();
-  //printf("before choose\n");
+
   make_MP_time = -MPI_Wtime();
-  choose_MN(MN, size);
+  choose_MN(MN, size, M, N);
   MP = MN[0];
   NP = MN[1];
   make_MP_time += MPI_Wtime();
-  //printf("choose after\n");
-  //printf("MP = %d, NP=%d\n", MP, NP);
+
+  float max_delta_thread[size];
   float buf[MP][NP];
   float edge[MP+2][NP+2];
   float old[MP+2][NP+2];
   float new[MP+2][NP+2];
   float delta[MP*NP];
 
+  /*
+  float **edge = make_2d_dyn(M+2, N+2);
+  float **old = make_2d_dyn(M+2, N+2);
+  float **new = make_2d_dyn(M+2, N+2);
+  float **delta = make_2d_dyn(M, N);
+  */
   choose_neighbours = -MPI_Wtime();
   MP_fact = M / MP;
   right = rank + 1;
@@ -134,7 +160,7 @@ int main(void)
 
   while (iter < MAXITER && MAX_DELTA < max_delta)
   {
-    times[rank][iter] = -MPI_Wtime();
+    times[iter] = -MPI_Wtime();
 
     //printf("in for loop %d, rank=%d\n", iter, rank);
     /*MPI_Sendrecv(&old[MP][1], NP, MPI_FLOAT, right, 1, &old[0][1],  NP, MPI_FLOAT, left, 1, MPI_COMM_WORLD, &status);
@@ -162,7 +188,7 @@ int main(void)
       {
         for (int j=0; j<NP; j++)
         {
-          delta[i*NP + j] = fabs(old[i+1][j+1] - new[i+1][j+1]);
+          delta[i][j] = fabsf(old[i+1][j+1] - new[i+1][j+1]);
         }
       }
       MPI_Allreduce(delta, max_delta_thread, size, MPI_FLOAT, MPI_MAX, comm);
@@ -216,7 +242,7 @@ int main(void)
       }
     }
 
-    times[rank][iter] += MPI_Wtime();
+    times[iter] += MPI_Wtime();
     iter++;
   }
   //printf("finished %d n=%d, p=%d\n", rank, right, left);
@@ -226,7 +252,7 @@ int main(void)
   }*/
   //printf("SIZEEE = %d, buf[1][1]=%f\n", (int)(sizeof(masterbuf)/sizeof(float)),buf[24][24]);
   reconstruct_time = -MPI_Wtime();
-  my_Gather(masterbuf, MP, NP, buf, rank, size);
+  my_Gather(masterbuf, MP, NP, buf, rank, size, M);
   //printf("afte my gather, rank=%d\n", rank);
   reconstruct_time += MPI_Wtime();
   barrier_time = -MPI_Wtime();
@@ -238,7 +264,7 @@ int main(void)
   MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, comm);
 
   printf("avg_time=%.10f rank=%d overall_time=%.10f total_loop=%.10f make_MP_time=%.10f choose_neighbours=%.10f make_buff=%.10f reconstruct_time=%.10f barrier_time=%.10f\n",
-  avg_time(times[rank], iter), rank, start_time+MPI_Wtime(), avg_time(times[rank], iter) * iter, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time);
+  avg_time(times, iter), rank, start_time+MPI_Wtime(), avg_time(times, iter) * iter, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time);
 
 
 
@@ -261,6 +287,7 @@ int main(void)
   */
   MPI_Barrier(comm);
   MPI_Finalize();
+  free(masterbuf);
 }
 
 
@@ -268,8 +295,20 @@ int main(void)
 // Additional functions
 // ---------------------------
 
+float** make_2d_dyn(int rows, int cols)
+{
+  /*
+    Function that makes the dynamic allocation of memory for a 2D array of
+    M rows & N columns.
+  */
+  float **myArray = (float **) malloc(rows * sizeof(float *));
+	myArray[0] = (float *) malloc(rows * cols * sizeof(float));
+	for (int i = 1; i<rows; i++)
+		myArray[i] = myArray[0] + i * cols;
+  return myArray;
+}
 
-void choose_MN(void *myArray, int size)
+void choose_MN(void *myArray, int size, int M, int N)
 {
   /*
     Function that calculates the the optimum MP & NP based on the number of
@@ -287,7 +326,6 @@ void choose_MN(void *myArray, int size)
     // is square of another number
     MN[0] = M / (int)sqrt(size);
     MN[1] = N / (int)sqrt(size);
-    //printf("MP=%d, NP=%d\n", MN[0], MN[1]);
   }
   else
   {
@@ -295,14 +333,11 @@ void choose_MN(void *myArray, int size)
     while (done_choosing_MN == 0)
     {
       M_i = size / sqrt(size) + cont;
-      //printf("in while Mi=%d, Ni=%d, cont=%d\n", M_i, N_i, cont);
       while(size % M_i != 0)
       {
         cont++;
         M_i = size / sqrt(size) + cont;
-        //printf("Mi=%d, Ni=%d, cont=%d\n", M_i, N_i, cont);
       }
-      //printf("after 2nd while\n");
       N_i = size / M_i;
       cont++; //if they divide, but not divide in the next if, this must be increased so you actually get the next number
 
@@ -326,21 +361,19 @@ void choose_MN(void *myArray, int size)
       { //if the numbers are not 0 and they both divide these axis, we will chose these ones, if not, we will swap the division,
         MN[0] = M / M_i;
         MN[1] = N / N_i;
-        //printf("MP=%d, NP=%d 22 \n", MN[0], MN[1]);
         done_choosing_MN = 1;
       }
       else if (fmod(M, N_i) == 0 && fmod(N, M_i) == 0)
       {
         MN[0] = M / N_i;
         MN[1] = N / M_i;
-        //printf("MP=%d, NP=%d 23 \n", MN[0], MN[1]);
         done_choosing_MN = 1;
       }
     }
   }
 }
 
-void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP, int NP)
+void my_Scatter(void *buf, int M, int N, float masterbuf[M][N], int rank, int MP, int NP)
 {
   /*
     Function to scatter the data between processes from the initial buffer based
@@ -364,56 +397,55 @@ void my_Scatter(void *buf, int m, int n, float masterbuf[m][n], int rank, int MP
 }
 
 
-void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int size)
+void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int size, int M)
 { //I'm making my own Gather, with blackjack & hookers
-
+  /*
+  Function that does the MPI_GATHER but for the 2D case.
+  It takes the the buff of each thread going in and sending to MASTER then wait
+  for completion. MASTER will write its own buff to masterbuf, then start
+  to receive stuff from other processes in order & writing them accordingly.
+  */
   int i, j, k;
   int x, y, chunks;
   float *lmbuf = (float *)masterbuf;
   chunks = M / MP;
   float localbuf[MP][NP];
-  if (rank != 0)
-  {
-    //printf("my_gather, rank=%d, buf[2][2]=%f\n", rank, buf[24][24]);
-    communicate_chunk(buf, rank, 0, MP, NP);
 
-    //MPI_Send(&buf, MP*NP, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
-    //printf("my_gather 2, rank=%d\n", rank);
+  if (rank != 0)
+  { //if not the MASTER, send the buff
+    communicate_chunk(buf, rank, 0, MP, NP);
   }
   else
   {
-    my_Gather_process(lmbuf, MP, NP, buf, rank);
+    my_Gather_process(lmbuf, MP, NP, buf, rank); // write the initial buff
     for (k=1; k<size; k++)
-    {
-      //printf("my_gather, rank=%d, i=%d, doining first process, MP=%d, NP=%d\n", rank, k, MP, NP);
+    { // start to write the other buffs to the main one
       communicate_chunk(localbuf, 0, k, MP, NP);
-      //printf("after RECVS i=%d, localbuf[2[2]]=%f, MP=%d, NP=%d\n", k, localbuf[24][24], MP, NP);
-      my_Gather_process(lmbuf, MP, NP, localbuf, k);
+      my_Gather_process(lmbuf, MP, NP, localbuf, k, M);
     }
   }
 }
 
-void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank)
+void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank, int M)
 { //I'm making my own Gather, with blackjack & hookers
+  /*
+  Second part of gathering. This function actually writes the data to the master buff.
+  Takes the buff & the masterbuf and writes the buff into the master.
+  */
   int i, j;
   int x, y, chunks;
-  // float *lmbuf = (float *)masterbuf;
   fflush(stdout);
-  //printf("in gather_procs rank=%d, MP=%d, NP=%d, M=%d, N=%d\n", rank, MP, NP, M, N);
   chunks = M / MP;
 
-  //printf("in gather_procs rank=%d, chunks=%d\n", rank, chunks);
   x = rank % chunks;
   y = rank / chunks;
   fflush(stdout);
-  //printf("after chunks \n");
+
   for (i=0; i<MP; i++)
   {
     for (j=0; j<NP; j++)
     {
-      //printf("rank=%d, i=%d, j=%d, x=%d, y=%d, lx=%d, x=%d, y=%d, lbuf=%d, size = %f, STUFF1=%f  ",rank, i, j, x, y,(x*MP+i)*N+y*NP+j, (x*MP+i), (x*MP+i)*N, y*NP+j, buf[i][j], lmbuf[(x*MP+i)*N+y*NP+j]);
       lmbuf[(x*MP+i)*N+y*NP+j] = buf[i][j];
-      //printf("STUFF 2=%f \n", lmbuf[(x*MP+i)*N+y*NP+j]);
       fflush(stdout);
     }
   }
@@ -421,6 +453,9 @@ void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank
 
 double mySum(void *myArray, int size)
 {
+  /*
+    Function that calculates the sum of an array of a given size.
+  */
   double sum = 0;
   float *x = (float *)myArray;
   for (int i = 0; i<size; i++)
@@ -432,11 +467,13 @@ double mySum(void *myArray, int size)
 
 double myAverage(void *myArray, int size)
 {
+  // Function that calculates the average of an array of a given size
   return mySum(myArray, size)/ (double)size;
 }
 
-float maxValue(float myArray[], int size)
+float maxValue(float *myArray, int size)
 {
+  // Function that calculates the maximum value from an array.
   int i;
   float max = 0;
   for (i = 0; i<size; i++)
@@ -448,6 +485,11 @@ float maxValue(float myArray[], int size)
 
 double avg_time(double *myArray, int size)
 {
+  /*
+  Function that calculates the average time for an iteration. Different from
+  myAverage & mySum because a different type of array was given.
+  */
+
   double sum = 0;
   double *x = (double *)myArray;
   for (int i=0; i<size; i++)
