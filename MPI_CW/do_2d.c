@@ -32,6 +32,8 @@ int main(int argc, char** argv)
   int size, rank, left, right, up, down, MP_fact;
   float local_sum, global_sum, local_avg, global_avg;
   double start_time, make_MP_time, choose_neighbours, make_buff, reconstruct_time, barrier_time;
+  char *ptr;
+
   MPI_Comm comm;
   MPI_Status status;
 
@@ -62,8 +64,10 @@ int main(int argc, char** argv)
 
   //create the arrays which will be used for image processing
   float max_delta = MAX_DELTA + 1;
-  float **masterbuf = make_2d_dyn(M, N);
+  //float **masterbuf = make_2d_dyn(M, N);
+  float masterbuf[M][N];
   fflush(stdout);
+  printf("dupa masterbuf\n");
 
 
   char filename[16], filename_end[22];
@@ -87,12 +91,20 @@ int main(int argc, char** argv)
   NP = MN[1];
   make_MP_time += MPI_Wtime();
 
+  printf("rank=%d, 1\n", rank);
   float max_delta_thread[size];
+    printf("rank=%d, 2\n", rank);
   float buf[MP][NP];
+    printf("rank=%d, 3\n", rank);
   float edge[MP+2][NP+2];
+    printf("rank=%d, 4\n", rank);
   float old[MP+2][NP+2];
+    printf("rank=%d, 5\n", rank);
+      printf("rank=%d, 1\n", rank);
   float new[MP+2][NP+2];
+    printf("rank=%d, 6\n", rank);
   float delta[MP*NP];
+    printf("rank=%d, 7\n", rank);
 
   /*
   float **edge = make_2d_dyn(M+2, N+2);
@@ -188,7 +200,7 @@ int main(int argc, char** argv)
       {
         for (int j=0; j<NP; j++)
         {
-          delta[i][j] = fabsf(old[i+1][j+1] - new[i+1][j+1]);
+          delta[i*NP+j] = fabsf(old[i+1][j+1] - new[i+1][j+1]);
         }
       }
       MPI_Allreduce(delta, max_delta_thread, size, MPI_FLOAT, MPI_MAX, comm);
@@ -252,7 +264,7 @@ int main(int argc, char** argv)
   }*/
   //printf("SIZEEE = %d, buf[1][1]=%f\n", (int)(sizeof(masterbuf)/sizeof(float)),buf[24][24]);
   reconstruct_time = -MPI_Wtime();
-  my_Gather(masterbuf, MP, NP, buf, rank, size, M);
+  my_Gather(masterbuf, MP, NP, buf, rank, size, M, N);
   //printf("afte my gather, rank=%d\n", rank);
   reconstruct_time += MPI_Wtime();
   barrier_time = -MPI_Wtime();
@@ -287,7 +299,7 @@ int main(int argc, char** argv)
   */
   MPI_Barrier(comm);
   MPI_Finalize();
-  free(masterbuf);
+  //free(masterbuf);
 }
 
 
@@ -397,7 +409,7 @@ void my_Scatter(void *buf, int M, int N, float masterbuf[M][N], int rank, int MP
 }
 
 
-void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int size, int M)
+void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int size, int M, int N)
 { //I'm making my own Gather, with blackjack & hookers
   /*
   Function that does the MPI_GATHER but for the 2D case.
@@ -417,16 +429,16 @@ void my_Gather(void *masterbuf, int MP, int NP, float buf[MP][NP], int rank, int
   }
   else
   {
-    my_Gather_process(lmbuf, MP, NP, buf, rank); // write the initial buff
+    my_Gather_process(lmbuf, MP, NP, buf, rank, M, N); // write the initial buff
     for (k=1; k<size; k++)
     { // start to write the other buffs to the main one
       communicate_chunk(localbuf, 0, k, MP, NP);
-      my_Gather_process(lmbuf, MP, NP, localbuf, k, M);
+      my_Gather_process(lmbuf, MP, NP, localbuf, k, M, N);
     }
   }
 }
 
-void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank, int M)
+void my_Gather_process(float *lmbuf, int MP, int NP, float buf[MP][NP], int rank, int M, int N)
 { //I'm making my own Gather, with blackjack & hookers
   /*
   Second part of gathering. This function actually writes the data to the master buff.
