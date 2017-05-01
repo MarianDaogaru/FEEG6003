@@ -8,7 +8,7 @@
 #include "comms.h"
 #include "do_2d.h"
 
-#define MAXITER 50000
+#define MAXITER 100000
 double times[MAXITER];
 
 int main(int argc, char** argv)
@@ -26,9 +26,9 @@ int main(int argc, char** argv)
   MPI_Status status;
 
   // set defaults, in case inputs are not given.
-  int M=256, N=192, DELTA_FREQ=100, AVG_FREQ=200;
+  int M=768, N=768, DELTA_FREQ=100, AVG_FREQ=200;
   float MAX_DELTA=0.05;
-
+  int val_array[10] = {1, 2, 5, 10, 25, 50, 75, 100, 150, 200};
   //read the inputs
   for (int arg = 0; arg < argc; arg++)
   {

@@ -11,14 +11,14 @@ LIB=	-lm
 #
 # Object files
 #
-OBJ=	do_2d.o \
-	pgmio.o \
-	comms.o
+OBJ=	do_serial.o \
+	pgmio.o
+
 
 #
 # Compile
 #
-do_2d:	$(OBJ)
+do_serial:	$(OBJ)
 	$(CC) -o $@ $(OBJ) $(LIB)
 
 .c.o:
@@ -28,4 +28,4 @@ do_2d:	$(OBJ)
 # Clean out object files and the executable.
 #
 clean:
-	rm *.o do_2d
+	rm *.o do_serial
