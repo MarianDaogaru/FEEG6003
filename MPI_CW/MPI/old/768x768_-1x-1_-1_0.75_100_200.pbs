@@ -1,0 +1,36 @@
+ 26609906 resources: utime ~1s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18981
+
+real	0m4.663s
+user	0m0.396s
+sys	0m0.120s
+!!0.750000
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=0.750000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=0.750000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=0.750000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=0.750000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=0.750000
+local_avg=5.9467768669 iter=200 size=0 limit_delta=0.750000
+max_delta=2.1652774811 iter=300 rank=0 size=0 limit_delta=0.750000
+max_delta=1.5662994385 iter=400 rank=0 size=0 limit_delta=0.750000
+local_avg=8.4885721207 iter=400 size=0 limit_delta=0.750000
+max_delta=1.3061485291 iter=500 rank=0 size=0 limit_delta=0.750000
+max_delta=1.1595115662 iter=600 rank=0 size=0 limit_delta=0.750000
+local_avg=10.4236974716 iter=600 size=0 limit_delta=0.750000
+max_delta=1.0573654175 iter=700 rank=0 size=0 limit_delta=0.750000
+max_delta=0.9661178589 iter=800 rank=0 size=0 limit_delta=0.750000
+local_avg=12.0423231125 iter=800 size=0 limit_delta=0.750000
+max_delta=0.8999128342 iter=900 rank=0 size=0 limit_delta=0.750000
+max_delta=0.8523101807 iter=1000 rank=0 size=0 limit_delta=0.750000
+local_avg=13.4584169388 iter=1000 size=0 limit_delta=0.750000
+max_delta=0.8188095093 iter=1100 rank=0 size=0 limit_delta=0.750000
+max_delta=0.7901000977 iter=1200 rank=0 size=0 limit_delta=0.750000
+local_avg=14.7306365967 iter=1200 size=0 limit_delta=0.750000
+max_delta=0.7643432617 iter=1300 rank=0 size=0 limit_delta=0.750000
+max_delta=0.7404670715 iter=1400 rank=0 size=0 limit_delta=0.750000
+local_avg=15.8938684464 iter=1400 size=0 limit_delta=0.750000
+Writing
+Writing 768 x 768 picture into file: edge768x768_0.750.pgm
+Finished writing
+iter=1401 overall_time=1.390000 iter_time=-906.495360 total_loop=-1270000.000000 max_delta=0.740467

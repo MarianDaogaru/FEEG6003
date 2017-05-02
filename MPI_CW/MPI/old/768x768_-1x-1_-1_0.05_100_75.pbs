@@ -1,0 +1,842 @@
+ 26609747 resources: utime ~33s, stime ~0s, Rss ~15208, inblocks ~12654, outblocks ~19113
+
+real	0m38.403s
+user	0m0.388s
+sys	0m0.168s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=0.050000 delta_freq=100 avg_freq=75
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=0.050000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=0.050000
+local_avg=3.5696730614 iter=75 size=0 limit_delta=0.050000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=0.050000
+local_avg=5.1228189468 iter=150 size=0 limit_delta=0.050000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=0.050000
+local_avg=6.3198723793 iter=225 size=0 limit_delta=0.050000
+max_delta=2.1652774811 iter=300 rank=0 size=0 limit_delta=0.050000
+local_avg=7.3280105591 iter=300 size=0 limit_delta=0.050000
+local_avg=8.2139234543 iter=375 size=0 limit_delta=0.050000
+max_delta=1.5662994385 iter=400 rank=0 size=0 limit_delta=0.050000
+local_avg=9.0124225616 iter=450 size=0 limit_delta=0.050000
+max_delta=1.3061485291 iter=500 rank=0 size=0 limit_delta=0.050000
+local_avg=9.7444334030 iter=525 size=0 limit_delta=0.050000
+max_delta=1.1595115662 iter=600 rank=0 size=0 limit_delta=0.050000
+local_avg=10.4236974716 iter=600 size=0 limit_delta=0.050000
+local_avg=11.0598058701 iter=675 size=0 limit_delta=0.050000
+max_delta=1.0573654175 iter=700 rank=0 size=0 limit_delta=0.050000
+local_avg=11.6597642899 iter=750 size=0 limit_delta=0.050000
+max_delta=0.9661178589 iter=800 rank=0 size=0 limit_delta=0.050000
+local_avg=12.2288722992 iter=825 size=0 limit_delta=0.050000
+max_delta=0.8999128342 iter=900 rank=0 size=0 limit_delta=0.050000
+local_avg=12.7712497711 iter=900 size=0 limit_delta=0.050000
+local_avg=13.2901773453 iter=975 size=0 limit_delta=0.050000
+max_delta=0.8523101807 iter=1000 rank=0 size=0 limit_delta=0.050000
+local_avg=13.7883157730 iter=1050 size=0 limit_delta=0.050000
+max_delta=0.8188095093 iter=1100 rank=0 size=0 limit_delta=0.050000
+local_avg=14.2678575516 iter=1125 size=0 limit_delta=0.050000
+max_delta=0.7901000977 iter=1200 rank=0 size=0 limit_delta=0.050000
+local_avg=14.7306365967 iter=1200 size=0 limit_delta=0.050000
+local_avg=15.1782045364 iter=1275 size=0 limit_delta=0.050000
+max_delta=0.7643432617 iter=1300 rank=0 size=0 limit_delta=0.050000
+local_avg=15.6118879318 iter=1350 size=0 limit_delta=0.050000
+max_delta=0.7404670715 iter=1400 rank=0 size=0 limit_delta=0.050000
+local_avg=16.0328311920 iter=1425 size=0 limit_delta=0.050000
+max_delta=0.7180442810 iter=1500 rank=0 size=0 limit_delta=0.050000
+local_avg=16.4420318604 iter=1500 size=0 limit_delta=0.050000
+local_avg=16.8403625488 iter=1575 size=0 limit_delta=0.050000
+max_delta=0.6967124939 iter=1600 rank=0 size=0 limit_delta=0.050000
+local_avg=17.2285938263 iter=1650 size=0 limit_delta=0.050000
+max_delta=0.6765441895 iter=1700 rank=0 size=0 limit_delta=0.050000
+local_avg=17.6074085236 iter=1725 size=0 limit_delta=0.050000
+max_delta=0.6572113037 iter=1800 rank=0 size=0 limit_delta=0.050000
+local_avg=17.9774208069 iter=1800 size=0 limit_delta=0.050000
+local_avg=18.3391761780 iter=1875 size=0 limit_delta=0.050000
+max_delta=0.6386928558 iter=1900 rank=0 size=0 limit_delta=0.050000
+local_avg=18.6931686401 iter=1950 size=0 limit_delta=0.050000
+max_delta=0.6210060120 iter=2000 rank=0 size=0 limit_delta=0.050000
+local_avg=19.0398445129 iter=2025 size=0 limit_delta=0.050000
+max_delta=0.6041183472 iter=2100 rank=0 size=0 limit_delta=0.050000
+local_avg=19.3796081543 iter=2100 size=0 limit_delta=0.050000
+local_avg=19.7128314972 iter=2175 size=0 limit_delta=0.050000
+max_delta=0.5879402161 iter=2200 rank=0 size=0 limit_delta=0.050000
+local_avg=20.0398521423 iter=2250 size=0 limit_delta=0.050000
+max_delta=0.5725250244 iter=2300 rank=0 size=0 limit_delta=0.050000
+local_avg=20.3609790802 iter=2325 size=0 limit_delta=0.050000
+max_delta=0.5577354431 iter=2400 rank=0 size=0 limit_delta=0.050000
+local_avg=20.6765003204 iter=2400 size=0 limit_delta=0.050000
+local_avg=20.9866752625 iter=2475 size=0 limit_delta=0.050000
+max_delta=0.5435638428 iter=2500 rank=0 size=0 limit_delta=0.050000
+local_avg=21.2917480469 iter=2550 size=0 limit_delta=0.050000
+max_delta=0.5299644470 iter=2600 rank=0 size=0 limit_delta=0.050000
+local_avg=21.5919475555 iter=2625 size=0 limit_delta=0.050000
+max_delta=0.5169296265 iter=2700 rank=0 size=0 limit_delta=0.050000
+local_avg=21.8874778748 iter=2700 size=0 limit_delta=0.050000
+local_avg=22.1785392761 iter=2775 size=0 limit_delta=0.050000
+max_delta=0.5044212341 iter=2800 rank=0 size=0 limit_delta=0.050000
+local_avg=22.4653110504 iter=2850 size=0 limit_delta=0.050000
+max_delta=0.4924468994 iter=2900 rank=0 size=0 limit_delta=0.050000
+local_avg=22.7479629517 iter=2925 size=0 limit_delta=0.050000
+max_delta=0.4809799194 iter=3000 rank=0 size=0 limit_delta=0.050000
+local_avg=23.0266551971 iter=3000 size=0 limit_delta=0.050000
+local_avg=23.3015346527 iter=3075 size=0 limit_delta=0.050000
+max_delta=0.4699640274 iter=3100 rank=0 size=0 limit_delta=0.050000
+local_avg=23.5727443695 iter=3150 size=0 limit_delta=0.050000
+max_delta=0.4593610764 iter=3200 rank=0 size=0 limit_delta=0.050000
+local_avg=23.8404140472 iter=3225 size=0 limit_delta=0.050000
+max_delta=0.4491729736 iter=3300 rank=0 size=0 limit_delta=0.050000
+local_avg=24.1046676636 iter=3300 size=0 limit_delta=0.050000
+local_avg=24.3656234741 iter=3375 size=0 limit_delta=0.050000
+max_delta=0.4393730164 iter=3400 rank=0 size=0 limit_delta=0.050000
+local_avg=24.6233921051 iter=3450 size=0 limit_delta=0.050000
+max_delta=0.4299278259 iter=3500 rank=0 size=0 limit_delta=0.050000
+local_avg=24.8780765533 iter=3525 size=0 limit_delta=0.050000
+max_delta=0.4208335876 iter=3600 rank=0 size=0 limit_delta=0.050000
+local_avg=25.1297779083 iter=3600 size=0 limit_delta=0.050000
+local_avg=25.3785877228 iter=3675 size=0 limit_delta=0.050000
+max_delta=0.4120635986 iter=3700 rank=0 size=0 limit_delta=0.050000
+local_avg=25.6245975494 iter=3750 size=0 limit_delta=0.050000
+max_delta=0.4035987854 iter=3800 rank=0 size=0 limit_delta=0.050000
+local_avg=25.8678894043 iter=3825 size=0 limit_delta=0.050000
+max_delta=0.3954467773 iter=3900 rank=0 size=0 limit_delta=0.050000
+local_avg=26.1085433960 iter=3900 size=0 limit_delta=0.050000
+local_avg=26.3466377258 iter=3975 size=0 limit_delta=0.050000
+max_delta=0.3875923157 iter=4000 rank=0 size=0 limit_delta=0.050000
+local_avg=26.5822467804 iter=4050 size=0 limit_delta=0.050000
+max_delta=0.3799934387 iter=4100 rank=0 size=0 limit_delta=0.050000
+local_avg=26.8154373169 iter=4125 size=0 limit_delta=0.050000
+max_delta=0.3726463318 iter=4200 rank=0 size=0 limit_delta=0.050000
+local_avg=27.0462760925 iter=4200 size=0 limit_delta=0.050000
+local_avg=27.2748260498 iter=4275 size=0 limit_delta=0.050000
+max_delta=0.3655242920 iter=4300 rank=0 size=0 limit_delta=0.050000
+local_avg=27.5011501312 iter=4350 size=0 limit_delta=0.050000
+max_delta=0.3586502075 iter=4400 rank=0 size=0 limit_delta=0.050000
+local_avg=27.7253036499 iter=4425 size=0 limit_delta=0.050000
+max_delta=0.3519706726 iter=4500 rank=0 size=0 limit_delta=0.050000
+local_avg=27.9473438263 iter=4500 size=0 limit_delta=0.050000
+local_avg=28.1673221588 iter=4575 size=0 limit_delta=0.050000
+max_delta=0.3455085754 iter=4600 rank=0 size=0 limit_delta=0.050000
+local_avg=28.3852901459 iter=4650 size=0 limit_delta=0.050000
+max_delta=0.3392601013 iter=4700 rank=0 size=0 limit_delta=0.050000
+local_avg=28.6012992859 iter=4725 size=0 limit_delta=0.050000
+max_delta=0.3331985474 iter=4800 rank=0 size=0 limit_delta=0.050000
+local_avg=28.8153934479 iter=4800 size=0 limit_delta=0.050000
+local_avg=29.0276184082 iter=4875 size=0 limit_delta=0.050000
+max_delta=0.3273200989 iter=4900 rank=0 size=0 limit_delta=0.050000
+local_avg=29.2380180359 iter=4950 size=0 limit_delta=0.050000
+max_delta=0.3216094971 iter=5000 rank=0 size=0 limit_delta=0.050000
+local_avg=29.4466342926 iter=5025 size=0 limit_delta=0.050000
+max_delta=0.3160591125 iter=5100 rank=0 size=0 limit_delta=0.050000
+local_avg=29.6535053253 iter=5100 size=0 limit_delta=0.050000
+local_avg=29.8586730957 iter=5175 size=0 limit_delta=0.050000
+max_delta=0.3106689453 iter=5200 rank=0 size=0 limit_delta=0.050000
+local_avg=30.0621719360 iter=5250 size=0 limit_delta=0.050000
+max_delta=0.3054237366 iter=5300 rank=0 size=0 limit_delta=0.050000
+local_avg=30.2640399933 iter=5325 size=0 limit_delta=0.050000
+max_delta=0.3003311157 iter=5400 rank=0 size=0 limit_delta=0.050000
+local_avg=30.4643096924 iter=5400 size=0 limit_delta=0.050000
+local_avg=30.6630153656 iter=5475 size=0 limit_delta=0.050000
+max_delta=0.2953758240 iter=5500 rank=0 size=0 limit_delta=0.050000
+local_avg=30.8601913452 iter=5550 size=0 limit_delta=0.050000
+max_delta=0.2905654907 iter=5600 rank=0 size=0 limit_delta=0.050000
+local_avg=31.0558662415 iter=5625 size=0 limit_delta=0.050000
+max_delta=0.2858886719 iter=5700 rank=0 size=0 limit_delta=0.050000
+local_avg=31.2500705719 iter=5700 size=0 limit_delta=0.050000
+local_avg=31.4428329468 iter=5775 size=0 limit_delta=0.050000
+max_delta=0.2813224792 iter=5800 rank=0 size=0 limit_delta=0.050000
+local_avg=31.6341838837 iter=5850 size=0 limit_delta=0.050000
+max_delta=0.2768859863 iter=5900 rank=0 size=0 limit_delta=0.050000
+local_avg=31.8241500854 iter=5925 size=0 limit_delta=0.050000
+max_delta=0.2725601196 iter=6000 rank=0 size=0 limit_delta=0.050000
+local_avg=32.0127563477 iter=6000 size=0 limit_delta=0.050000
+local_avg=32.2000274658 iter=6075 size=0 limit_delta=0.050000
+max_delta=0.2683372498 iter=6100 rank=0 size=0 limit_delta=0.050000
+local_avg=32.3859901428 iter=6150 size=0 limit_delta=0.050000
+max_delta=0.2642059326 iter=6200 rank=0 size=0 limit_delta=0.050000
+local_avg=32.5706710815 iter=6225 size=0 limit_delta=0.050000
+max_delta=0.2602005005 iter=6300 rank=0 size=0 limit_delta=0.050000
+local_avg=32.7540893555 iter=6300 size=0 limit_delta=0.050000
+local_avg=32.9362640381 iter=6375 size=0 limit_delta=0.050000
+max_delta=0.2562866211 iter=6400 rank=0 size=0 limit_delta=0.050000
+local_avg=33.1172256470 iter=6450 size=0 limit_delta=0.050000
+max_delta=0.2524642944 iter=6500 rank=0 size=0 limit_delta=0.050000
+local_avg=33.2969932556 iter=6525 size=0 limit_delta=0.050000
+max_delta=0.2487411499 iter=6600 rank=0 size=0 limit_delta=0.050000
+local_avg=33.4755821228 iter=6600 size=0 limit_delta=0.050000
+local_avg=33.6530189514 iter=6675 size=0 limit_delta=0.050000
+max_delta=0.2450942993 iter=6700 rank=0 size=0 limit_delta=0.050000
+local_avg=33.8293190002 iter=6750 size=0 limit_delta=0.050000
+max_delta=0.2415161133 iter=6800 rank=0 size=0 limit_delta=0.050000
+local_avg=34.0045051575 iter=6825 size=0 limit_delta=0.050000
+max_delta=0.2380294800 iter=6900 rank=0 size=0 limit_delta=0.050000
+local_avg=34.1785888672 iter=6900 size=0 limit_delta=0.050000
+local_avg=34.3515968323 iter=6975 size=0 limit_delta=0.050000
+max_delta=0.2346267700 iter=7000 rank=0 size=0 limit_delta=0.050000
+local_avg=34.5235366821 iter=7050 size=0 limit_delta=0.050000
+max_delta=0.2313079834 iter=7100 rank=0 size=0 limit_delta=0.050000
+local_avg=34.6944351196 iter=7125 size=0 limit_delta=0.050000
+max_delta=0.2280578613 iter=7200 rank=0 size=0 limit_delta=0.050000
+local_avg=34.8643035889 iter=7200 size=0 limit_delta=0.050000
+local_avg=35.0331573486 iter=7275 size=0 limit_delta=0.050000
+max_delta=0.2248687744 iter=7300 rank=0 size=0 limit_delta=0.050000
+local_avg=35.2010154724 iter=7350 size=0 limit_delta=0.050000
+max_delta=0.2217636108 iter=7400 rank=0 size=0 limit_delta=0.050000
+local_avg=35.3678894043 iter=7425 size=0 limit_delta=0.050000
+max_delta=0.2187042236 iter=7500 rank=0 size=0 limit_delta=0.050000
+local_avg=35.5337982178 iter=7500 size=0 limit_delta=0.050000
+local_avg=35.6987533569 iter=7575 size=0 limit_delta=0.050000
+max_delta=0.2157211304 iter=7600 rank=0 size=0 limit_delta=0.050000
+local_avg=35.8627700806 iter=7650 size=0 limit_delta=0.050000
+max_delta=0.2133407593 iter=7700 rank=0 size=0 limit_delta=0.050000
+local_avg=36.0258636475 iter=7725 size=0 limit_delta=0.050000
+max_delta=0.2111663818 iter=7800 rank=0 size=0 limit_delta=0.050000
+local_avg=36.1880416870 iter=7800 size=0 limit_delta=0.050000
+local_avg=36.3493232727 iter=7875 size=0 limit_delta=0.050000
+max_delta=0.2090454102 iter=7900 rank=0 size=0 limit_delta=0.050000
+local_avg=36.5097236633 iter=7950 size=0 limit_delta=0.050000
+max_delta=0.2069549561 iter=8000 rank=0 size=0 limit_delta=0.050000
+local_avg=36.6692466736 iter=8025 size=0 limit_delta=0.050000
+max_delta=0.2049179077 iter=8100 rank=0 size=0 limit_delta=0.050000
+local_avg=36.8279075623 iter=8100 size=0 limit_delta=0.050000
+local_avg=36.9857215881 iter=8175 size=0 limit_delta=0.050000
+max_delta=0.2028903961 iter=8200 rank=0 size=0 limit_delta=0.050000
+local_avg=37.1427001953 iter=8250 size=0 limit_delta=0.050000
+max_delta=0.2009277344 iter=8300 rank=0 size=0 limit_delta=0.050000
+local_avg=37.2988510132 iter=8325 size=0 limit_delta=0.050000
+max_delta=0.1989822388 iter=8400 rank=0 size=0 limit_delta=0.050000
+local_avg=37.4541893005 iter=8400 size=0 limit_delta=0.050000
+local_avg=37.6087226868 iter=8475 size=0 limit_delta=0.050000
+max_delta=0.1970748901 iter=8500 rank=0 size=0 limit_delta=0.050000
+local_avg=37.7624626160 iter=8550 size=0 limit_delta=0.050000
+max_delta=0.1951961517 iter=8600 rank=0 size=0 limit_delta=0.050000
+local_avg=37.9154167175 iter=8625 size=0 limit_delta=0.050000
+max_delta=0.1933479309 iter=8700 rank=0 size=0 limit_delta=0.050000
+local_avg=38.0676040649 iter=8700 size=0 limit_delta=0.050000
+local_avg=38.2190246582 iter=8775 size=0 limit_delta=0.050000
+max_delta=0.1915321350 iter=8800 rank=0 size=0 limit_delta=0.050000
+local_avg=38.3696937561 iter=8850 size=0 limit_delta=0.050000
+max_delta=0.1897583008 iter=8900 rank=0 size=0 limit_delta=0.050000
+local_avg=38.5196189880 iter=8925 size=0 limit_delta=0.050000
+max_delta=0.1880035400 iter=9000 rank=0 size=0 limit_delta=0.050000
+local_avg=38.6688117981 iter=9000 size=0 limit_delta=0.050000
+local_avg=38.8172798157 iter=9075 size=0 limit_delta=0.050000
+max_delta=0.1862792969 iter=9100 rank=0 size=0 limit_delta=0.050000
+local_avg=38.9650306702 iter=9150 size=0 limit_delta=0.050000
+max_delta=0.1845817566 iter=9200 rank=0 size=0 limit_delta=0.050000
+local_avg=39.1120719910 iter=9225 size=0 limit_delta=0.050000
+max_delta=0.1828956604 iter=9300 rank=0 size=0 limit_delta=0.050000
+local_avg=39.2584190369 iter=9300 size=0 limit_delta=0.050000
+local_avg=39.4040718079 iter=9375 size=0 limit_delta=0.050000
+max_delta=0.1812553406 iter=9400 rank=0 size=0 limit_delta=0.050000
+local_avg=39.5490455627 iter=9450 size=0 limit_delta=0.050000
+max_delta=0.1796455383 iter=9500 rank=0 size=0 limit_delta=0.050000
+local_avg=39.6933441162 iter=9525 size=0 limit_delta=0.050000
+max_delta=0.1780529022 iter=9600 rank=0 size=0 limit_delta=0.050000
+local_avg=39.8369789124 iter=9600 size=0 limit_delta=0.050000
+local_avg=39.9799537659 iter=9675 size=0 limit_delta=0.050000
+max_delta=0.1764807701 iter=9700 rank=0 size=0 limit_delta=0.050000
+local_avg=40.1222763062 iter=9750 size=0 limit_delta=0.050000
+max_delta=0.1749372482 iter=9800 rank=0 size=0 limit_delta=0.050000
+local_avg=40.2639579773 iter=9825 size=0 limit_delta=0.050000
+max_delta=0.1734132767 iter=9900 rank=0 size=0 limit_delta=0.050000
+local_avg=40.4050025940 iter=9900 size=0 limit_delta=0.050000
+local_avg=40.5454177856 iter=9975 size=0 limit_delta=0.050000
+max_delta=0.1719131470 iter=10000 rank=0 size=0 limit_delta=0.050000
+local_avg=40.6852111816 iter=10050 size=0 limit_delta=0.050000
+max_delta=0.1704354286 iter=10100 rank=0 size=0 limit_delta=0.050000
+local_avg=40.8243904114 iter=10125 size=0 limit_delta=0.050000
+max_delta=0.1689796448 iter=10200 rank=0 size=0 limit_delta=0.050000
+local_avg=40.9629631042 iter=10200 size=0 limit_delta=0.050000
+local_avg=41.1009330750 iter=10275 size=0 limit_delta=0.050000
+max_delta=0.1675500870 iter=10300 rank=0 size=0 limit_delta=0.050000
+local_avg=41.2383079529 iter=10350 size=0 limit_delta=0.050000
+max_delta=0.1661372185 iter=10400 rank=0 size=0 limit_delta=0.050000
+local_avg=41.3750915527 iter=10425 size=0 limit_delta=0.050000
+max_delta=0.1647493839 iter=10500 rank=0 size=0 limit_delta=0.050000
+local_avg=41.5112991333 iter=10500 size=0 limit_delta=0.050000
+local_avg=41.6469268799 iter=10575 size=0 limit_delta=0.050000
+max_delta=0.1633841991 iter=10600 rank=0 size=0 limit_delta=0.050000
+local_avg=41.7819824219 iter=10650 size=0 limit_delta=0.050000
+max_delta=0.1620328426 iter=10700 rank=0 size=0 limit_delta=0.050000
+local_avg=41.9164772034 iter=10725 size=0 limit_delta=0.050000
+max_delta=0.1607017517 iter=10800 rank=0 size=0 limit_delta=0.050000
+local_avg=42.0504112244 iter=10800 size=0 limit_delta=0.050000
+local_avg=42.1837959290 iter=10875 size=0 limit_delta=0.050000
+max_delta=0.1593971252 iter=10900 rank=0 size=0 limit_delta=0.050000
+local_avg=42.3166313171 iter=10950 size=0 limit_delta=0.050000
+max_delta=0.1581037045 iter=11000 rank=0 size=0 limit_delta=0.050000
+local_avg=42.4489250183 iter=11025 size=0 limit_delta=0.050000
+max_delta=0.1568274498 iter=11100 rank=0 size=0 limit_delta=0.050000
+local_avg=42.5806846619 iter=11100 size=0 limit_delta=0.050000
+local_avg=42.7119140625 iter=11175 size=0 limit_delta=0.050000
+max_delta=0.1555755138 iter=11200 rank=0 size=0 limit_delta=0.050000
+local_avg=42.8426170349 iter=11250 size=0 limit_delta=0.050000
+max_delta=0.1543345451 iter=11300 rank=0 size=0 limit_delta=0.050000
+local_avg=42.9728012085 iter=11325 size=0 limit_delta=0.050000
+max_delta=0.1531106234 iter=11400 rank=0 size=0 limit_delta=0.050000
+local_avg=43.1024703979 iter=11400 size=0 limit_delta=0.050000
+local_avg=43.2316284180 iter=11475 size=0 limit_delta=0.050000
+max_delta=0.1519052982 iter=11500 rank=0 size=0 limit_delta=0.050000
+local_avg=43.3602828979 iter=11550 size=0 limit_delta=0.050000
+max_delta=0.1507186890 iter=11600 rank=0 size=0 limit_delta=0.050000
+local_avg=43.4884338379 iter=11625 size=0 limit_delta=0.050000
+max_delta=0.1495437622 iter=11700 rank=0 size=0 limit_delta=0.050000
+local_avg=43.6160926819 iter=11700 size=0 limit_delta=0.050000
+local_avg=43.7432632446 iter=11775 size=0 limit_delta=0.050000
+max_delta=0.1483917236 iter=11800 rank=0 size=0 limit_delta=0.050000
+local_avg=43.8699417114 iter=11850 size=0 limit_delta=0.050000
+max_delta=0.1472606659 iter=11900 rank=0 size=0 limit_delta=0.050000
+local_avg=43.9961433411 iter=11925 size=0 limit_delta=0.050000
+max_delta=0.1461677551 iter=12000 rank=0 size=0 limit_delta=0.050000
+local_avg=44.1218643188 iter=12000 size=0 limit_delta=0.050000
+local_avg=44.2471160889 iter=12075 size=0 limit_delta=0.050000
+max_delta=0.1450881958 iter=12100 rank=0 size=0 limit_delta=0.050000
+local_avg=44.3718986511 iter=12150 size=0 limit_delta=0.050000
+max_delta=0.1440258026 iter=12200 rank=0 size=0 limit_delta=0.050000
+local_avg=44.4962158203 iter=12225 size=0 limit_delta=0.050000
+max_delta=0.1429672241 iter=12300 rank=0 size=0 limit_delta=0.050000
+local_avg=44.6200752258 iter=12300 size=0 limit_delta=0.050000
+local_avg=44.7434768677 iter=12375 size=0 limit_delta=0.050000
+max_delta=0.1419448853 iter=12400 rank=0 size=0 limit_delta=0.050000
+local_avg=44.8664283752 iter=12450 size=0 limit_delta=0.050000
+max_delta=0.1409149170 iter=12500 rank=0 size=0 limit_delta=0.050000
+local_avg=44.9889335632 iter=12525 size=0 limit_delta=0.050000
+max_delta=0.1399002075 iter=12600 rank=0 size=0 limit_delta=0.050000
+local_avg=45.1109924316 iter=12600 size=0 limit_delta=0.050000
+local_avg=45.2326126099 iter=12675 size=0 limit_delta=0.050000
+max_delta=0.1389122009 iter=12700 rank=0 size=0 limit_delta=0.050000
+local_avg=45.3537979126 iter=12750 size=0 limit_delta=0.050000
+max_delta=0.1379203796 iter=12800 rank=0 size=0 limit_delta=0.050000
+local_avg=45.4745483398 iter=12825 size=0 limit_delta=0.050000
+max_delta=0.1369524002 iter=12900 rank=0 size=0 limit_delta=0.050000
+local_avg=45.5948715210 iter=12900 size=0 limit_delta=0.050000
+local_avg=45.7147712708 iter=12975 size=0 limit_delta=0.050000
+max_delta=0.1359939575 iter=13000 rank=0 size=0 limit_delta=0.050000
+local_avg=45.8342475891 iter=13050 size=0 limit_delta=0.050000
+max_delta=0.1350498199 iter=13100 rank=0 size=0 limit_delta=0.050000
+local_avg=45.9533081055 iter=13125 size=0 limit_delta=0.050000
+max_delta=0.1341209412 iter=13200 rank=0 size=0 limit_delta=0.050000
+local_avg=46.0719528198 iter=13200 size=0 limit_delta=0.050000
+local_avg=46.1901893616 iter=13275 size=0 limit_delta=0.050000
+max_delta=0.1331977844 iter=13300 rank=0 size=0 limit_delta=0.050000
+local_avg=46.3080177307 iter=13350 size=0 limit_delta=0.050000
+max_delta=0.1322937012 iter=13400 rank=0 size=0 limit_delta=0.050000
+local_avg=46.4254417419 iter=13425 size=0 limit_delta=0.050000
+max_delta=0.1313934326 iter=13500 rank=0 size=0 limit_delta=0.050000
+local_avg=46.5424652100 iter=13500 size=0 limit_delta=0.050000
+local_avg=46.6590919495 iter=13575 size=0 limit_delta=0.050000
+max_delta=0.1305122375 iter=13600 rank=0 size=0 limit_delta=0.050000
+local_avg=46.7753257751 iter=13650 size=0 limit_delta=0.050000
+max_delta=0.1296310425 iter=13700 rank=0 size=0 limit_delta=0.050000
+local_avg=46.8911666870 iter=13725 size=0 limit_delta=0.050000
+max_delta=0.1287689209 iter=13800 rank=0 size=0 limit_delta=0.050000
+local_avg=47.0066184998 iter=13800 size=0 limit_delta=0.050000
+local_avg=47.1216888428 iter=13875 size=0 limit_delta=0.050000
+max_delta=0.1279144287 iter=13900 rank=0 size=0 limit_delta=0.050000
+local_avg=47.2363739014 iter=13950 size=0 limit_delta=0.050000
+max_delta=0.1270675659 iter=14000 rank=0 size=0 limit_delta=0.050000
+local_avg=47.3506851196 iter=14025 size=0 limit_delta=0.050000
+max_delta=0.1262512207 iter=14100 rank=0 size=0 limit_delta=0.050000
+local_avg=47.4646186829 iter=14100 size=0 limit_delta=0.050000
+local_avg=47.5781784058 iter=14175 size=0 limit_delta=0.050000
+max_delta=0.1254272461 iter=14200 rank=0 size=0 limit_delta=0.050000
+local_avg=47.6913681030 iter=14250 size=0 limit_delta=0.050000
+max_delta=0.1246109009 iter=14300 rank=0 size=0 limit_delta=0.050000
+local_avg=47.8041915894 iter=14325 size=0 limit_delta=0.050000
+max_delta=0.1238050461 iter=14400 rank=0 size=0 limit_delta=0.050000
+local_avg=47.9166526794 iter=14400 size=0 limit_delta=0.050000
+local_avg=48.0287475586 iter=14475 size=0 limit_delta=0.050000
+max_delta=0.1230058670 iter=14500 rank=0 size=0 limit_delta=0.050000
+local_avg=48.1404876709 iter=14550 size=0 limit_delta=0.050000
+max_delta=0.1222286224 iter=14600 rank=0 size=0 limit_delta=0.050000
+local_avg=48.2518730164 iter=14625 size=0 limit_delta=0.050000
+max_delta=0.1214532852 iter=14700 rank=0 size=0 limit_delta=0.050000
+local_avg=48.3629035950 iter=14700 size=0 limit_delta=0.050000
+local_avg=48.4735832214 iter=14775 size=0 limit_delta=0.050000
+max_delta=0.1206874847 iter=14800 rank=0 size=0 limit_delta=0.050000
+local_avg=48.5839118958 iter=14850 size=0 limit_delta=0.050000
+max_delta=0.1199350357 iter=14900 rank=0 size=0 limit_delta=0.050000
+local_avg=48.6939010620 iter=14925 size=0 limit_delta=0.050000
+max_delta=0.1191883087 iter=15000 rank=0 size=0 limit_delta=0.050000
+local_avg=48.8035430908 iter=15000 size=0 limit_delta=0.050000
+local_avg=48.9128456116 iter=15075 size=0 limit_delta=0.050000
+max_delta=0.1184520721 iter=15100 rank=0 size=0 limit_delta=0.050000
+local_avg=49.0218086243 iter=15150 size=0 limit_delta=0.050000
+max_delta=0.1177234650 iter=15200 rank=0 size=0 limit_delta=0.050000
+local_avg=49.1304397583 iter=15225 size=0 limit_delta=0.050000
+max_delta=0.1170010567 iter=15300 rank=0 size=0 limit_delta=0.050000
+local_avg=49.2387351990 iter=15300 size=0 limit_delta=0.050000
+local_avg=49.3467025757 iter=15375 size=0 limit_delta=0.050000
+max_delta=0.1162885427 iter=15400 rank=0 size=0 limit_delta=0.050000
+local_avg=49.4543380737 iter=15450 size=0 limit_delta=0.050000
+max_delta=0.1155838966 iter=15500 rank=0 size=0 limit_delta=0.050000
+local_avg=49.5616493225 iter=15525 size=0 limit_delta=0.050000
+max_delta=0.1148877144 iter=15600 rank=0 size=0 limit_delta=0.050000
+local_avg=49.6686363220 iter=15600 size=0 limit_delta=0.050000
+local_avg=49.7753028870 iter=15675 size=0 limit_delta=0.050000
+max_delta=0.1141988039 iter=15700 rank=0 size=0 limit_delta=0.050000
+local_avg=49.8816528320 iter=15750 size=0 limit_delta=0.050000
+max_delta=0.1135176420 iter=15800 rank=0 size=0 limit_delta=0.050000
+local_avg=49.9876823425 iter=15825 size=0 limit_delta=0.050000
+max_delta=0.1128456593 iter=15900 rank=0 size=0 limit_delta=0.050000
+local_avg=50.0933952332 iter=15900 size=0 limit_delta=0.050000
+local_avg=50.1987991333 iter=15975 size=0 limit_delta=0.050000
+max_delta=0.1121793985 iter=16000 rank=0 size=0 limit_delta=0.050000
+local_avg=50.3038902283 iter=16050 size=0 limit_delta=0.050000
+max_delta=0.1115210056 iter=16100 rank=0 size=0 limit_delta=0.050000
+local_avg=50.4086761475 iter=16125 size=0 limit_delta=0.050000
+max_delta=0.1108695269 iter=16200 rank=0 size=0 limit_delta=0.050000
+local_avg=50.5131530762 iter=16200 size=0 limit_delta=0.050000
+local_avg=50.6173248291 iter=16275 size=0 limit_delta=0.050000
+max_delta=0.1102283001 iter=16300 rank=0 size=0 limit_delta=0.050000
+local_avg=50.7211952209 iter=16350 size=0 limit_delta=0.050000
+max_delta=0.1095914841 iter=16400 rank=0 size=0 limit_delta=0.050000
+local_avg=50.8247680664 iter=16425 size=0 limit_delta=0.050000
+max_delta=0.1089611053 iter=16500 rank=0 size=0 limit_delta=0.050000
+local_avg=50.9280395508 iter=16500 size=0 limit_delta=0.050000
+local_avg=51.0310173035 iter=16575 size=0 limit_delta=0.050000
+max_delta=0.1083383560 iter=16600 rank=0 size=0 limit_delta=0.050000
+local_avg=51.1337013245 iter=16650 size=0 limit_delta=0.050000
+max_delta=0.1077218056 iter=16700 rank=0 size=0 limit_delta=0.050000
+local_avg=51.2360877991 iter=16725 size=0 limit_delta=0.050000
+max_delta=0.1071128845 iter=16800 rank=0 size=0 limit_delta=0.050000
+local_avg=51.3381881714 iter=16800 size=0 limit_delta=0.050000
+local_avg=51.4400024414 iter=16875 size=0 limit_delta=0.050000
+max_delta=0.1065087318 iter=16900 rank=0 size=0 limit_delta=0.050000
+local_avg=51.5415267944 iter=16950 size=0 limit_delta=0.050000
+max_delta=0.1059103012 iter=17000 rank=0 size=0 limit_delta=0.050000
+local_avg=51.6427650452 iter=17025 size=0 limit_delta=0.050000
+max_delta=0.1053204536 iter=17100 rank=0 size=0 limit_delta=0.050000
+local_avg=51.7437210083 iter=17100 size=0 limit_delta=0.050000
+local_avg=51.8443984985 iter=17175 size=0 limit_delta=0.050000
+max_delta=0.1047358513 iter=17200 rank=0 size=0 limit_delta=0.050000
+local_avg=51.9447937012 iter=17250 size=0 limit_delta=0.050000
+max_delta=0.1041574478 iter=17300 rank=0 size=0 limit_delta=0.050000
+local_avg=52.0449142456 iter=17325 size=0 limit_delta=0.050000
+max_delta=0.1035838127 iter=17400 rank=0 size=0 limit_delta=0.050000
+local_avg=52.1447563171 iter=17400 size=0 limit_delta=0.050000
+local_avg=52.2443237305 iter=17475 size=0 limit_delta=0.050000
+max_delta=0.1030178070 iter=17500 rank=0 size=0 limit_delta=0.050000
+local_avg=52.3436203003 iter=17550 size=0 limit_delta=0.050000
+max_delta=0.1024570465 iter=17600 rank=0 size=0 limit_delta=0.050000
+local_avg=52.4426460266 iter=17625 size=0 limit_delta=0.050000
+max_delta=0.1019029617 iter=17700 rank=0 size=0 limit_delta=0.050000
+local_avg=52.5414009094 iter=17700 size=0 limit_delta=0.050000
+local_avg=52.6398925781 iter=17775 size=0 limit_delta=0.050000
+max_delta=0.1013545990 iter=17800 rank=0 size=0 limit_delta=0.050000
+local_avg=52.7381134033 iter=17850 size=0 limit_delta=0.050000
+max_delta=0.1008110046 iter=17900 rank=0 size=0 limit_delta=0.050000
+local_avg=52.8360748291 iter=17925 size=0 limit_delta=0.050000
+max_delta=0.1002721786 iter=18000 rank=0 size=0 limit_delta=0.050000
+local_avg=52.9337692261 iter=18000 size=0 limit_delta=0.050000
+local_avg=53.0312080383 iter=18075 size=0 limit_delta=0.050000
+max_delta=0.0997419357 iter=18100 rank=0 size=0 limit_delta=0.050000
+local_avg=53.1283836365 iter=18150 size=0 limit_delta=0.050000
+max_delta=0.0992126465 iter=18200 rank=0 size=0 limit_delta=0.050000
+local_avg=53.2252998352 iter=18225 size=0 limit_delta=0.050000
+max_delta=0.0986909866 iter=18300 rank=0 size=0 limit_delta=0.050000
+local_avg=53.3219642639 iter=18300 size=0 limit_delta=0.050000
+local_avg=53.4183731079 iter=18375 size=0 limit_delta=0.050000
+max_delta=0.0981712341 iter=18400 rank=0 size=0 limit_delta=0.050000
+local_avg=53.5145263672 iter=18450 size=0 limit_delta=0.050000
+max_delta=0.0976619720 iter=18500 rank=0 size=0 limit_delta=0.050000
+local_avg=53.6104278564 iter=18525 size=0 limit_delta=0.050000
+max_delta=0.0971546173 iter=18600 rank=0 size=0 limit_delta=0.050000
+local_avg=53.7060813904 iter=18600 size=0 limit_delta=0.050000
+local_avg=53.8014869690 iter=18675 size=0 limit_delta=0.050000
+max_delta=0.0966548920 iter=18700 rank=0 size=0 limit_delta=0.050000
+local_avg=53.8966407776 iter=18750 size=0 limit_delta=0.050000
+max_delta=0.0961570740 iter=18800 rank=0 size=0 limit_delta=0.050000
+local_avg=53.9915504456 iter=18825 size=0 limit_delta=0.050000
+max_delta=0.0956659317 iter=18900 rank=0 size=0 limit_delta=0.050000
+local_avg=54.0862159729 iter=18900 size=0 limit_delta=0.050000
+local_avg=54.1806411743 iter=18975 size=0 limit_delta=0.050000
+max_delta=0.0951786041 iter=19000 rank=0 size=0 limit_delta=0.050000
+local_avg=54.2748222351 iter=19050 size=0 limit_delta=0.050000
+max_delta=0.0946946144 iter=19100 rank=0 size=0 limit_delta=0.050000
+local_avg=54.3687629700 iter=19125 size=0 limit_delta=0.050000
+max_delta=0.0942149162 iter=19200 rank=0 size=0 limit_delta=0.050000
+local_avg=54.4624633789 iter=19200 size=0 limit_delta=0.050000
+local_avg=54.5559272766 iter=19275 size=0 limit_delta=0.050000
+max_delta=0.0937423706 iter=19300 rank=0 size=0 limit_delta=0.050000
+local_avg=54.6491546631 iter=19350 size=0 limit_delta=0.050000
+max_delta=0.0932750702 iter=19400 rank=0 size=0 limit_delta=0.050000
+local_avg=54.7421493530 iter=19425 size=0 limit_delta=0.050000
+max_delta=0.0928096771 iter=19500 rank=0 size=0 limit_delta=0.050000
+local_avg=54.8349075317 iter=19500 size=0 limit_delta=0.050000
+local_avg=54.9274368286 iter=19575 size=0 limit_delta=0.050000
+max_delta=0.0923500061 iter=19600 rank=0 size=0 limit_delta=0.050000
+local_avg=55.0197334290 iter=19650 size=0 limit_delta=0.050000
+max_delta=0.0918903351 iter=19700 rank=0 size=0 limit_delta=0.050000
+local_avg=55.1118011475 iter=19725 size=0 limit_delta=0.050000
+max_delta=0.0914382935 iter=19800 rank=0 size=0 limit_delta=0.050000
+local_avg=55.2036399841 iter=19800 size=0 limit_delta=0.050000
+local_avg=55.2952499390 iter=19875 size=0 limit_delta=0.050000
+max_delta=0.0909919739 iter=19900 rank=0 size=0 limit_delta=0.050000
+local_avg=55.3866348267 iter=19950 size=0 limit_delta=0.050000
+max_delta=0.0905480385 iter=20000 rank=0 size=0 limit_delta=0.050000
+local_avg=55.4777946472 iter=20025 size=0 limit_delta=0.050000
+max_delta=0.0901079178 iter=20100 rank=0 size=0 limit_delta=0.050000
+local_avg=55.5687332153 iter=20100 size=0 limit_delta=0.050000
+local_avg=55.6594467163 iter=20175 size=0 limit_delta=0.050000
+max_delta=0.0896706581 iter=20200 rank=0 size=0 limit_delta=0.050000
+local_avg=55.7499389648 iter=20250 size=0 limit_delta=0.050000
+max_delta=0.0892372131 iter=20300 rank=0 size=0 limit_delta=0.050000
+local_avg=55.8402137756 iter=20325 size=0 limit_delta=0.050000
+max_delta=0.0888099670 iter=20400 rank=0 size=0 limit_delta=0.050000
+local_avg=55.9302673340 iter=20400 size=0 limit_delta=0.050000
+local_avg=56.0201072693 iter=20475 size=0 limit_delta=0.050000
+max_delta=0.0883865356 iter=20500 rank=0 size=0 limit_delta=0.050000
+local_avg=56.1097259521 iter=20550 size=0 limit_delta=0.050000
+max_delta=0.0879631042 iter=20600 rank=0 size=0 limit_delta=0.050000
+local_avg=56.1991348267 iter=20625 size=0 limit_delta=0.050000
+max_delta=0.0875453949 iter=20700 rank=0 size=0 limit_delta=0.050000
+local_avg=56.2883262634 iter=20700 size=0 limit_delta=0.050000
+local_avg=56.3773040771 iter=20775 size=0 limit_delta=0.050000
+max_delta=0.0871315002 iter=20800 rank=0 size=0 limit_delta=0.050000
+local_avg=56.4660720825 iter=20850 size=0 limit_delta=0.050000
+max_delta=0.0867233276 iter=20900 rank=0 size=0 limit_delta=0.050000
+local_avg=56.5546264648 iter=20925 size=0 limit_delta=0.050000
+max_delta=0.0863156319 iter=21000 rank=0 size=0 limit_delta=0.050000
+local_avg=56.6429748535 iter=21000 size=0 limit_delta=0.050000
+local_avg=56.7311096191 iter=21075 size=0 limit_delta=0.050000
+max_delta=0.0859131813 iter=21100 rank=0 size=0 limit_delta=0.050000
+local_avg=56.8190422058 iter=21150 size=0 limit_delta=0.050000
+max_delta=0.0855135918 iter=21200 rank=0 size=0 limit_delta=0.050000
+local_avg=56.9067649841 iter=21225 size=0 limit_delta=0.050000
+max_delta=0.0851194859 iter=21300 rank=0 size=0 limit_delta=0.050000
+local_avg=56.9942855835 iter=21300 size=0 limit_delta=0.050000
+local_avg=57.0815963745 iter=21375 size=0 limit_delta=0.050000
+max_delta=0.0847287178 iter=21400 rank=0 size=0 limit_delta=0.050000
+local_avg=57.1687088013 iter=21450 size=0 limit_delta=0.050000
+max_delta=0.0843384266 iter=21500 rank=0 size=0 limit_delta=0.050000
+local_avg=57.2556152344 iter=21525 size=0 limit_delta=0.050000
+max_delta=0.0839545727 iter=21600 rank=0 size=0 limit_delta=0.050000
+local_avg=57.3423233032 iter=21600 size=0 limit_delta=0.050000
+local_avg=57.4288291931 iter=21675 size=0 limit_delta=0.050000
+max_delta=0.0835697651 iter=21700 rank=0 size=0 limit_delta=0.050000
+local_avg=57.5151367188 iter=21750 size=0 limit_delta=0.050000
+max_delta=0.0831892490 iter=21800 rank=0 size=0 limit_delta=0.050000
+local_avg=57.6012458801 iter=21825 size=0 limit_delta=0.050000
+max_delta=0.0828132629 iter=21900 rank=0 size=0 limit_delta=0.050000
+local_avg=57.6871604919 iter=21900 size=0 limit_delta=0.050000
+local_avg=57.7728767395 iter=21975 size=0 limit_delta=0.050000
+max_delta=0.0824413300 iter=22000 rank=0 size=0 limit_delta=0.050000
+local_avg=57.8583946228 iter=22050 size=0 limit_delta=0.050000
+max_delta=0.0820684433 iter=22100 rank=0 size=0 limit_delta=0.050000
+local_avg=57.9437217712 iter=22125 size=0 limit_delta=0.050000
+max_delta=0.0817031860 iter=22200 rank=0 size=0 limit_delta=0.050000
+local_avg=58.0288543701 iter=22200 size=0 limit_delta=0.050000
+local_avg=58.1137962341 iter=22275 size=0 limit_delta=0.050000
+max_delta=0.0813407898 iter=22300 rank=0 size=0 limit_delta=0.050000
+local_avg=58.1985435486 iter=22350 size=0 limit_delta=0.050000
+max_delta=0.0809793472 iter=22400 rank=0 size=0 limit_delta=0.050000
+local_avg=58.2831039429 iter=22425 size=0 limit_delta=0.050000
+max_delta=0.0806198120 iter=22500 rank=0 size=0 limit_delta=0.050000
+local_avg=58.3674697876 iter=22500 size=0 limit_delta=0.050000
+local_avg=58.4516525269 iter=22575 size=0 limit_delta=0.050000
+max_delta=0.0802640915 iter=22600 rank=0 size=0 limit_delta=0.050000
+local_avg=58.5356445312 iter=22650 size=0 limit_delta=0.050000
+max_delta=0.0799121857 iter=22700 rank=0 size=0 limit_delta=0.050000
+local_avg=58.6194496155 iter=22725 size=0 limit_delta=0.050000
+max_delta=0.0795602798 iter=22800 rank=0 size=0 limit_delta=0.050000
+local_avg=58.7030677795 iter=22800 size=0 limit_delta=0.050000
+local_avg=58.7865028381 iter=22875 size=0 limit_delta=0.050000
+max_delta=0.0792140961 iter=22900 rank=0 size=0 limit_delta=0.050000
+local_avg=58.8697509766 iter=22950 size=0 limit_delta=0.050000
+max_delta=0.0788698196 iter=23000 rank=0 size=0 limit_delta=0.050000
+local_avg=58.9528198242 iter=23025 size=0 limit_delta=0.050000
+max_delta=0.0785293579 iter=23100 rank=0 size=0 limit_delta=0.050000
+local_avg=59.0357017517 iter=23100 size=0 limit_delta=0.050000
+local_avg=59.1184043884 iter=23175 size=0 limit_delta=0.050000
+max_delta=0.0781888962 iter=23200 rank=0 size=0 limit_delta=0.050000
+local_avg=59.2009277344 iter=23250 size=0 limit_delta=0.050000
+max_delta=0.0778541565 iter=23300 rank=0 size=0 limit_delta=0.050000
+local_avg=59.2832679749 iter=23325 size=0 limit_delta=0.050000
+max_delta=0.0775260925 iter=23400 rank=0 size=0 limit_delta=0.050000
+local_avg=59.3654289246 iter=23400 size=0 limit_delta=0.050000
+local_avg=59.4474143982 iter=23475 size=0 limit_delta=0.050000
+max_delta=0.0771923065 iter=23500 rank=0 size=0 limit_delta=0.050000
+local_avg=59.5292205811 iter=23550 size=0 limit_delta=0.050000
+max_delta=0.0768661499 iter=23600 rank=0 size=0 limit_delta=0.050000
+local_avg=59.6108512878 iter=23625 size=0 limit_delta=0.050000
+max_delta=0.0765380859 iter=23700 rank=0 size=0 limit_delta=0.050000
+local_avg=59.6923065186 iter=23700 size=0 limit_delta=0.050000
+local_avg=59.7735862732 iter=23775 size=0 limit_delta=0.050000
+max_delta=0.0762157440 iter=23800 rank=0 size=0 limit_delta=0.050000
+local_avg=59.8546905518 iter=23850 size=0 limit_delta=0.050000
+max_delta=0.0758972168 iter=23900 rank=0 size=0 limit_delta=0.050000
+local_avg=59.9356231689 iter=23925 size=0 limit_delta=0.050000
+max_delta=0.0755767822 iter=24000 rank=0 size=0 limit_delta=0.050000
+local_avg=60.0163803101 iter=24000 size=0 limit_delta=0.050000
+local_avg=60.0969696045 iter=24075 size=0 limit_delta=0.050000
+max_delta=0.0752601624 iter=24100 rank=0 size=0 limit_delta=0.050000
+local_avg=60.1773834229 iter=24150 size=0 limit_delta=0.050000
+max_delta=0.0749435425 iter=24200 rank=0 size=0 limit_delta=0.050000
+local_avg=60.2576293945 iter=24225 size=0 limit_delta=0.050000
+max_delta=0.0746269226 iter=24300 rank=0 size=0 limit_delta=0.050000
+local_avg=60.3377075195 iter=24300 size=0 limit_delta=0.050000
+local_avg=60.4176139832 iter=24375 size=0 limit_delta=0.050000
+max_delta=0.0743217468 iter=24400 rank=0 size=0 limit_delta=0.050000
+local_avg=60.4973526001 iter=24450 size=0 limit_delta=0.050000
+max_delta=0.0740156174 iter=24500 rank=0 size=0 limit_delta=0.050000
+local_avg=60.5769271851 iter=24525 size=0 limit_delta=0.050000
+max_delta=0.0737113953 iter=24600 rank=0 size=0 limit_delta=0.050000
+local_avg=60.6563339233 iter=24600 size=0 limit_delta=0.050000
+local_avg=60.7355728149 iter=24675 size=0 limit_delta=0.050000
+max_delta=0.0734090805 iter=24700 rank=0 size=0 limit_delta=0.050000
+local_avg=60.8146476746 iter=24750 size=0 limit_delta=0.050000
+max_delta=0.0731077194 iter=24800 rank=0 size=0 limit_delta=0.050000
+local_avg=60.8935585022 iter=24825 size=0 limit_delta=0.050000
+max_delta=0.0728139877 iter=24900 rank=0 size=0 limit_delta=0.050000
+local_avg=60.9723052979 iter=24900 size=0 limit_delta=0.050000
+local_avg=61.0508880615 iter=24975 size=0 limit_delta=0.050000
+max_delta=0.0725202560 iter=25000 rank=0 size=0 limit_delta=0.050000
+local_avg=61.1293106079 iter=25050 size=0 limit_delta=0.050000
+max_delta=0.0722227097 iter=25100 rank=0 size=0 limit_delta=0.050000
+local_avg=61.2075729370 iter=25125 size=0 limit_delta=0.050000
+max_delta=0.0719318390 iter=25200 rank=0 size=0 limit_delta=0.050000
+local_avg=61.2856712341 iter=25200 size=0 limit_delta=0.050000
+local_avg=61.3636131287 iter=25275 size=0 limit_delta=0.050000
+max_delta=0.0716390610 iter=25300 rank=0 size=0 limit_delta=0.050000
+local_avg=61.4413948059 iter=25350 size=0 limit_delta=0.050000
+max_delta=0.0713510513 iter=25400 rank=0 size=0 limit_delta=0.050000
+local_avg=61.5190162659 iter=25425 size=0 limit_delta=0.050000
+max_delta=0.0710659027 iter=25500 rank=0 size=0 limit_delta=0.050000
+local_avg=61.5964775085 iter=25500 size=0 limit_delta=0.050000
+local_avg=61.6737861633 iter=25575 size=0 limit_delta=0.050000
+max_delta=0.0707836151 iter=25600 rank=0 size=0 limit_delta=0.050000
+local_avg=61.7509346008 iter=25650 size=0 limit_delta=0.050000
+max_delta=0.0705108643 iter=25700 rank=0 size=0 limit_delta=0.050000
+local_avg=61.8279304504 iter=25725 size=0 limit_delta=0.050000
+max_delta=0.0702323914 iter=25800 rank=0 size=0 limit_delta=0.050000
+local_avg=61.9047698975 iter=25800 size=0 limit_delta=0.050000
+local_avg=61.9814529419 iter=25875 size=0 limit_delta=0.050000
+max_delta=0.0699558258 iter=25900 rank=0 size=0 limit_delta=0.050000
+local_avg=62.0579833984 iter=25950 size=0 limit_delta=0.050000
+max_delta=0.0696811676 iter=26000 rank=0 size=0 limit_delta=0.050000
+local_avg=62.1343574524 iter=26025 size=0 limit_delta=0.050000
+max_delta=0.0694103241 iter=26100 rank=0 size=0 limit_delta=0.050000
+local_avg=62.2105827332 iter=26100 size=0 limit_delta=0.050000
+local_avg=62.2866554260 iter=26175 size=0 limit_delta=0.050000
+max_delta=0.0691318512 iter=26200 rank=0 size=0 limit_delta=0.050000
+local_avg=62.3625755310 iter=26250 size=0 limit_delta=0.050000
+max_delta=0.0688648224 iter=26300 rank=0 size=0 limit_delta=0.050000
+local_avg=62.4383430481 iter=26325 size=0 limit_delta=0.050000
+max_delta=0.0685958862 iter=26400 rank=0 size=0 limit_delta=0.050000
+local_avg=62.5139656067 iter=26400 size=0 limit_delta=0.050000
+local_avg=62.5894355774 iter=26475 size=0 limit_delta=0.050000
+max_delta=0.0683364868 iter=26500 rank=0 size=0 limit_delta=0.050000
+local_avg=62.6647529602 iter=26550 size=0 limit_delta=0.050000
+max_delta=0.0680694580 iter=26600 rank=0 size=0 limit_delta=0.050000
+local_avg=62.7399291992 iter=26625 size=0 limit_delta=0.050000
+max_delta=0.0678100586 iter=26700 rank=0 size=0 limit_delta=0.050000
+local_avg=62.8149528503 iter=26700 size=0 limit_delta=0.050000
+local_avg=62.8898315430 iter=26775 size=0 limit_delta=0.050000
+max_delta=0.0675430298 iter=26800 rank=0 size=0 limit_delta=0.050000
+local_avg=62.9645614624 iter=26850 size=0 limit_delta=0.050000
+max_delta=0.0672836304 iter=26900 rank=0 size=0 limit_delta=0.050000
+local_avg=63.0391464233 iter=26925 size=0 limit_delta=0.050000
+max_delta=0.0670356750 iter=27000 rank=0 size=0 limit_delta=0.050000
+local_avg=63.1135864258 iter=27000 size=0 limit_delta=0.050000
+local_avg=63.1878814697 iter=27075 size=0 limit_delta=0.050000
+max_delta=0.0667953491 iter=27100 rank=0 size=0 limit_delta=0.050000
+local_avg=63.2620353699 iter=27150 size=0 limit_delta=0.050000
+max_delta=0.0665435791 iter=27200 rank=0 size=0 limit_delta=0.050000
+local_avg=63.3360404968 iter=27225 size=0 limit_delta=0.050000
+max_delta=0.0662841797 iter=27300 rank=0 size=0 limit_delta=0.050000
+local_avg=63.4099082947 iter=27300 size=0 limit_delta=0.050000
+local_avg=63.4836311340 iter=27375 size=0 limit_delta=0.050000
+max_delta=0.0660247803 iter=27400 rank=0 size=0 limit_delta=0.050000
+local_avg=63.5572090149 iter=27450 size=0 limit_delta=0.050000
+max_delta=0.0657577515 iter=27500 rank=0 size=0 limit_delta=0.050000
+local_avg=63.6306495667 iter=27525 size=0 limit_delta=0.050000
+max_delta=0.0655059814 iter=27600 rank=0 size=0 limit_delta=0.050000
+local_avg=63.7039489746 iter=27600 size=0 limit_delta=0.050000
+local_avg=63.7771072388 iter=27675 size=0 limit_delta=0.050000
+max_delta=0.0652618408 iter=27700 rank=0 size=0 limit_delta=0.050000
+local_avg=63.8501243591 iter=27750 size=0 limit_delta=0.050000
+max_delta=0.0650215149 iter=27800 rank=0 size=0 limit_delta=0.050000
+local_avg=63.9230041504 iter=27825 size=0 limit_delta=0.050000
+max_delta=0.0647888184 iter=27900 rank=0 size=0 limit_delta=0.050000
+local_avg=63.9957466125 iter=27900 size=0 limit_delta=0.050000
+local_avg=64.0683517456 iter=27975 size=0 limit_delta=0.050000
+max_delta=0.0645446777 iter=28000 rank=0 size=0 limit_delta=0.050000
+local_avg=64.1408157349 iter=28050 size=0 limit_delta=0.050000
+max_delta=0.0642929077 iter=28100 rank=0 size=0 limit_delta=0.050000
+local_avg=64.2131423950 iter=28125 size=0 limit_delta=0.050000
+max_delta=0.0640563965 iter=28200 rank=0 size=0 limit_delta=0.050000
+local_avg=64.2853393555 iter=28200 size=0 limit_delta=0.050000
+local_avg=64.3573913574 iter=28275 size=0 limit_delta=0.050000
+max_delta=0.0638198853 iter=28300 rank=0 size=0 limit_delta=0.050000
+local_avg=64.4293136597 iter=28350 size=0 limit_delta=0.050000
+max_delta=0.0635910034 iter=28400 rank=0 size=0 limit_delta=0.050000
+local_avg=64.5011062622 iter=28425 size=0 limit_delta=0.050000
+max_delta=0.0633544922 iter=28500 rank=0 size=0 limit_delta=0.050000
+local_avg=64.5727539062 iter=28500 size=0 limit_delta=0.050000
+local_avg=64.6442718506 iter=28575 size=0 limit_delta=0.050000
+max_delta=0.0631179810 iter=28600 rank=0 size=0 limit_delta=0.050000
+local_avg=64.7156600952 iter=28650 size=0 limit_delta=0.050000
+max_delta=0.0628967285 iter=28700 rank=0 size=0 limit_delta=0.050000
+local_avg=64.7869110107 iter=28725 size=0 limit_delta=0.050000
+max_delta=0.0626640320 iter=28800 rank=0 size=0 limit_delta=0.050000
+local_avg=64.8580322266 iter=28800 size=0 limit_delta=0.050000
+local_avg=64.9290237427 iter=28875 size=0 limit_delta=0.050000
+max_delta=0.0624275208 iter=28900 rank=0 size=0 limit_delta=0.050000
+local_avg=64.9998855591 iter=28950 size=0 limit_delta=0.050000
+max_delta=0.0622100830 iter=29000 rank=0 size=0 limit_delta=0.050000
+local_avg=65.0706100464 iter=29025 size=0 limit_delta=0.050000
+max_delta=0.0619773865 iter=29100 rank=0 size=0 limit_delta=0.050000
+local_avg=65.1412048340 iter=29100 size=0 limit_delta=0.050000
+local_avg=65.2116775513 iter=29175 size=0 limit_delta=0.050000
+max_delta=0.0617446899 iter=29200 rank=0 size=0 limit_delta=0.050000
+local_avg=65.2820129395 iter=29250 size=0 limit_delta=0.050000
+max_delta=0.0615234375 iter=29300 rank=0 size=0 limit_delta=0.050000
+local_avg=65.3522186279 iter=29325 size=0 limit_delta=0.050000
+max_delta=0.0613021851 iter=29400 rank=0 size=0 limit_delta=0.050000
+local_avg=65.4223022461 iter=29400 size=0 limit_delta=0.050000
+local_avg=65.4922561646 iter=29475 size=0 limit_delta=0.050000
+max_delta=0.0610885620 iter=29500 rank=0 size=0 limit_delta=0.050000
+local_avg=65.5620880127 iter=29550 size=0 limit_delta=0.050000
+max_delta=0.0608673096 iter=29600 rank=0 size=0 limit_delta=0.050000
+local_avg=65.6317825317 iter=29625 size=0 limit_delta=0.050000
+max_delta=0.0606460571 iter=29700 rank=0 size=0 limit_delta=0.050000
+local_avg=65.7013549805 iter=29700 size=0 limit_delta=0.050000
+local_avg=65.7708053589 iter=29775 size=0 limit_delta=0.050000
+max_delta=0.0604476929 iter=29800 rank=0 size=0 limit_delta=0.050000
+local_avg=65.8401260376 iter=29850 size=0 limit_delta=0.050000
+max_delta=0.0602111816 iter=29900 rank=0 size=0 limit_delta=0.050000
+local_avg=65.9093246460 iter=29925 size=0 limit_delta=0.050000
+max_delta=0.0600051880 iter=30000 rank=0 size=0 limit_delta=0.050000
+local_avg=65.9783935547 iter=30000 size=0 limit_delta=0.050000
+local_avg=66.0473480225 iter=30075 size=0 limit_delta=0.050000
+max_delta=0.0597839355 iter=30100 rank=0 size=0 limit_delta=0.050000
+local_avg=66.1161727905 iter=30150 size=0 limit_delta=0.050000
+max_delta=0.0595703125 iter=30200 rank=0 size=0 limit_delta=0.050000
+local_avg=66.1848754883 iter=30225 size=0 limit_delta=0.050000
+max_delta=0.0593566895 iter=30300 rank=0 size=0 limit_delta=0.050000
+local_avg=66.2534484863 iter=30300 size=0 limit_delta=0.050000
+local_avg=66.3219070435 iter=30375 size=0 limit_delta=0.050000
+max_delta=0.0591506958 iter=30400 rank=0 size=0 limit_delta=0.050000
+local_avg=66.3902435303 iter=30450 size=0 limit_delta=0.050000
+max_delta=0.0589447021 iter=30500 rank=0 size=0 limit_delta=0.050000
+local_avg=66.4584579468 iter=30525 size=0 limit_delta=0.050000
+max_delta=0.0587463379 iter=30600 rank=0 size=0 limit_delta=0.050000
+local_avg=66.5265502930 iter=30600 size=0 limit_delta=0.050000
+local_avg=66.5945281982 iter=30675 size=0 limit_delta=0.050000
+max_delta=0.0585327148 iter=30700 rank=0 size=0 limit_delta=0.050000
+local_avg=66.6623764038 iter=30750 size=0 limit_delta=0.050000
+max_delta=0.0583419800 iter=30800 rank=0 size=0 limit_delta=0.050000
+local_avg=66.7301101685 iter=30825 size=0 limit_delta=0.050000
+max_delta=0.0581359863 iter=30900 rank=0 size=0 limit_delta=0.050000
+local_avg=66.7977294922 iter=30900 size=0 limit_delta=0.050000
+local_avg=66.8652191162 iter=30975 size=0 limit_delta=0.050000
+max_delta=0.0579376221 iter=31000 rank=0 size=0 limit_delta=0.050000
+local_avg=66.9326019287 iter=31050 size=0 limit_delta=0.050000
+max_delta=0.0577316284 iter=31100 rank=0 size=0 limit_delta=0.050000
+local_avg=66.9998626709 iter=31125 size=0 limit_delta=0.050000
+max_delta=0.0575332642 iter=31200 rank=0 size=0 limit_delta=0.050000
+local_avg=67.0670013428 iter=31200 size=0 limit_delta=0.050000
+local_avg=67.1340255737 iter=31275 size=0 limit_delta=0.050000
+max_delta=0.0573348999 iter=31300 rank=0 size=0 limit_delta=0.050000
+local_avg=67.2009353638 iter=31350 size=0 limit_delta=0.050000
+max_delta=0.0571289062 iter=31400 rank=0 size=0 limit_delta=0.050000
+local_avg=67.2677307129 iter=31425 size=0 limit_delta=0.050000
+max_delta=0.0569458008 iter=31500 rank=0 size=0 limit_delta=0.050000
+local_avg=67.3344039917 iter=31500 size=0 limit_delta=0.050000
+local_avg=67.4009628296 iter=31575 size=0 limit_delta=0.050000
+max_delta=0.0567398071 iter=31600 rank=0 size=0 limit_delta=0.050000
+local_avg=67.4674148560 iter=31650 size=0 limit_delta=0.050000
+max_delta=0.0565490723 iter=31700 rank=0 size=0 limit_delta=0.050000
+local_avg=67.5337448120 iter=31725 size=0 limit_delta=0.050000
+max_delta=0.0563583374 iter=31800 rank=0 size=0 limit_delta=0.050000
+local_avg=67.5999603271 iter=31800 size=0 limit_delta=0.050000
+local_avg=67.6660614014 iter=31875 size=0 limit_delta=0.050000
+max_delta=0.0561523438 iter=31900 rank=0 size=0 limit_delta=0.050000
+local_avg=67.7320556641 iter=31950 size=0 limit_delta=0.050000
+max_delta=0.0559768677 iter=32000 rank=0 size=0 limit_delta=0.050000
+local_avg=67.7979354858 iter=32025 size=0 limit_delta=0.050000
+max_delta=0.0557861328 iter=32100 rank=0 size=0 limit_delta=0.050000
+local_avg=67.8637008667 iter=32100 size=0 limit_delta=0.050000
+local_avg=67.9293518066 iter=32175 size=0 limit_delta=0.050000
+max_delta=0.0555953979 iter=32200 rank=0 size=0 limit_delta=0.050000
+local_avg=67.9948883057 iter=32250 size=0 limit_delta=0.050000
+max_delta=0.0554046631 iter=32300 rank=0 size=0 limit_delta=0.050000
+local_avg=68.0603179932 iter=32325 size=0 limit_delta=0.050000
+max_delta=0.0552139282 iter=32400 rank=0 size=0 limit_delta=0.050000
+local_avg=68.1256408691 iter=32400 size=0 limit_delta=0.050000
+local_avg=68.1908493042 iter=32475 size=0 limit_delta=0.050000
+max_delta=0.0550308228 iter=32500 rank=0 size=0 limit_delta=0.050000
+local_avg=68.2559432983 iter=32550 size=0 limit_delta=0.050000
+max_delta=0.0548477173 iter=32600 rank=0 size=0 limit_delta=0.050000
+local_avg=68.3209304810 iter=32625 size=0 limit_delta=0.050000
+max_delta=0.0546875000 iter=32700 rank=0 size=0 limit_delta=0.050000
+local_avg=68.3858108521 iter=32700 size=0 limit_delta=0.050000
+local_avg=68.4505767822 iter=32775 size=0 limit_delta=0.050000
+max_delta=0.0544967651 iter=32800 rank=0 size=0 limit_delta=0.050000
+local_avg=68.5152359009 iter=32850 size=0 limit_delta=0.050000
+max_delta=0.0543060303 iter=32900 rank=0 size=0 limit_delta=0.050000
+local_avg=68.5797882080 iter=32925 size=0 limit_delta=0.050000
+max_delta=0.0541152954 iter=33000 rank=0 size=0 limit_delta=0.050000
+local_avg=68.6442337036 iter=33000 size=0 limit_delta=0.050000
+local_avg=68.7085723877 iter=33075 size=0 limit_delta=0.050000
+max_delta=0.0539398193 iter=33100 rank=0 size=0 limit_delta=0.050000
+local_avg=68.7727966309 iter=33150 size=0 limit_delta=0.050000
+max_delta=0.0537796021 iter=33200 rank=0 size=0 limit_delta=0.050000
+local_avg=68.8369216919 iter=33225 size=0 limit_delta=0.050000
+max_delta=0.0535888672 iter=33300 rank=0 size=0 limit_delta=0.050000
+local_avg=68.9009323120 iter=33300 size=0 limit_delta=0.050000
+local_avg=68.9648437500 iter=33375 size=0 limit_delta=0.050000
+max_delta=0.0534057617 iter=33400 rank=0 size=0 limit_delta=0.050000
+local_avg=69.0286483765 iter=33450 size=0 limit_delta=0.050000
+max_delta=0.0532379150 iter=33500 rank=0 size=0 limit_delta=0.050000
+local_avg=69.0923461914 iter=33525 size=0 limit_delta=0.050000
+max_delta=0.0530624390 iter=33600 rank=0 size=0 limit_delta=0.050000
+local_avg=69.1559371948 iter=33600 size=0 limit_delta=0.050000
+local_avg=69.2194213867 iter=33675 size=0 limit_delta=0.050000
+max_delta=0.0528793335 iter=33700 rank=0 size=0 limit_delta=0.050000
+local_avg=69.2828063965 iter=33750 size=0 limit_delta=0.050000
+max_delta=0.0527038574 iter=33800 rank=0 size=0 limit_delta=0.050000
+local_avg=69.3460845947 iter=33825 size=0 limit_delta=0.050000
+max_delta=0.0525360107 iter=33900 rank=0 size=0 limit_delta=0.050000
+local_avg=69.4092636108 iter=33900 size=0 limit_delta=0.050000
+local_avg=69.4723358154 iter=33975 size=0 limit_delta=0.050000
+max_delta=0.0523681641 iter=34000 rank=0 size=0 limit_delta=0.050000
+local_avg=69.5353012085 iter=34050 size=0 limit_delta=0.050000
+max_delta=0.0522003174 iter=34100 rank=0 size=0 limit_delta=0.050000
+local_avg=69.5981674194 iter=34125 size=0 limit_delta=0.050000
+max_delta=0.0520401001 iter=34200 rank=0 size=0 limit_delta=0.050000
+local_avg=69.6609344482 iter=34200 size=0 limit_delta=0.050000
+local_avg=69.7235946655 iter=34275 size=0 limit_delta=0.050000
+max_delta=0.0518722534 iter=34300 rank=0 size=0 limit_delta=0.050000
+local_avg=69.7861557007 iter=34350 size=0 limit_delta=0.050000
+max_delta=0.0517044067 iter=34400 rank=0 size=0 limit_delta=0.050000
+local_avg=69.8486099243 iter=34425 size=0 limit_delta=0.050000
+max_delta=0.0515365601 iter=34500 rank=0 size=0 limit_delta=0.050000
+local_avg=69.9109649658 iter=34500 size=0 limit_delta=0.050000
+local_avg=69.9732284546 iter=34575 size=0 limit_delta=0.050000
+max_delta=0.0513763428 iter=34600 rank=0 size=0 limit_delta=0.050000
+local_avg=70.0353775024 iter=34650 size=0 limit_delta=0.050000
+max_delta=0.0511932373 iter=34700 rank=0 size=0 limit_delta=0.050000
+local_avg=70.0974349976 iter=34725 size=0 limit_delta=0.050000
+max_delta=0.0510253906 iter=34800 rank=0 size=0 limit_delta=0.050000
+local_avg=70.1593933105 iter=34800 size=0 limit_delta=0.050000
+local_avg=70.2212524414 iter=34875 size=0 limit_delta=0.050000
+max_delta=0.0508728027 iter=34900 rank=0 size=0 limit_delta=0.050000
+local_avg=70.2830047607 iter=34950 size=0 limit_delta=0.050000
+max_delta=0.0507049561 iter=35000 rank=0 size=0 limit_delta=0.050000
+local_avg=70.3446655273 iter=35025 size=0 limit_delta=0.050000
+max_delta=0.0505447388 iter=35100 rank=0 size=0 limit_delta=0.050000
+local_avg=70.4062271118 iter=35100 size=0 limit_delta=0.050000
+local_avg=70.4676895142 iter=35175 size=0 limit_delta=0.050000
+max_delta=0.0503921509 iter=35200 rank=0 size=0 limit_delta=0.050000
+local_avg=70.5290527344 iter=35250 size=0 limit_delta=0.050000
+max_delta=0.0502319336 iter=35300 rank=0 size=0 limit_delta=0.050000
+local_avg=70.5903167725 iter=35325 size=0 limit_delta=0.050000
+max_delta=0.0500717163 iter=35400 rank=0 size=0 limit_delta=0.050000
+local_avg=70.6514892578 iter=35400 size=0 limit_delta=0.050000
+local_avg=70.7125625610 iter=35475 size=0 limit_delta=0.050000
+max_delta=0.0499038696 iter=35500 rank=0 size=0 limit_delta=0.050000
+Writing
+Writing 768 x 768 picture into file: edge768x768_0.050.pgm
+Finished writing
+iter=35501 overall_time=32.720000 iter_time=-918.002310 total_loop=-32590000.000000 max_delta=0.049904

@@ -1,0 +1,115 @@
+--------------------------------------------------------------------------------
+*** md2g12   Job: 4481017.sdb   started: 02/05/17 16:15:27   host: mom3 ***
+*** md2g12   Job: 4481017.sdb   started: 02/05/17 16:15:27   host: mom3 ***
+*** md2g12   Job: 4481017.sdb   started: 02/05/17 16:15:27   host: mom3 ***
+*** md2g12   Job: 4481017.sdb   started: 02/05/17 16:15:27   host: mom3 ***
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Running OpenMP program do_serial on 1 threads
+Started at Tue May 2 16:15:28 BST 2017
+--------------------------------------------------------------------------------
+!!!8
+!!0.025000
+Reading edge256x192.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=256 N=192 max_delta=0.025000 delta_freq=100 avg_freq=100
+max_delta=382.7500000000 iter=0 rank=0 size=0 limit_delta=0.025000
+max_delta=1.2793540955 iter=100 rank=0 size=0 limit_delta=0.025000
+max_delta=0.5818176270 iter=200 rank=0 size=0 limit_delta=0.025000
+max_delta=0.4166793823 iter=300 rank=0 size=0 limit_delta=0.025000
+max_delta=0.3239784241 iter=400 rank=0 size=0 limit_delta=0.025000
+max_delta=0.2591857910 iter=500 rank=0 size=0 limit_delta=0.025000
+max_delta=0.2119369507 iter=600 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1762056351 iter=700 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1507186890 iter=800 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1398582458 iter=900 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1334285736 iter=1000 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1273727417 iter=1100 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1214370728 iter=1200 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1157188416 iter=1300 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1102600098 iter=1400 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1050796509 iter=1500 rank=0 size=0 limit_delta=0.025000
+max_delta=0.1002120972 iter=1600 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0956764221 iter=1700 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0914535522 iter=1800 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0875320435 iter=1900 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0838737488 iter=2000 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0804786682 iter=2100 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0773315430 iter=2200 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0743904114 iter=2300 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0716629028 iter=2400 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0691184998 iter=2500 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0667457581 iter=2600 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0645294189 iter=2700 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0624542236 iter=2800 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0605125427 iter=2900 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0587005615 iter=3000 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0569877625 iter=3100 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0553741455 iter=3200 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0538597107 iter=3300 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0524291992 iter=3400 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0510787964 iter=3500 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0498008728 iter=3600 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0485839844 iter=3700 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0474319458 iter=3800 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0463409424 iter=3900 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0452995300 iter=4000 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0443115234 iter=4100 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0433654785 iter=4200 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0424652100 iter=4300 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0416011810 iter=4400 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0407714844 iter=4500 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0399818420 iter=4600 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0392246246 iter=4700 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0384998322 iter=4800 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0377922058 iter=4900 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0371208191 iter=5000 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0364665985 iter=5100 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0358371735 iter=5200 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0352363586 iter=5300 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0346508026 iter=5400 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0340881348 iter=5500 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0335369110 iter=5600 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0330085754 iter=5700 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0324916840 iter=5800 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0319919586 iter=5900 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0315055847 iter=6000 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0310363770 iter=6100 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0305814743 iter=6200 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0301351547 iter=6300 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0297002792 iter=6400 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0292787552 iter=6500 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0288677216 iter=6600 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0284652710 iter=6700 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0280694962 iter=6800 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0276861191 iter=6900 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0273170471 iter=7000 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0269489288 iter=7100 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0265922546 iter=7200 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0262432098 iter=7300 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0258994102 iter=7400 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0255651474 iter=7500 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0252385139 iter=7600 rank=0 size=0 limit_delta=0.025000
+max_delta=0.0249152184 iter=7700 rank=0 size=0 limit_delta=0.025000
+Writing
+Writing 256 x 192 picture into file: edge256x192_0.025.pgm
+Finished writing
+iter=7701 overall_time=0.590000 iter_time=-74.016362 total_loop=-570000.000000 max_delta=0.024915
+Application 26622032 resources: utime ~1s, stime ~0s, Rss ~4456, inblocks ~6230, outblocks ~14698
+
+real	0m3.316s
+user	0m0.384s
+sys	0m0.132s
+--------------------------------------------------------------------------------
+Finished at Tue May 2 16:15:31 BST 2017
+--------------------------------------------------------------------------------
+
+Resources requested: ncpus=24,place=free,walltime=00:05:00
+Resources allocated: cpupercent=0,cput=00:00:01,mem=0kb,ncpus=24,vmem=0kb,walltime=00:00:05
+
+*** md2g12   Job: 4481017.sdb   ended: 02/05/17 16:15:31   queue: S4474188 ***
+*** md2g12   Job: 4481017.sdb   ended: 02/05/17 16:15:31   queue: S4474188 ***
+*** md2g12   Job: 4481017.sdb   ended: 02/05/17 16:15:31   queue: S4474188 ***
+*** md2g12   Job: 4481017.sdb   ended: 02/05/17 16:15:31   queue: S4474188 ***
+--------------------------------------------------------------------------------

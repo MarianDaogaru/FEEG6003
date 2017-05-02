@@ -1,0 +1,63 @@
+ 26611615 resources: utime ~2s, stime ~0s, Rss ~11980, inblocks ~50151, outblocks ~23440
+
+real	0m4.849s
+user	0m0.448s
+sys	0m0.132s
+Reading
+Reading
+Reading
+Reading
+Reading
+Reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+init size=6 MP=256 NP=384 M=768 N=768 max_delta=0.500000 delta_freq=100 avg_freq=200
+max_delta=381.7500000000 iter=0 rank=0 size=6 limit_delta=0.500000
+local_avg=0.5322825313 iter=0 size=6 limit_delta=0.500000
+max_delta=0.8517627716 iter=100 rank=0 size=6 limit_delta=0.500000
+max_delta=0.7936439514 iter=200 rank=0 size=6 limit_delta=0.500000
+local_avg=5.9623122215 iter=200 size=6 limit_delta=0.500000
+max_delta=0.8118343353 iter=300 rank=0 size=6 limit_delta=0.500000
+max_delta=0.8322429657 iter=400 rank=0 size=6 limit_delta=0.500000
+local_avg=8.5219707489 iter=400 size=6 limit_delta=0.500000
+max_delta=0.8503046036 iter=500 rank=0 size=6 limit_delta=0.500000
+max_delta=0.8485145569 iter=600 rank=0 size=6 limit_delta=0.500000
+local_avg=10.4692573547 iter=600 size=6 limit_delta=0.500000
+max_delta=0.8324642181 iter=700 rank=0 size=6 limit_delta=0.500000
+max_delta=0.8084735870 iter=800 rank=0 size=6 limit_delta=0.500000
+local_avg=12.0975599289 iter=800 size=6 limit_delta=0.500000
+max_delta=0.7806110382 iter=900 rank=0 size=6 limit_delta=0.500000
+max_delta=0.7513699532 iter=1000 rank=0 size=6 limit_delta=0.500000
+local_avg=13.5218830109 iter=1000 size=6 limit_delta=0.500000
+max_delta=0.7222089767 iter=1100 rank=0 size=6 limit_delta=0.500000
+max_delta=0.6939554214 iter=1200 rank=0 size=6 limit_delta=0.500000
+local_avg=14.8013591766 iter=1200 size=6 limit_delta=0.500000
+max_delta=0.6670269966 iter=1300 rank=0 size=6 limit_delta=0.500000
+max_delta=0.6416296959 iter=1400 rank=0 size=6 limit_delta=0.500000
+local_avg=15.9711408615 iter=1400 size=6 limit_delta=0.500000
+max_delta=0.6178119183 iter=1500 rank=0 size=6 limit_delta=0.500000
+max_delta=0.5955517292 iter=1600 rank=0 size=6 limit_delta=0.500000
+local_avg=17.0541381836 iter=1600 size=6 limit_delta=0.500000
+max_delta=0.5747808218 iter=1700 rank=0 size=6 limit_delta=0.500000
+max_delta=0.5554087162 iter=1800 rank=0 size=6 limit_delta=0.500000
+local_avg=18.0662746429 iter=1800 size=6 limit_delta=0.500000
+max_delta=0.5373421907 iter=1900 rank=0 size=6 limit_delta=0.500000
+max_delta=0.5204752088 iter=2000 rank=0 size=6 limit_delta=0.500000
+local_avg=19.0191383362 iter=2000 size=6 limit_delta=0.500000
+max_delta=0.5047190189 iter=2100 rank=0 size=6 limit_delta=0.500000
+max_delta=0.4899814129 iter=2200 rank=0 size=6 limit_delta=0.500000
+local_avg=19.9214916229 iter=2200 size=6 limit_delta=0.500000
+avg_time=0.0001380159 rank=3 overall_time=0.3108010292 total_loop=0.3037729263 make_MP_time=0.0000009537 choose_neighbours=0.0000000000 make_buff=0.0005848408 reconstruct_time=0.0033438206 barrier_time=0.0029020309
+avg_time=0.0001380045 rank=5 overall_time=0.3107991219 total_loop=0.3037478924 make_MP_time=0.0000000000 choose_neighbours=0.0000009537 make_buff=0.0006110668 reconstruct_time=0.0053818226 barrier_time=0.0008661747
+avg_time=0.0001379868 rank=2 overall_time=0.3108010292 total_loop=0.3037090302 make_MP_time=0.0000011921 choose_neighbours=0.0000000000 make_buff=0.0006451607 reconstruct_time=0.0022869110 barrier_time=0.0039482117
+avg_time=0.0001380045 rank=4 overall_time=0.3108010292 total_loop=0.3037478924 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0006308556 reconstruct_time=0.0043559074 barrier_time=0.0018901825
+avg_time=0.0001380099 rank=1 overall_time=0.3108019829 total_loop=0.3037598133 make_MP_time=0.0000009537 choose_neighbours=0.0000000000 make_buff=0.0005829334 reconstruct_time=0.0012409687 barrier_time=0.0050048828
+avg_time=0.0001380136 rank=0 overall_time=0.3108048439 total_loop=0.3037679195 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0005860329 reconstruct_time=0.0062239170 barrier_time=0.0000009537
+global_avg=19.9258899689 max_delta=0.4899814129 iter=2201
+Writing
+Writing 768 x 768 picture into file: edge768x768_0.500.pgm
+Finished writing

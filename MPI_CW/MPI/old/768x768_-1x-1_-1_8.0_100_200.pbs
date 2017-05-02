@@ -1,0 +1,15 @@
+ 26609826 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m8.409s
+user	0m0.408s
+sys	0m0.112s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=8.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=8.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=8.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=8.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_8.000.pgm
+Finished writing
+iter=101 overall_time=0.220000 iter_time=-891.089109 total_loop=-90000.000000 max_delta=6.223324

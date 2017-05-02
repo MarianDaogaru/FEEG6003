@@ -29,6 +29,7 @@ int main(int argc, char** argv)
   int M=768, N=768, DELTA_FREQ=100, AVG_FREQ=200;
   float MAX_DELTA=0.05;
   int val_array[10] = {1, 2, 5, 10, 25, 50, 75, 100, 150, 200};
+  float m_delta[9] = {1., 0.75, 0.5, 0.25, 0.1, 0.075, 0.05, 0.025, 0.01};
   //read the inputs
   for (int arg = 0; arg < argc; arg++)
   {
@@ -40,13 +41,13 @@ int main(int argc, char** argv)
       N = (int)strtol(argv[arg+1], &ptr, 10);
     } else if (strcmp(argv[arg], "Df") == 0)
     {
-      DELTA_FREQ = (int)strtol(argv[arg+1], &ptr, 10);
+      DELTA_FREQ = val_array[(int)strtol(argv[arg+1], &ptr, 10)-1];
     } else if (strcmp(argv[arg], "Af") == 0)
     {
-      AVG_FREQ = (int)strtol(argv[arg+1], &ptr, 10);
+      AVG_FREQ = val_array[(int)strtol(argv[arg+1], &ptr, 10)-1];
     } else if (strcmp(argv[arg], "MD") == 0)
     {
-      MAX_DELTA = (double)strtol(argv[arg+1], &ptr, 10);
+      MAX_DELTA = m_delta[(int)strtol(argv[arg+1], &ptr, 10)-1];
     }
   }
 
