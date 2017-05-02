@@ -1,14 +1,21 @@
---------------------------------------------------------------------------------
-*** md2g12   Job: 4474101.sdb   started: 28/04/17 18:19:16   host: mom5 ***
-*** md2g12   Job: 4474101.sdb   started: 28/04/17 18:19:16   host: mom5 ***
-*** md2g12   Job: 4474101.sdb   started: 28/04/17 18:19:16   host: mom5 ***
-*** md2g12   Job: 4474101.sdb   started: 28/04/17 18:19:16   host: mom5 ***
 
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-Running OpenMP program do_2d on 1 threads
-Started at Fri Apr 28 18:19:17 BST 2017
---------------------------------------------------------------------------------
+Application 26611626 resources: utime ~19s, stime ~0s, Rss ~23324, inblocks ~50151, outblocks ~23479
+
+real	0m8.029s
+user	0m0.444s
+sys	0m0.152s
+Reading
+Reading
+Reading
+Reading
+Reading
+Reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
 init size=6 MP=256 NP=384 M=768 N=768 max_delta=0.050000 delta_freq=100 avg_freq=200
 max_delta=381.7500000000 iter=0 rank=0 size=6 limit_delta=0.050000
 local_avg=0.5322825313 iter=0 size=6 limit_delta=0.050000
@@ -468,28 +475,12 @@ local_avg=66.5059967041 iter=30200 size=6 limit_delta=0.050000
 max_delta=0.0500717163 iter=30300 rank=0 size=6 limit_delta=0.050000
 max_delta=0.0498962402 iter=30400 rank=0 size=6 limit_delta=0.050000
 local_avg=66.6896667480 iter=30400 size=6 limit_delta=0.050000
-avg_time=0.0001378316 rank=0 overall_time=4.2003130913 total_loop=4.1902184486 make_MP_time=0.0000071526 choose_neighbours=0.0000000000 make_buff=0.0006959438 reconstruct_time=0.0064389706 barrier_time=0.0000011921
-avg_time=0.0001378347 rank=3 overall_time=4.2003099918 total_loop=4.1903128624 make_MP_time=0.0000021458 choose_neighbours=0.0000000000 make_buff=0.0006110668 reconstruct_time=0.0035479069 barrier_time=0.0029320717
-avg_time=0.0001378473 rank=2 overall_time=4.2003111839 total_loop=4.1906971931 make_MP_time=0.0000030994 choose_neighbours=0.0000000000 make_buff=0.0005760193 reconstruct_time=0.0024800301 barrier_time=0.0039989948
-avg_time=0.0001378378 rank=4 overall_time=4.2003102303 total_loop=4.1904060841 make_MP_time=0.0000050068 choose_neighbours=0.0000009537 make_buff=0.0006170273 reconstruct_time=0.0045788288 barrier_time=0.0019011497
-avg_time=0.0001378555 rank=1 overall_time=4.2003080845 total_loop=4.1909458637 make_MP_time=0.0000040531 choose_neighbours=0.0000000000 make_buff=0.0005910397 reconstruct_time=0.0013911724 barrier_time=0.0050899982
-avg_time=0.0001378484 rank=5 overall_time=4.2003130913 total_loop=4.1907281876 make_MP_time=0.0000030994 choose_neighbours=0.0000000000 make_buff=0.0006241798 reconstruct_time=0.0056078434 barrier_time=0.0008730888
+avg_time=0.0001376315 rank=1 overall_time=4.1933100224 total_loop=4.1841347218 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0006020069 reconstruct_time=0.0013499260 barrier_time=0.0050411224
+avg_time=0.0001376221 rank=3 overall_time=4.1933140755 total_loop=4.1838498116 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0006079674 reconstruct_time=0.0034708977 barrier_time=0.0029160976
+avg_time=0.0001376206 rank=2 overall_time=4.1933138371 total_loop=4.1838045120 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0005898476 reconstruct_time=0.0024158955 barrier_time=0.0039720535
+avg_time=0.0001376289 rank=5 overall_time=4.1933100224 total_loop=4.1840553284 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0006170273 reconstruct_time=0.0055232048 barrier_time=0.0008668900
+avg_time=0.0001376244 rank=4 overall_time=4.1933140755 total_loop=4.1839179993 make_MP_time=0.0000009537 choose_neighbours=0.0000000000 make_buff=0.0006330013 reconstruct_time=0.0045061111 barrier_time=0.0018839836
+avg_time=0.0001376285 rank=0 overall_time=4.1933097839 total_loop=4.1840431690 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0006580353 reconstruct_time=0.0063500404 barrier_time=0.0000009537
 global_avg=66.6905822754 max_delta=0.0498962402 iter=30401
+Writing
 Writing 768 x 768 picture into file: edge768x768_0.050.pgm
-Application 26544521 resources: utime ~26s, stime ~1s, Rss ~28604, inblocks ~50149, outblocks ~23496
-
-real	0m6.972s
-user	0m0.420s
-sys	0m0.192s
---------------------------------------------------------------------------------
-Finished at Fri Apr 28 18:19:24 BST 2017
---------------------------------------------------------------------------------
-
-Resources requested: ncpus=24,place=free,walltime=00:01:00
-Resources allocated: cpupercent=0,cput=00:00:01,mem=0kb,ncpus=24,vmem=0kb,walltime=00:00:08
-
-*** md2g12   Job: 4474101.sdb   ended: 28/04/17 18:19:24   queue: S4461822 ***
-*** md2g12   Job: 4474101.sdb   ended: 28/04/17 18:19:24   queue: S4461822 ***
-*** md2g12   Job: 4474101.sdb   ended: 28/04/17 18:19:24   queue: S4461822 ***
-*** md2g12   Job: 4474101.sdb   ended: 28/04/17 18:19:24   queue: S4461822 ***
---------------------------------------------------------------------------------

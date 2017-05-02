@@ -1,0 +1,114 @@
+
+iter=2901 overall_time=2.760000 iter_time=-906.583937 total_loop=-2630000.000000 max_delta=0.492447
+Application 26609910 resources: utime ~3s, stime ~0s, Rss ~15208, inblocks ~12654, outblocks ~18985
+
+real	0m7.205s
+user	0m0.372s
+sys	0m0.128s
+!!0.250000
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=0.250000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=0.250000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=0.250000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=0.250000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=0.250000
+local_avg=5.9467768669 iter=200 size=0 limit_delta=0.250000
+max_delta=2.1652774811 iter=300 rank=0 size=0 limit_delta=0.250000
+max_delta=1.5662994385 iter=400 rank=0 size=0 limit_delta=0.250000
+local_avg=8.4885721207 iter=400 size=0 limit_delta=0.250000
+max_delta=1.3061485291 iter=500 rank=0 size=0 limit_delta=0.250000
+max_delta=1.1595115662 iter=600 rank=0 size=0 limit_delta=0.250000
+local_avg=10.4236974716 iter=600 size=0 limit_delta=0.250000
+max_delta=1.0573654175 iter=700 rank=0 size=0 limit_delta=0.250000
+max_delta=0.9661178589 iter=800 rank=0 size=0 limit_delta=0.250000
+local_avg=12.0423231125 iter=800 size=0 limit_delta=0.250000
+max_delta=0.8999128342 iter=900 rank=0 size=0 limit_delta=0.250000
+max_delta=0.8523101807 iter=1000 rank=0 size=0 limit_delta=0.250000
+local_avg=13.4584169388 iter=1000 size=0 limit_delta=0.250000
+max_delta=0.8188095093 iter=1100 rank=0 size=0 limit_delta=0.250000
+max_delta=0.7901000977 iter=1200 rank=0 size=0 limit_delta=0.250000
+local_avg=14.7306365967 iter=1200 size=0 limit_delta=0.250000
+max_delta=0.7643432617 iter=1300 rank=0 size=0 limit_delta=0.250000
+max_delta=0.7404670715 iter=1400 rank=0 size=0 limit_delta=0.250000
+local_avg=15.8938684464 iter=1400 size=0 limit_delta=0.250000
+max_delta=0.7180442810 iter=1500 rank=0 size=0 limit_delta=0.250000
+max_delta=0.6967124939 iter=1600 rank=0 size=0 limit_delta=0.250000
+local_avg=16.9708595276 iter=1600 size=0 limit_delta=0.250000
+max_delta=0.6765441895 iter=1700 rank=0 size=0 limit_delta=0.250000
+max_delta=0.6572113037 iter=1800 rank=0 size=0 limit_delta=0.250000
+local_avg=17.9774208069 iter=1800 size=0 limit_delta=0.250000
+max_delta=0.6386928558 iter=1900 rank=0 size=0 limit_delta=0.250000
+max_delta=0.6210060120 iter=2000 rank=0 size=0 limit_delta=0.250000
+local_avg=18.9250717163 iter=2000 size=0 limit_delta=0.250000
+max_delta=0.6041183472 iter=2100 rank=0 size=0 limit_delta=0.250000
+max_delta=0.5879402161 iter=2200 rank=0 size=0 limit_delta=0.250000
+local_avg=19.8225116730 iter=2200 size=0 limit_delta=0.250000
+max_delta=0.5725250244 iter=2300 rank=0 size=0 limit_delta=0.250000
+max_delta=0.5577354431 iter=2400 rank=0 size=0 limit_delta=0.250000
+local_avg=20.6765003204 iter=2400 size=0 limit_delta=0.250000
+max_delta=0.5435638428 iter=2500 rank=0 size=0 limit_delta=0.250000
+max_delta=0.5299644470 iter=2600 rank=0 size=0 limit_delta=0.250000
+local_avg=21.4924087524 iter=2600 size=0 limit_delta=0.250000
+max_delta=0.5169296265 iter=2700 rank=0 size=0 limit_delta=0.250000
+max_delta=0.5044212341 iter=2800 rank=0 size=0 limit_delta=0.250000
+local_avg=22.2745971680 iter=2800 size=0 limit_delta=0.250000
+max_delta=0.4924468994 iter=2900 rank=0 size=0 limit_delta=0.250000
+max_delta=0.4809799194 iter=3000 rank=0 size=0 limit_delta=0.250000
+local_avg=23.0266551971 iter=3000 size=0 limit_delta=0.250000
+max_delta=0.4699640274 iter=3100 rank=0 size=0 limit_delta=0.250000
+max_delta=0.4593610764 iter=3200 rank=0 size=0 limit_delta=0.250000
+local_avg=23.7515754700 iter=3200 size=0 limit_delta=0.250000
+max_delta=0.4491729736 iter=3300 rank=0 size=0 limit_delta=0.250000
+max_delta=0.4393730164 iter=3400 rank=0 size=0 limit_delta=0.250000
+local_avg=24.4518947601 iter=3400 size=0 limit_delta=0.250000
+max_delta=0.4299278259 iter=3500 rank=0 size=0 limit_delta=0.250000
+max_delta=0.4208335876 iter=3600 rank=0 size=0 limit_delta=0.250000
+local_avg=25.1297779083 iter=3600 size=0 limit_delta=0.250000
+max_delta=0.4120635986 iter=3700 rank=0 size=0 limit_delta=0.250000
+max_delta=0.4035987854 iter=3800 rank=0 size=0 limit_delta=0.250000
+local_avg=25.7870883942 iter=3800 size=0 limit_delta=0.250000
+max_delta=0.3954467773 iter=3900 rank=0 size=0 limit_delta=0.250000
+max_delta=0.3875923157 iter=4000 rank=0 size=0 limit_delta=0.250000
+local_avg=26.4254474640 iter=4000 size=0 limit_delta=0.250000
+max_delta=0.3799934387 iter=4100 rank=0 size=0 limit_delta=0.250000
+max_delta=0.3726463318 iter=4200 rank=0 size=0 limit_delta=0.250000
+local_avg=27.0462760925 iter=4200 size=0 limit_delta=0.250000
+max_delta=0.3655242920 iter=4300 rank=0 size=0 limit_delta=0.250000
+max_delta=0.3586502075 iter=4400 rank=0 size=0 limit_delta=0.250000
+local_avg=27.6508235931 iter=4400 size=0 limit_delta=0.250000
+max_delta=0.3519706726 iter=4500 rank=0 size=0 limit_delta=0.250000
+max_delta=0.3455085754 iter=4600 rank=0 size=0 limit_delta=0.250000
+local_avg=28.2401981354 iter=4600 size=0 limit_delta=0.250000
+max_delta=0.3392601013 iter=4700 rank=0 size=0 limit_delta=0.250000
+max_delta=0.3331985474 iter=4800 rank=0 size=0 limit_delta=0.250000
+local_avg=28.8153934479 iter=4800 size=0 limit_delta=0.250000
+max_delta=0.3273200989 iter=4900 rank=0 size=0 limit_delta=0.250000
+max_delta=0.3216094971 iter=5000 rank=0 size=0 limit_delta=0.250000
+local_avg=29.3772907257 iter=5000 size=0 limit_delta=0.250000
+max_delta=0.3160591125 iter=5100 rank=0 size=0 limit_delta=0.250000
+max_delta=0.3106689453 iter=5200 rank=0 size=0 limit_delta=0.250000
+local_avg=29.9266891479 iter=5200 size=0 limit_delta=0.250000
+max_delta=0.3054237366 iter=5300 rank=0 size=0 limit_delta=0.250000
+max_delta=0.3003311157 iter=5400 rank=0 size=0 limit_delta=0.250000
+local_avg=30.4643096924 iter=5400 size=0 limit_delta=0.250000
+max_delta=0.2953758240 iter=5500 rank=0 size=0 limit_delta=0.250000
+max_delta=0.2905654907 iter=5600 rank=0 size=0 limit_delta=0.250000
+local_avg=30.9908065796 iter=5600 size=0 limit_delta=0.250000
+max_delta=0.2858886719 iter=5700 rank=0 size=0 limit_delta=0.250000
+max_delta=0.2813224792 iter=5800 rank=0 size=0 limit_delta=0.250000
+local_avg=31.5067729950 iter=5800 size=0 limit_delta=0.250000
+max_delta=0.2768859863 iter=5900 rank=0 size=0 limit_delta=0.250000
+max_delta=0.2725601196 iter=6000 rank=0 size=0 limit_delta=0.250000
+local_avg=32.0127563477 iter=6000 size=0 limit_delta=0.250000
+max_delta=0.2683372498 iter=6100 rank=0 size=0 limit_delta=0.250000
+max_delta=0.2642059326 iter=6200 rank=0 size=0 limit_delta=0.250000
+local_avg=32.5092506409 iter=6200 size=0 limit_delta=0.250000
+max_delta=0.2602005005 iter=6300 rank=0 size=0 limit_delta=0.250000
+max_delta=0.2562866211 iter=6400 rank=0 size=0 limit_delta=0.250000
+local_avg=32.9967193604 iter=6400 size=0 limit_delta=0.250000
+max_delta=0.2524642944 iter=6500 rank=0 size=0 limit_delta=0.250000
+max_delta=0.2487411499 iter=6600 rank=0 size=0 limit_delta=0.250000
+local_avg=33.4755821228 iter=6600 size=0 limit_delta=0.250000
+Writing
+Writing 768 x 768 picture into file: edge768x768_0.250.pgm

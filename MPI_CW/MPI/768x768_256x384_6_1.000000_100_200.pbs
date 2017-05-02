@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+*** md2g12   Job: 4479329.sdb   started: 01/05/17 21:32:22   host: mom5 ***
+*** md2g12   Job: 4479329.sdb   started: 01/05/17 21:32:22   host: mom5 ***
+*** md2g12   Job: 4479329.sdb   started: 01/05/17 21:32:22   host: mom5 ***
+*** md2g12   Job: 4479329.sdb   started: 01/05/17 21:32:22   host: mom5 ***
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Running OpenMP program do_2d on 1 threads
+Started at Mon May 1 21:32:23 BST 2017
+--------------------------------------------------------------------------------
+Reading
+Reading
+Reading
+Reading
+Reading
+Reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+Finished reading
+init size=6 MP=256 NP=384 M=768 N=768 max_delta=1.000000 delta_freq=100 avg_freq=200
+max_delta=381.7500000000 iter=0 rank=0 size=6 limit_delta=1.000000
+local_avg=0.5322825313 iter=0 size=6 limit_delta=1.000000
+max_delta=0.8517627716 iter=100 rank=0 size=6 limit_delta=1.000000
+avg_time=0.0001489715 rank=3 overall_time=0.0218629837 total_loop=0.0150461197 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0005769730 reconstruct_time=0.0033078194 barrier_time=0.0028870106
+avg_time=0.0001488298 rank=1 overall_time=0.0218589306 total_loop=0.0150318146 make_MP_time=0.0000009537 choose_neighbours=0.0000000000 make_buff=0.0005769730 reconstruct_time=0.0012400150 barrier_time=0.0049560070
+avg_time=0.0001487732 rank=4 overall_time=0.0218689442 total_loop=0.0150260925 make_MP_time=0.0000009537 choose_neighbours=0.0000000000 make_buff=0.0005958080 reconstruct_time=0.0043168068 barrier_time=0.0018780231
+avg_time=0.0001486552 rank=5 overall_time=0.0218639374 total_loop=0.0150141716 make_MP_time=0.0000009537 choose_neighbours=0.0000000000 make_buff=0.0006060600 reconstruct_time=0.0053257942 barrier_time=0.0008690357
+avg_time=0.0001490116 rank=2 overall_time=0.0218579769 total_loop=0.0150501728 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0005650520 reconstruct_time=0.0022850037 barrier_time=0.0039098263
+avg_time=0.0001482964 rank=0 overall_time=0.0218670368 total_loop=0.0149779320 make_MP_time=0.0000000000 choose_neighbours=0.0000000000 make_buff=0.0006520748 reconstruct_time=0.0061731339 barrier_time=0.0000009537
+global_avg=4.1694269180 max_delta=0.8517627716 iter=101
+Writing
+Writing 768 x 768 picture into file: edge768x768_1.000.pgm

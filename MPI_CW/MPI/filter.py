@@ -1,6 +1,7 @@
 import os
 import numpy
 import scipy
+import time
 from matplotlib import pyplot as plt
 
 #-----VARS
@@ -12,13 +13,31 @@ def get_pbs_files():
     return paths[[i for i, item in enumerate(paths) if "pbs" in item]]
 
 
+def file_splitter(path):
+    with open(path, 'r') as dt:
+        data = dt.read()
+    data = data.split("Finished writing")
+
+
+    print(len(data))
+    with open(path, 'w') as dt:
+        dt.write(data[0])
+
+    if len(data) > 2: #1 will be the initial, 2 will be the residual
+        for i in range(1, len(data)-1):
+            with open(str(time.time())+".pbs", 'w') as dt:
+                dt.write(data[i])
+
+
 def rename_files():
     paths = get_pbs_files()
     main_path = os.getcwd()+"/"
 
+
     for path in paths:
         data = open_pbs_file(path)
         data = [line for line in data if line[0] == "init"][0]
+        print(path, data)
         name = "{}x{}_{}x{}_{}_{}_{}_{}.pbs".format(data[4].split(val_space)[1],
                                         data[5].split(val_space)[1],
                                         data[2].split(val_space)[1],
@@ -162,13 +181,14 @@ def get_final_res(path):
     print(r"Program finished with a global average of {}, at maximum $\Delta$={}, after {} iterations".format(data[0,0].split(val_space)[1], data[0,1].split(val_space)[1], data[0,2].split(val_space)[1]))
 
 if __name__ == "__main__":
-    rename_files()
-    plot_execution_times(5)
-    paths = get_pbs_files()
-#    dt = open_pbs_file(path)
-#    avg = plot_avg(path)
-#    delta = plot_delta(path)
-#    plot_times_one_file(path)
-    for path in paths:
-        print(path)
-        get_final_res(path)
+    pass
+#    rename_files()
+#    plot_execution_times(5)
+#    paths = get_pbs_files()
+##    dt = open_pbs_file(path)
+##    avg = plot_avg(path)
+##    delta = plot_delta(path)
+##    plot_times_one_file(path)
+#    for path in paths:
+#        print(path)
+#        get_final_res(path)

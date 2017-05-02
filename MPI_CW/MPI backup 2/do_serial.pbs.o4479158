@@ -1,0 +1,198 @@
+--------------------------------------------------------------------------------
+*** md2g12   Job: 4479158.sdb   started: 01/05/17 18:57:35   host: mom4 ***
+*** md2g12   Job: 4479158.sdb   started: 01/05/17 18:57:35   host: mom4 ***
+*** md2g12   Job: 4479158.sdb   started: 01/05/17 18:57:35   host: mom4 ***
+*** md2g12   Job: 4479158.sdb   started: 01/05/17 18:57:35   host: mom4 ***
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Running OpenMP program do_serial on 1 threads
+Started at Mon May 1 18:57:36 BST 2017
+--------------------------------------------------------------------------------
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=1.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=1.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=1.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=1.000000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=1.000000
+local_avg=5.9467768669 iter=200 size=0 limit_delta=1.000000
+max_delta=2.1652774811 iter=300 rank=0 size=0 limit_delta=1.000000
+max_delta=1.5662994385 iter=400 rank=0 size=0 limit_delta=1.000000
+local_avg=8.4885721207 iter=400 size=0 limit_delta=1.000000
+max_delta=1.3061485291 iter=500 rank=0 size=0 limit_delta=1.000000
+max_delta=1.1595115662 iter=600 rank=0 size=0 limit_delta=1.000000
+local_avg=10.4236974716 iter=600 size=0 limit_delta=1.000000
+max_delta=1.0573654175 iter=700 rank=0 size=0 limit_delta=1.000000
+max_delta=0.9661178589 iter=800 rank=0 size=0 limit_delta=1.000000
+local_avg=12.0423231125 iter=800 size=0 limit_delta=1.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_1.000.pgm
+Finished writing
+iter=801 overall_time=0.810000 iter_time=-861.423221 total_loop=-690000.000000 max_delta=0.966118
+Application 26609817 resources: utime ~1s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18980
+
+real	0m3.774s
+user	0m0.376s
+sys	0m0.136s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=2.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=2.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=2.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=2.000000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=2.000000
+local_avg=5.9467768669 iter=200 size=0 limit_delta=2.000000
+max_delta=2.1652774811 iter=300 rank=0 size=0 limit_delta=2.000000
+max_delta=1.5662994385 iter=400 rank=0 size=0 limit_delta=2.000000
+local_avg=8.4885721207 iter=400 size=0 limit_delta=2.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_2.000.pgm
+Finished writing
+iter=401 overall_time=0.470000 iter_time=-872.817955 total_loop=-350000.000000 max_delta=1.566299
+Application 26609818 resources: utime ~1s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m6.140s
+user	0m0.384s
+sys	0m0.112s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=3.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=3.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=3.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=3.000000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=3.000000
+local_avg=5.9467768669 iter=200 size=0 limit_delta=3.000000
+max_delta=2.1652774811 iter=300 rank=0 size=0 limit_delta=3.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_3.000.pgm
+Finished writing
+iter=301 overall_time=0.390000 iter_time=-863.787375 total_loop=-260000.000000 max_delta=2.165277
+Application 26609819 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m7.416s
+user	0m0.340s
+sys	0m0.160s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=4.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=4.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=4.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=4.000000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=4.000000
+local_avg=5.9467768669 iter=200 size=0 limit_delta=4.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_4.000.pgm
+Finished writing
+iter=201 overall_time=0.300000 iter_time=-845.771144 total_loop=-170000.000000 max_delta=3.236113
+Application 26609821 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m4.753s
+user	0m0.368s
+sys	0m0.132s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=5.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=5.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=5.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=5.000000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=5.000000
+local_avg=5.9467768669 iter=200 size=0 limit_delta=5.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_5.000.pgm
+Finished writing
+iter=201 overall_time=0.300000 iter_time=-895.522388 total_loop=-180000.000000 max_delta=3.236113
+Application 26609822 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m5.207s
+user	0m0.400s
+sys	0m0.092s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=6.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=6.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=6.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=6.000000
+max_delta=3.2361125946 iter=200 rank=0 size=0 limit_delta=6.000000
+local_avg=5.9467768669 iter=200 size=0 limit_delta=6.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_6.000.pgm
+Finished writing
+iter=201 overall_time=0.300000 iter_time=-895.522388 total_loop=-180000.000000 max_delta=3.236113
+Application 26609823 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m4.886s
+user	0m0.340s
+sys	0m0.156s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=7.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=7.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=7.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=7.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_7.000.pgm
+Finished writing
+iter=101 overall_time=0.210000 iter_time=-792.079208 total_loop=-80000.000000 max_delta=6.223324
+Application 26609826 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m8.409s
+user	0m0.408s
+sys	0m0.112s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=8.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=8.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=8.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=8.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_8.000.pgm
+Finished writing
+iter=101 overall_time=0.220000 iter_time=-891.089109 total_loop=-90000.000000 max_delta=6.223324
+Application 26609829 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m4.646s
+user	0m0.380s
+sys	0m0.124s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=9.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=9.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=9.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=9.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_9.000.pgm
+Finished writing
+iter=101 overall_time=0.210000 iter_time=-891.089109 total_loop=-90000.000000 max_delta=6.223324
+Application 26609830 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m4.824s
+user	0m0.364s
+sys	0m0.140s
+Reading edge768x768.pgm
+Finished reading
+init size=-1 MP=-1 NP=-1 M=768 N=768 max_delta=10.000000 delta_freq=100 avg_freq=200
+max_delta=555.2500000000 iter=0 rank=0 size=0 limit_delta=10.000000
+local_avg=0.5943481326 iter=0 size=0 limit_delta=10.000000
+max_delta=6.2233242989 iter=100 rank=0 size=0 limit_delta=10.000000
+Writing
+Writing 768 x 768 picture into file: edge768x768_10.000.pgm
+Finished writing
+iter=101 overall_time=0.210000 iter_time=-792.079208 total_loop=-80000.000000 max_delta=6.223324
+Application 26609831 resources: utime ~0s, stime ~0s, Rss ~14944, inblocks ~12654, outblocks ~18979
+
+real	0m5.443s
+user	0m0.368s
+sys	0m0.132s
+--------------------------------------------------------------------------------
+Finished at Mon May 1 18:58:31 BST 2017
+--------------------------------------------------------------------------------
+
+Resources requested: ncpus=24,place=free,walltime=00:10:00
+Resources allocated: cpupercent=0,cput=00:00:05,mem=9152kb,ncpus=24,vmem=178008kb,walltime=00:00:56
+
+*** md2g12   Job: 4479158.sdb   ended: 01/05/17 18:58:31   queue: S4474188 ***
+*** md2g12   Job: 4479158.sdb   ended: 01/05/17 18:58:31   queue: S4474188 ***
+*** md2g12   Job: 4479158.sdb   ended: 01/05/17 18:58:31   queue: S4474188 ***
+*** md2g12   Job: 4479158.sdb   ended: 01/05/17 18:58:31   queue: S4474188 ***
+--------------------------------------------------------------------------------
