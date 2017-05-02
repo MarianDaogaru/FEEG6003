@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from matplotlib import rcParams
 rcParams['font.family'] = 'serif'
 rcParams['figure.figsize'] = (12, 12)
-rcParams['font.size'] = 10
+rcParams['font.size'] = 15
 #-----VARS
 val_space="="
 
@@ -284,7 +284,7 @@ def plot_multiple(var, N):
 
     ax1.plot(processes, time_single/times, "bx", label="timing", ms=10, mew=2)
     ax1.set_xlabel("processes")
-    ax1.set_ylabel("Time speed-up T0/T, T0={:.4f}".format(time_single))
+    ax1.set_ylabel("Time speed-up T0/T, T0={:.4f}s".format(time_single))
     ax1.set_title("Relative execution time for the picture M={}, N={}".format(var, N))
     ax1.grid(which="both", axis="both")
     plt.legend()
