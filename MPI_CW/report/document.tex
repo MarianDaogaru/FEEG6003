@@ -164,7 +164,32 @@
 		\end{minipage}
 	\end{figure}
 
+	\begin{figure}[ht]	
+		\centering
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{exec_768x768_odd.jpeg}
+			\caption{Execution time and relative(to serial) execution time for the 768x768 pixel image.}\label{exec_4odd}
+		\end{minipage}%
+		\begin{minipage}[b]{.5\textwidth}
+			\ref{exec_4odd} is weird for 4 because having smaller number of processes, the overall change in swapping then is small. if we want to go for longer number of of iterations, at the same number of iters, the aavg will be the same. 
+		\end{minipage}
+	\end{figure}
 	
+	\begin{lstlisting}
+	edge768x768_0.010_12.pgm
+	-54968212.0
+	edge768x768_0.010_16.pgm
+	-54968212.0
+	edge768x768_0.010_24.pgm
+	-54968212.0
+	edge768x768_0.010_4.pgm
+	-54968212.0
+	edge768x768_0.010_6.pgm
+	-54968212.0
+	edge768x768_0.010_8.pgm
+	-54968212.0
+	\end{lstlisting}
 	\begin{figure}[H]	
 		\centering
 		\includegraphics[scale=.3, width=\textwidth ]{timings.jpeg}

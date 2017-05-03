@@ -352,8 +352,8 @@ def plot_allt_allp():
 if __name__ == "__main__":
     pics = [[192, 128], [256, 192], [512, 384], [768, 768]]
     plot_allt_allp()
-#    for pic in pics:
-#        plot_multiple(pic[0], pic[1])
+    for pic in pics:
+        plot_multiple(pic[0], pic[1])
 #    rename_files()
 #    plot_execution_times(5)
 #    paths = get_pbs_files()
