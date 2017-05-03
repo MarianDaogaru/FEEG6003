@@ -244,18 +244,6 @@ int main(int argc, char** argv)
 // Additional functions
 // ---------------------------
 
-float** make_2d_dyn(int rows, int cols)
-{
-  /*
-    Function that makes the dynamic allocation of memory for a 2D array of
-    M rows & N columns.
-  */
-  float **myArray = (float **) malloc(rows * sizeof(float *));
-	myArray[0] = (float *) malloc(rows * cols * sizeof(float));
-	for (int i = 1; i<rows; i++)
-		myArray[i] = myArray[0] + i * cols;
-  return myArray;
-}
 
 void choose_MN(void *myArray, int size, int M, int N)
 {

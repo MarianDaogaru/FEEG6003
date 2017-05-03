@@ -51,11 +51,27 @@
 	
 	\section{Serial Program}
 	
+	In this report, Message Passing using MPI shall be presented. The main aim is to create a program able to reconstruct an image from an initial compressed image, such as Figure \ref{pic0}. The program should divide the image into smaller parts, assign each chunk to different processes, create the new image, and finally reconstruct the image. 
+	
+	Firstly, we should look at the serial case. The serial program, with only one process running, should create a good first basis for reconstructing the initial image. In addition, it will give us a benchmark for comparison between the serial case and the 2D case. 
+	
+	The main code for the serial part can be seen in Appendix B (\ref{ap2}). Initially, the code is able to accept argument if passed, otherwise it would use the default values. The arguments refer to the size of the picture, the number of iterations at which $\Delta$ and the average pixel value are calculated, and the maximum value of $\Delta$ under which the process should stop. 
+	We refer to $\Delta$ as the difference between two consecutive values of a pixel. Thus, it is the change in value after an iteration.
+	
 	\begin{figure}[H]	
 		\centering
 		\includegraphics[scale=0.5]{serialvs3.jpeg}
 		\caption{Execution time for the serial code for different values of $\Delta$.}\label{serial3}
 	\end{figure}
+	
+	Now, after arguments were passed, the code would read the initial values of the pixels into an array of size MxN. In addition, a new array of size M+2 x N+2 would be created, such that the new edges (halos) would be assigned the value 255 (maximum for 8bit) for reconstruction. The next step is to calculate the value of each pixel into a new array from an \textit{old} array, calculate $\Delta$ and the average, assign the new values to the \textit{old} array, and repeat until finished. For this program, the exit conditions of this would be either to achieve a maximum number of iterations (100,000 was set as maximum), or if the maximum $\Delta$ calculated would be smaller than a limit value. Lastly, after the loop was finished, the new image would be reconstructed. A new value of a pixel would be created using the given equation:
+	$$new_{i,j} = \frac{1}{4}(old_{i+1,j} + old_{i-1,j} + old_{i,j+1} + old_{i,j-1} - edge_{i,j})$$
+	
+	The maximum value of iteration was chosen as 100,000 as it can be seen in Figures \ref{avg1} and \ref{avg2} that, although those picture are for the 2D case the values for the average are identical for serial and 2D, the average value of a pixel follows a logarithmic curve. Thus, more iterations would not actually provide more benefit tot the overall efficiency of our simulation.
+	
+	Although the serial is not the main aim of this project, several timing measurements were done. Figure \ref{serial3} presents the overall execution time for the serial code for different values of $\Delta$. The program either exited the main loop after the maximum number of iterations was achieved, of the maximum $\Delta$ went below the limit. It can be seen that execution time follow an exponential curve, which is to be expected as the the program exits the loop later, and the improvement has an exponential decrease, as presented above. For our example, Figures \ref{pic1} and \ref{pic5} present the 768 x 768 pixel image for different values of $\Delta$. While in the second picture, $\Delta=0.05$, being 5 times higher than in the first picture, there is not much visual difference between them. 
+	
+	Figure \ref{serial4} present the relative time of execution for the serial, when $\Delta$ is calculated at a certain number of iterations, compared to when it is not calculated. When not calculated, the loop will finished at the highest iteration, thus the longest execution time. It can be observed, as expected, that the more $\Delta$ is calculated, more time is required for execution. At higher number of iterations, there is almost no difference between the number of iterations it takes. Figure \ref{serial5} presents how calculating the average affects the execution time, similar to the previous case. It can be seen again that the more time we calculate it (at smaller intervals), more execution time is required. From these graphs, it was concluded that initially, a $\Delta=0.05$, number of iterations for calculating $\Delta$ and the average of 100, would be a good trade-off between speed-up and accuracy. However, the same measurements have to be done for the parallel case. The initial assumptions for these timing values were $\Delta=0.05$, number of iterations for calculating $\Delta$ of 100 and number of iterations for calculating the average of 200. 
 	
 	\begin{figure}[ht]	
 		\centering
@@ -73,7 +89,7 @@
 
 	\section{Two dimensional problem}
 	
-	\begin{figure}[ht]	
+	\begin{figure}[H]	
 		\centering
 		\begin{minipage}[b]{.5\textwidth}
 			\centering
@@ -159,7 +175,7 @@
 
 
 	\pagebreak
-	\section{Appendix A - Pictures}
+	\section{Appendix A - Pictures} \label{ap1}
 	
 	\begin{figure}[H]	
 		\centering
@@ -167,21 +183,23 @@
 		\caption{Unprocessed image.}\label{pic0}
 	\end{figure}
 	
-	\begin{figure}[H]	
+	\begin{figure}[ht]	
 		\centering
-		\includegraphics[scale=0.23]{edge768x768_050.jpg}
-		\caption{Processed image with $\Delta=0.05$.}\label{pic5}
-	\end{figure}
-
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.23]{edge768x768_010.jpg}
-		\caption{Processed image with $\Delta=0.01$.}\label{pic1}
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.23]{edge768x768_050.jpg}
+			\caption{Processed image with $\Delta=0.05$.}\label{pic5}
+		\end{minipage}%
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.23]{edge768x768_010.jpg}
+			\caption{Processed image with $\Delta=0.01$.}\label{pic1}
+		\end{minipage}
 	\end{figure}
 
 	\pagebreak
 	
-	\section{Appendix B - Serial Code}
+	\section{Appendix B - Serial Code}\label{ap2}
 	\begin{lstlisting}
 	#include <stdio.h>
 	#include <stdlib.h>
@@ -430,7 +448,7 @@
 	\end{lstlisting}
 	\pagebreak
 	
-	\section{Appendix C - 2D Parallel Code}
+	\section{Appendix C - 2D Parallel Code}\label{ap3}
 	The main code for the 2d Parallel C code using MPI implementation: 
 	\begin{lstlisting}
 	#include <stdio.h>
@@ -886,7 +904,7 @@
 	\end{lstlisting}
 	\pagebreak
 	
-	\section{Appendix D - Comms and pgmio Code}
+	\section{Appendix D - Comms and pgmio Code}\label{ap4}
 	\subsection{Comms.c}
 	In order to achieve proper communication, \textbf{comms.c} was created. It uses MPI send and recv protocols to send and received data between processes.
 	\begin{lstlisting}
@@ -1231,7 +1249,7 @@
 	void pgmwrite(char *filename, void *vx, int nx, int ny);
 	\end{lstlisting}
 	
-	\section{Appendix E - Makefile and PBS file}
+	\section{Appendix E - Makefile and PBS file}\label{ap5}
 	\subsection{Makefile}
 	The following is an additional file enabling an easy compilation of the 2d Parallel Code (\textit{do\_2d.c}. For the serial case, \textit{do\_2d.c} is replaced by \textit{do\_serial.c} or however the user chooses to name the file. Once the Makefile was created, in \textit{Terminal}, the user can run \textbf{make} command, with all the appropriate files in the same folder to compile the code.
 	

@@ -1,9 +1,3 @@
-# Makefile for the CaseStudy
-
-#
-# C compiler and options
-#
-
 
 CC=	mpicc
 LIB=	-lm
