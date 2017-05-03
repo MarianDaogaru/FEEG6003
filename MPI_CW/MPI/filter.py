@@ -5,8 +5,8 @@ import time
 from matplotlib import pyplot as plt
 from matplotlib import rcParams
 rcParams['font.family'] = 'serif'
-rcParams['figure.figsize'] = (12, 12)
-rcParams['font.size'] = 15
+rcParams['figure.figsize'] = (20, 20)
+rcParams['font.size'] = 20
 #-----VARS
 val_space="="
 
@@ -291,10 +291,69 @@ def plot_multiple(var, N):
     plt.savefig("exec_{}x{}.jpeg".format(var, N), format="jpeg")
     plt.close()
 
+
+def plot_multiple_indv(ax, var, N):
+    all_paths = get_pbs_files()
+    paths = []
+    for path in all_paths:
+        with open(path) as dt:
+            data = dt.read()
+        if "M={}".format(var) in data:
+            paths.append(path)
+
+    times = numpy.zeros(30)
+    processes = numpy.zeros(30)
+
+    indv_times = numpy.zeros((5, 6))
+    thrds = [20, 30, 40, 60, 80, 120]
+    for path in paths:
+        if "serial"  not in path:
+            with open(path) as dt:
+                data = dt.read()
+            del(dt)
+            data = data.split("Application")
+
+            for i in range(30):
+                dt = data[i].split("\n")
+                for line in dt:
+                    if line.split(" ")[0].split("=")[0] == "avg_time":
+                        indv_times[:, i%6] +=[eval(line.split(" ")[0].split("=")[1]),
+                                                eval(line.split(" ")[4].split("=")[1]),
+                                                eval(line.split(" ")[6].split("=")[1]),
+                                                eval(line.split(" ")[7].split("=")[1]),
+                                                eval(line.split(" ")[8].split("=")[1])]
+                        indv_times[:, i%6] = indv_times[:, i%6] / thrds[i%6]
+
+    print (indv_times)
+    names = ['avg loop', 'make MP', 'make buf', 'reconstruct', 'barrier']
+    labels = ["bx", "gx", "rx", "bo", "go"]
+    procs = [4, 6, 8, 12, 16, 24]
+    for i in range(5):
+        ax.loglog(procs, indv_times[i], labels[i], label=names[i], ms=10, mew=2)
+    ax.set_xlabel("Processes")
+    ax.set_ylabel("Times (s)")
+    ax.set_xlim(xmin=3,xmax=26)
+    ax.grid(which="both", axis="both")
+    ax.set_title("Timings for pic {}x{}".format(var, N))
+    return ax
+
+
+def plot_allt_allp():
+    pics = [[[192, 128], [256, 192]], [[512, 384], [768, 768]]]
+    fig, ax = plt.subplots(nrows=2, ncols=2, sharex=True)
+    for i in range(2):
+        for j in range(2):
+            ax[i][j] = plot_multiple_indv(ax[i][j], pics[i][j][0], pics[i][j][1])
+    plt.legend(loc="upper center", bbox_to_anchor=(-.1, -0.1), fancybox=True, shadow=True, ncol=5)
+    plt.savefig("test.jpeg", format="jpeg")
+    plt.close()
+
+
 if __name__ == "__main__":
     pics = [[192, 128], [256, 192], [512, 384], [768, 768]]
-    for pic in pics:
-        plot_multiple(pic[0], pic[1])
+    plot_allt_allp()
+#    for pic in pics:
+#        plot_multiple(pic[0], pic[1])
 #    rename_files()
 #    plot_execution_times(5)
 #    paths = get_pbs_files()

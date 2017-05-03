@@ -1,5 +1,6 @@
 \documentclass[11pt]{article}
-\usepackage{hyperref, graphicx, float} 
+\usepackage{hyperref, graphicx, float, caption} 
+\captionsetup{justification=raggedright, singlelinecheck=false}
 \graphicspath{{./pics/}}
 % Title Page
 \title{Assignment 1 - MPP: Message-Passing Programming}
@@ -48,90 +49,114 @@
 	\tableofcontents
 	\pagebreak
 	
-	
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.4]{exec_192x128.jpeg}
-		\caption{Execution time and relative(to serial) execution time for the 192x128 pixel image.}\label{exec_1}
-	\end{figure}
-
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.4]{exec_256x192.jpeg}
-		\caption{Execution time and relative(to serial) execution time for the 256x192 pixel image.}\label{exec_2}
-	\end{figure}
-
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.4]{exec_512x384.jpeg}
-		\caption{Execution time and relative(to serial) execution time for the 512x384 pixel image.}\label{exec_3}
-	\end{figure}
-
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.4]{exec_768x768.jpeg}
-		\caption{Execution time and relative(to serial) execution time for the 768x768 pixel image.}\label{exec_4}
-	\end{figure}
-
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.5]{itervs3.jpeg}
-		\caption{Relative execution time for different values of $\Delta$. $T_0$ is at $\Delta=0.01$.}\label{iter3}
-	\end{figure}
-
-	
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.5]{itervs32.jpeg}
-		\caption{Close-up for the relative execution time vs $\Delta$ values.}\label{iter32}
-	\end{figure}
-
-	
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.5]{itervs4.jpeg}
-		\caption{Relative execution time for different intervals at which $\Delta$ was measured. $T_0$ for no measurement.}\label{iter4}
-	\end{figure}
-
-	
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.5]{itervs5.jpeg}
-		\caption{Relative execution time for different intervals at which the average was measured. $T_0$ for no measurement.}\label{iter5}
-	\end{figure}
-
-	
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.5]{local_avg_6_010000.jpeg}
-		\caption{Average value of image pixel over 100,000 iteration for $\Delta=0.01$.}\label{avg1}
-	\end{figure}
-
-	
-	\begin{figure}[H]	
-		\centering
-		\includegraphics[scale=0.5]{local_avg_6_050000.jpeg}
-		\caption{Average value of image pixel over 100,000 iteration for $\Delta=0.05$.}\label{avg2}
-	\end{figure}
-
+	\section{Serial Program}
 	
 	\begin{figure}[H]	
 		\centering
 		\includegraphics[scale=0.5]{serialvs3.jpeg}
 		\caption{Execution time for the serial code for different values of $\Delta$.}\label{serial3}
 	\end{figure}
+	
+	\begin{figure}[ht]	
+		\centering
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{serialvs4.jpeg}
+			\caption[short]{Relative execution time for different intervals at which $\Delta$ was measured. $T_0$ for no measurement.}\label{serial4}
+		\end{minipage}%
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{serialvs5.jpeg}
+			\caption[short]{Relative execution time for different intervals at which the average was measured. $T_0$ for no measurement.}\label{serial5}
+		\end{minipage}%
+	\end{figure}
 
+	\section{Two dimensional problem}
+	
+	\begin{figure}[ht]	
+		\centering
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{itervs3.jpeg}
+			\caption{Relative execution time for different values of $\Delta$. $T_0$ is at $\Delta=0.01$.}\label{iter3}
+		\end{minipage}%
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{itervs32.jpeg}
+			\caption{Close-up for the relative execution time vs $\Delta$ values.}\label{iter32}
+		\end{minipage}
+	\end{figure}
+	
+	\begin{figure}[ht]	
+		\centering
+		\begin{minipage}[b]{.5\textwidth}	
+			\centering
+			\includegraphics[width=\linewidth]{itervs4.jpeg}
+			\caption{Relative execution time for different intervals at which $\Delta$ was measured. $T_0$ for no measurement.}\label{iter4}
+		\end{minipage}%
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{itervs5.jpeg}
+			\caption{Relative execution time for different intervals at which the average was measured. $T_0$ for no measurement.}\label{iter5}
+		\end{minipage}
+	\end{figure}
+	
+	
+	
+	\begin{figure}[ht]	
+		\centering
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{local_avg_6_010000.jpeg}
+			\caption{Average value of image pixel over 100,000 iteration for $\Delta=0.01$.}\label{avg1}
+		\end{minipage}%
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{local_avg_6_050000.jpeg}
+			\caption{Average value of image pixel over 100,000 iteration for $\Delta=0.05$.}\label{avg2}
+		\end{minipage}
+	\end{figure}
+	
+
+	
+	\section{Measurements}
 	\begin{figure}[H]	
 		\centering
-		\includegraphics[scale=0.5]{serialvs4.jpeg}
-		\caption{Relative execution time for different intervals at which $\Delta$ was measured. $T_0$ for no measurement.}\label{serial4}
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{exec_192x128.jpeg}
+			\caption{Execution time and relative(to serial) execution time for the 192x128 pixel image.}\label{exec_1}
+		\end{minipage}%
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{exec_256x192.jpeg}
+			\caption{Execution time and relative(to serial) execution time for the 256x192 pixel image.}\label{exec_2}
+		\end{minipage}
 	\end{figure}
+	
+	\begin{figure}[ht]	
+		\centering
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{exec_512x384.jpeg}
+			\caption{Execution time and relative(to serial) execution time for the 512x384 pixel image.}\label{exec_3}
+		\end{minipage}%
+		\begin{minipage}[b]{.5\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{exec_768x768.jpeg}
+			\caption{Execution time and relative(to serial) execution time for the 768x768 pixel image.}\label{exec_4}
+		\end{minipage}
+	\end{figure}
+
 	
 	\begin{figure}[H]	
 		\centering
-		\includegraphics[scale=0.5]{serialvs5.jpeg}
-		\caption{Relative execution time for different intervals at which the average was measured. $T_0$ for no measurement.}\label{serial5}
+		\includegraphics[scale=.3, width=\textwidth ]{timings.jpeg}
+		\caption{Timing for different parts of the program with the typical parameters for different number of threads.}\label{tim1}
 	\end{figure}
+	
+	
+
 
 	\pagebreak
 	\section{Appendix A - Pictures}
