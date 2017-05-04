@@ -229,7 +229,11 @@
 	\end{figure}
 	
 	\section{Conclusion}
-
+	Throughout this project, we have explored how a serial code can reconstruct a picture. In addition, it was observed in the serial case that the maximum change in a pixel, $\Delta$, is critical for performance. While the program can aim for zeros proper reconstruction, the time required would become unfeasible. 
+	
+	For a 2D case, in which the data is split in even chunks between a given number of processes, there is considerable speed-up. Moreover, it was observed that a higher number of processes in beneficial, further decreasing the execution time. However, depending on the size of the initial data, the execution speed-up does not increase past a certain number of processes. Furthermore, while computing the exact picture could be beneficial, it does required an exponential time the smaller the difference between pixels $\Delta$. Comparing the final computed data for different values of $\Delta$, there is a considerable similarity, while te execution time is exponentially long. Without a $\Delta$ value to break the main program, there is no added benefit. Lastly, it was concluded that the main program created has a good execution time, further improvements should be made to the main loop. As the loop executes tens of thousands of times, a small decrease in loop execution has an exponential increase in the speed-up, rather than any other part of the software.
+	
+	
 
 	\pagebreak
 	\section{Appendix A - Pictures} \label{ap1}
