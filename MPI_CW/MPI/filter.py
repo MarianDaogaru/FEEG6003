@@ -171,6 +171,7 @@ def plot_execution_times(var, which_val=0):
     terr = numpy.zeros(lgth)
     avg = numpy.zeros(lgth)
     for i in range((lgth)):
+        print(max(times[i, :, 1]), min(times[i, :, 1]))
         terr[i] = max(times[i, :, 1]) - min(times[i, :, 1])
         avg[i] = times[i, :, 1].mean()
 
@@ -350,10 +351,11 @@ def plot_allt_allp():
 
 
 if __name__ == "__main__":
-    pics = [[192, 128], [256, 192], [512, 384], [768, 768]]
-    plot_allt_allp()
-    for pic in pics:
-        plot_multiple(pic[0], pic[1])
+    pass
+#    pics = [[192, 128], [256, 192], [512, 384], [768, 768]]
+#    plot_allt_allp()
+#    for pic in pics:
+#        plot_multiple(pic[0], pic[1])
 #    rename_files()
 #    plot_execution_times(5)
 #    paths = get_pbs_files()

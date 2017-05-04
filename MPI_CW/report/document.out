@@ -1,12 +1,13 @@
 \BOOKMARK [1][-]{section.1}{Serial Program}{}% 1
 \BOOKMARK [1][-]{section.2}{Two dimensional problem}{}% 2
-\BOOKMARK [1][-]{section.3}{Measurements}{}% 3
-\BOOKMARK [1][-]{section.4}{Appendix A - Pictures}{}% 4
-\BOOKMARK [1][-]{section.5}{Appendix B - Serial Code}{}% 5
-\BOOKMARK [1][-]{section.6}{Appendix C - 2D Parallel Code}{}% 6
-\BOOKMARK [1][-]{section.7}{Appendix D - Comms and pgmio Code}{}% 7
-\BOOKMARK [2][-]{subsection.7.1}{Comms.c}{section.7}% 8
-\BOOKMARK [2][-]{subsection.7.2}{pgmio.c}{section.7}% 9
-\BOOKMARK [1][-]{section.8}{Appendix E - Makefile and PBS file}{}% 10
-\BOOKMARK [2][-]{subsection.8.1}{Makefile}{section.8}% 11
-\BOOKMARK [2][-]{subsection.8.2}{PBS file}{section.8}% 12
+\BOOKMARK [2][-]{subsection.2.1}{Architecture}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{Measurements}{}% 4
+\BOOKMARK [1][-]{section.4}{Appendix A - Pictures}{}% 5
+\BOOKMARK [1][-]{section.5}{Appendix B - Serial Code}{}% 6
+\BOOKMARK [1][-]{section.6}{Appendix C - 2D Parallel Code}{}% 7
+\BOOKMARK [1][-]{section.7}{Appendix D - Comms and pgmio Code}{}% 8
+\BOOKMARK [2][-]{subsection.7.1}{Comms.c}{section.7}% 9
+\BOOKMARK [2][-]{subsection.7.2}{pgmio.c}{section.7}% 10
+\BOOKMARK [1][-]{section.8}{Appendix E - Makefile and PBS file}{}% 11
+\BOOKMARK [2][-]{subsection.8.1}{Makefile}{section.8}% 12
+\BOOKMARK [2][-]{subsection.8.2}{PBS file}{section.8}% 13
