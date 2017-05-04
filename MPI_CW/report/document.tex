@@ -99,6 +99,28 @@
 	
 	Next step is represented by the initialisation of the Message Passing Interface (MPI). For the initial test, 6 processes were used. At this point, we are interested in sharing the data between processes. Firstly, the initial image data is read into an initial array, \textit{masterbuf}. Next, based on the rank (its number to distinguish between different processes), we are choosing its local buffer, named \textit{buf} in this case.  
 	
+	
+	
+	Given the fact that all the pictures are rectangles in shape, we firstly assume that each process will receive an equal number of pixels, represented by a smaller rectangle from the picture. We are interested in the case where each process works on chunks of data similar in shape with the initial data, rather than strips created by slicing the data in one dimension. As such, in order to properly compute the values of pixel at each iteration, as presented before, for every pixel we must know its neighbour. Thus besides the initial chunk of data, each buf must contain additional data (in the form of rows and columns of pixels) from its nearby processes. Consequently, to map the neighbouring processes, we start off by determining the optimum size of each buf, depending on the total number of processes. Thus process is achieved by finding the two closest integers. m and n, that multiplied would equal the number of processes running, and each integer divides with no remaining one of the dimensions of the picture. These integers define the number of rows (n) and columns (m) the image shall be split into. Having these 2 numbers, the masterbuf is divided between processes as follows: starting from left to right, the first row contains processes 0 to m-1, second row contains processes m to 2m-1, until all processes have been allocated a chunk of data. Each process receives a chunk of data of dimensions $\frac{M}{m}x\frac{N}{n} =MP x NP$. This method has its limitations, as if the sizes are not divisible by the integers, some data will be lost.
+	
+	After each process has received its buf, the main loop of the program starts, where the values of the pixels are calculate. Again, $\Delta$ and the average pixel value are calculated, for stopping criteria. As mentioned before, each process requires data from its respective neighbours to for a halo around its local buf in order to execute properly calculate the value of each pixel. Each process has 4 neighbours: up, down, left, or right. If its local buf has been assigned by an edge, the halo side is already assigned in preprocessing, therefore no need to swap this. However, for the remaining edges, these values must be swapped. Consequently, the actual buf of a process has a size of MP+2xNP+2.
+	
+	As such, each process requires to send a maximum number of 4 arrays and receive just as many. To achieve this, a communication protocol was created. For all communications, the nob-blocking asynchronous \textbf{MPI\_Isend} and \textbf{MPI\_Recv} were used. As such, to help build the halos of the left and right neighbours, a process sends the second column to the left neighbour, and the MP+1 column to the right neighbour. Moreover, it receives from the left neighbour its MP+1 column in order to replace the first local (halo region) column, and it receives from the right neighbour its first column to replace the local last column (halo region). To save time, just the elements on rows 1 to NP+1 are sent, not the halos. To achieve this communication, the actual algorithm is to use 2 \textbf{MPI\_Isend} followed by 2 \textbf{MPI\_Recv} and 2 \textbf{MPI\_Wait} at the end for actually receiving the message. If one process if faster than another, it has to wait for its neighbour to send the values for proper computation to take place.
+	
+	The next phase is represented by the \textit{vertical} communication: swapping the halos with the neighbours having the chunks placed above and below the local chunk. While this problem is similar to the left and right neighbour situation described above, the code was created in C. As such, for an array, elements are contiguous is memory on the Y axis, but not on X axis for a 2d array, such us the local buf or the masterbuf mentioned earlier. In the previous case, we were sending columns, thus successive elements contiguous in memory. However, for the X axis, horizontal rows are not comprised of contiguous elements in memory. Thus, in order to be able to use the \textbf{MPI\_Isend} and \textbf{MPI\_Recv}, a special sort of structure able to map the memory is needed. This is achieved by using the MPI function \textbf{MPI\_Type\_Vector} in parallel with an MPI data type. Below the command is presented. The function requires several arguments. First, the number of arrays it should send. The next argument represents the number of elements sent on each array. These elements are send from a bigger array, starting from position 0. The bigger array is the size of the third argument. Thus, looking at the example the remaining arguments are the type of data sent, and the new data type to which the map will be locked. We can see that a total of MP arrays will be created, of size 1, the first element in an NP+2 array. After the first element was chosen, NP+1 elements will be skipped before the next element is chosen. 
+	
+	\begin{lstlisting}
+	MPI_Type_vector(MP, 1, NP+2, MPI_FLOAT, &new_array);
+	\end{lstlisting}
+	
+	Having this structure in mind, it the same halo swap structure is done on horizontal elements (rows) between the local buf and the up and down neighbours. After the communication has ended, the normal loop is executed. When the main loop ends, either by reaching the maximum number of iterations or the maximum $\Delta$ condition, data is gathered to be written into the recreated picture. This part is achieved by having each process send their local buf to the MASTER process (rank 0). The MASTER process then will write its own part first, followed by writing the data obtained from incoming messages. The communication protocol remains the same, using \textbf{MPI\_Isend} and \textbf{MPI\_Recv}. 
+	
+	\subsection{Performance}
+	
+	Having the software created, we can now start to measure the performance. Firstly, for all tests, unless otherwise specified, the default variable are as follows: picture size 768x768, $\Delta$ = 0.05, $\Delta$ iteration frequency of 100, and average measurement iteration frequency of 200. The code was run using 6 processes. The error bar presented in the graphs is the difference in $\mu s$ between the fastest and the slowest executing process. 
+	
+	We start by looking at the speed-up achieved using different values of $\Delta$, with $\Delta_{benchmark}=0.01$. Figures \ref{iter3} and \ref{iter32} present the speed-up achieved. It can be seen that for close values of $\Delta$, there is a smaller speed-up compared, to high values of $\Delta$. However, the accuracy of our measurements goes down as well. It can be seen in Figures \ref{avg1}, \ref{avg2}, \ref{pic5} and \ref{pic1} that between $\Delta=0.01$ and $\Delta=0.05$, while the average continues to increase, visually all details can be observed during inspection. As such, a default value of $\Delta=0.05$ was again considered sufficient for this exercise. 
+	
 	\begin{figure}[H]	
 		\centering
 		\begin{minipage}[b]{.5\textwidth}
@@ -113,11 +135,8 @@
 		\end{minipage}
 	\end{figure}
 	
-	Given the fact that all the pictures are rectangles in shape, we firstly assume that each process will receive an equal number of pixels, represented by a smaller rectangle from the picture. We are interested in the case where each process works on chunks of data similar in shape with the initial data, rather than strips created by slicing the data in one dimension. As such, in order to properly compute the values of pixel at each iteration, as presented before, for every pixel we must know its neighbour. Thus besides the initial chunk of data, each buf must contain additional data (in the form of rows and columns of pixels) from its nearby processes. Consequently, to map the neighbouring processes, we start off by determining the optimum size of each buf, depending on the total number of processes. Thus process is achieved by finding the two closest integers. m and n, that multiplied would equal the number of processes running, and each integer divides with no remaining one of the dimensions of the picture. These integers define the number of rows (n) and columns (m) the image shall be split into. Having these 2 numbers, the masterbuf is divided between processes as follows: starting from left to right, the first row contains processes 0 to m-1, second row contains processes m to 2m-1, until all processes have been allocated a chunk of data. Each process receives a chunk of data of dimensions $\frac{M}{m}x\frac{N}{n} =MP x NP$.
+	Next, Figure \ref{iter4} presents the speed-up regarding the importance of calculating $\Delta$. It can observed that not calculating $\Delta$ presents a disadvantage. In addition, having an iteration frequency of 25 does not present a real advantage, it just limits the amount of data created, which can be a potentially good if storing memory is an issue. A speed up of 3.1 was observed in this case. Again, the initial assumption of an iteration frequency of 100 is considered sufficient. Lastly, Figure \ref{iter5} presents the impact of calculating the average value of pixels in the image. It can be seen that the execution time is not affected past an iteration frequency of 10. This is more than enough for our purposes. Thus, it can concluded that for consistency, the iteration frequency for calculating the average should be 100, same as the frequency for calculating $\Delta$. 
 	
-	After each process has received its buf, the main loop of the program starts, where the values of the pixels are calculate. Again, $\Delta$ and the average pixel value are calculated, for stopping criteria. As mentioned before, each process requires data from its respective neighbours to for a halo around its local buf in order to execute properly calculate the value of each pixel. Each process has 4 neighbours: up, down, left, or right. If its local buf has been assigned by an edge, the halo side is already assigned in preprocessing, therefore no need to swap this. However, for the remaining edges, these values must be swapped. Consequently, the actual buf of a process has a size of MP+2xNP+2.
-	
-	As such, each process requires to send a maximum number of 4 arrays and receive just as many. To achieve this, a communication protocol was created. For all communications, the nob-blocking asynchronous \textbf{MPI\_Isend} and \textbf{MPI\_Recv} were used. As such, to help build the halos of the left and right neighbours, a process sends the second column to the left neighbour, and the MP+1 column to the right neighbour. Moreover, it receives from the left neighbour its MP+1 column in order to replace the first local (halo region) column, and it receives from the right neighbour its first column to replace the local last column (halo region). To save time, just the elements on rows 1 to NP+1 are sent, not the halos. To achieve this communication, the actual algorithm is to use 2 \textbf{MPI\_Isend} followed by 2 \textbf{MPI\_Recv} and 2 \textbf{MPI\_Wait} at the end for actually receiving the message. If one process if faster than another, it has to wait for its neighbour to send the values for proper computation to take place.	
 	\begin{figure}[ht]	
 		\centering
 		\begin{minipage}[b]{.5\textwidth}	
@@ -132,9 +151,7 @@
 		\end{minipage}
 	\end{figure}
 	
-	
-	
-	\begin{figure}[ht]	
+	\begin{figure}[H]	
 		\centering
 		\begin{minipage}[b]{.5\textwidth}
 			\centering
@@ -148,9 +165,13 @@
 		\end{minipage}
 	\end{figure}
 	
-
 	
-	\section{Measurements}
+	\section{2d performance measurements}
+	
+	Several measurements are created to test the speed-up generated by using multiple processes. Figures \ref{exec_1}, \ref{exec_2}, \ref{exec_3}, and \ref{exec_4} present the the execution time, and the speed-up against the serial code, of the 2d algorithm for all the given pictures. The code was run for 50,000 iterations. Each picture was recreated 5 times, to check consistency. It can be seen, that for larger images, an increase in the number of processes defines an increase in speed-up. In addition, it can be observed that the increase is not linear though, but rather follows a logarithmic curve. 
+	
+	However, for smaller images, it can be seen that after a certain number of processes, the efficiency is decreased. Figure \ref{exec_1} presents this case quite well. Additionally, it can be seen that after this part has been reached, the consistency of the speed-up decreases, with timing by up to 10\%. The main reason for this convergence is given by the communication overheads and the size of the local buf. The more processes are communicating in a program, the more the wait time between them is increased. In addition, a smaller picture would produce smaller local bufs. With an increase in number of processes, the size of the buf would not be decreased by much. Thus, the majority of the time would be spend waiting for communication. In addition, it can be observed that for the bigger pictures have a higher speed up. This reinforces that the size of the local buf is important.
+	
 	\begin{figure}[H]	
 		\centering
 		\begin{minipage}[b]{.5\textwidth}
@@ -187,31 +208,27 @@
 			\caption{Execution time and relative(to serial) execution time for the 768x768 pixel image.}\label{exec_4odd}
 		\end{minipage}%
 		\begin{minipage}[b]{.5\textwidth}
-			\ref{exec_4odd} is weird for 4 because having smaller number of processes, the overall change in swapping then is small. if we want to go for longer number of of iterations, at the same number of iters, the aavg will be the same. 
+			Figure \ref{exec_4odd} presents a weird behaviour, observed just in the largest picture. Algorithm was supposed to run until a $\Delta=0.01$ was reached. It can be seen that for 4 processes, the program finished quite fast. After careful investigation, it was concluded that this was due to the actual difference between pixels being small caused by small overall progress. 
 		\end{minipage}
 	\end{figure}
 	
+	For consistency, we checked the total value of the pixels in the new image after 50,000 iterations against the initial image, for different number of threads running. It can be observed, that for the same number of iterations, the difference in consistent. Thus, the algorithm is consistent, and the more processes are running, the image is just reconstructed faster, without data loss.
+	
 	\begin{lstlisting}
-	edge768x768_0.010_12.pgm
-	-54968212.0
-	edge768x768_0.010_16.pgm
-	-54968212.0
-	edge768x768_0.010_24.pgm
-	-54968212.0
-	edge768x768_0.010_4.pgm
-	-54968212.0
-	edge768x768_0.010_6.pgm
-	-54968212.0
-	edge768x768_0.010_8.pgm
-	-54968212.0
+	Threads @ delta=0.01 			4 				6 				8 				12 				16 				24 
+	diff					-54968212.0	-54968212.0	-54968212.0	-54968212.0	-54968212.0	-54968212.0
 	\end{lstlisting}
+	
+	Lastly, Figure \ref{tim1} presents several important timing measures, where the program stalled. The most important figure is represented by the average loop execution time for different number of processes. This refers to the time it took for 1 main loop to execute. It can be seen that decrease is exponential, with the increase in number of processes. As the loop will run for thousands of times, decreasing this figure represents the main method of increasing the speed up. Besides, it can be seen that mapping the neighbours (make MP) is the fastest part of the program. \textit{Make buf} represents the creation of the local buf from the master buf. This part is executed by each process only once. While it is quite fast, order of 10e-4 to 10e-7, it still decreases with the number of processes being run. The most time consuming part of the code is represented by the reconstructing of the image (\textit{reconstruct}), and waiting for all processes to have their buf reconstructed (\textit{barrier}). Again, these parts will be executed just once during the program. Thus, decreasing the execution time on purpose, given the fact their order of magnitude is similar to 10 average loops, would be counter productive. 
+	
+	
 	\begin{figure}[H]	
 		\centering
 		\includegraphics[scale=.3, width=\textwidth ]{timings.jpeg}
 		\caption{Timing for different parts of the program with the typical parameters for different number of threads.}\label{tim1}
 	\end{figure}
 	
-	
+	\section{Conclusion}
 
 
 	\pagebreak
@@ -223,7 +240,7 @@
 		\caption{Unprocessed image.}\label{pic0}
 	\end{figure}
 	
-	\begin{figure}[ht]	
+	\begin{figure}[H]	
 		\centering
 		\begin{minipage}[b]{.5\textwidth}
 			\centering

@@ -1,13 +1,15 @@
 \contentsline {section}{\numberline {1}Serial Program}{3}{section.1}
 \contentsline {section}{\numberline {2}Two dimensional problem}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}Architecture}{4}{subsection.2.1}
-\contentsline {section}{\numberline {3}Measurements}{7}{section.3}
-\contentsline {section}{\numberline {4}Appendix A - Pictures}{10}{section.4}
-\contentsline {section}{\numberline {5}Appendix B - Serial Code}{11}{section.5}
-\contentsline {section}{\numberline {6}Appendix C - 2D Parallel Code}{16}{section.6}
-\contentsline {section}{\numberline {7}Appendix D - Comms and pgmio Code}{24}{section.7}
-\contentsline {subsection}{\numberline {7.1}Comms.c}{24}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}pgmio.c}{25}{subsection.7.2}
-\contentsline {section}{\numberline {8}Appendix E - Makefile and PBS file}{29}{section.8}
-\contentsline {subsection}{\numberline {8.1}Makefile}{29}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}PBS file}{30}{subsection.8.2}
+\contentsline {subsection}{\numberline {2.2}Performance}{6}{subsection.2.2}
+\contentsline {section}{\numberline {3}2d performance measurements}{7}{section.3}
+\contentsline {section}{\numberline {4}Conclusion}{10}{section.4}
+\contentsline {section}{\numberline {5}Appendix A - Pictures}{11}{section.5}
+\contentsline {section}{\numberline {6}Appendix B - Serial Code}{12}{section.6}
+\contentsline {section}{\numberline {7}Appendix C - 2D Parallel Code}{17}{section.7}
+\contentsline {section}{\numberline {8}Appendix D - Comms and pgmio Code}{25}{section.8}
+\contentsline {subsection}{\numberline {8.1}Comms.c}{25}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}pgmio.c}{26}{subsection.8.2}
+\contentsline {section}{\numberline {9}Appendix E - Makefile and PBS file}{30}{section.9}
+\contentsline {subsection}{\numberline {9.1}Makefile}{30}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}PBS file}{31}{subsection.9.2}
